@@ -1,7 +1,7 @@
 import React from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
-
-//components
+import 'bootstrap/dist/css/bootstrap.min.css'
+//pages
 import HomePage from './pages/HomePage';
 
 
