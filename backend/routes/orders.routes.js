@@ -2,14 +2,11 @@ const express = require('express');
 const { check } = require('express-validator')
 const router = express.Router();
 
-
-//se trae el controlador del pedidos
 const pedidosControllerCreate = require('../controllers/orders/create.orders')
 const pedidosControllerRead = require('../controllers/orders/reader.orders')
 const pedidosControllerUpdate = require('../controllers/orders/update.orders')
 const pedidosControllerDelete = require('../controllers/orders/delete.orders')
 
-//A partir del Modelo -> creamos el documento
 router.post('/', [  
     
     check('name', 'Campo Nombre Menu esta Vacio').notEmpty(),
