@@ -33,7 +33,7 @@ exports.loginUser = async (req, res) => {
         const token = jsonwebtoken.sign(jwt_payload, process.env.JWT_SECRET, { expiresIn: process.env.TIME_EXP })
         usuarioLogueado.token = [ token ] 
         await UsersModel.update({ username: usuarioLogueado.username }, usuarioLogueado)
-        res.send({ mensaje: 'Te Logueaste re bien', token })
+        res.send({ mensaje: 'Logueado Correctamente', token })
     } catch (error) {
         return res.status(500).json({ mensaje: 'ERROR', error })
     }

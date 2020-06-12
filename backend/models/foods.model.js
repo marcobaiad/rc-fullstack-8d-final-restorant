@@ -1,12 +1,18 @@
 const mongoose = require('mongoose')
 
-const OrdersSchema = new mongoose.Schema({
-    name: {
+const FoodsSchema = new mongoose.Schema({
+    title: {
         type: String,
         required: true,
         trim: true,
         uppercase: true,
         unique: true
+    },
+
+    summary:{
+        type: String,
+        required: true,
+        trim: true
     },
 
     description:{
@@ -22,6 +28,6 @@ const OrdersSchema = new mongoose.Schema({
     }
 })
 
-const OrdersModel = mongoose.model('pedido', OrdersSchema)
+const FoodsModel = mongoose.model('comida', FoodsSchema)
 
-module.exports = OrdersModel;
+module.exports = FoodsModel;
