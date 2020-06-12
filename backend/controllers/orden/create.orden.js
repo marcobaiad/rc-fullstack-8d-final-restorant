@@ -1,19 +1,18 @@
 const mongoose = require('mongoose');
 const {validationResult} = require('express-validator')
-const OrdersModel = require('../../models/orders.model');
+const OrdenModel = require('../../models/orden.model');
 
-exports.CrearPedido = async (req, res) => {
+exports.CrearOrden = async (req, res) => {
 
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(422).json({ errors: errors.array() });
-      
     }
 
-    const pedidos = new OrdersModel(req.body);
+    const orden = new OrdenModel(req.body);
     try {
-        await pedidos.save();
-        res.send({ mensaje: 'Tu Pedido ya se Tomo'  })
+        await orden.save();
+        res.send({ mensaje: 'orden creada'  })
 
     } catch (err) {
         res.status(500).send(err);
