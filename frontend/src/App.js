@@ -1,7 +1,8 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
-import 'bootstrap/dist/css/bootstrap.min.css'
-import clienteAxios from './config/axios'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import clienteAxios from './config/axios';
+import Nabvar from '../src/components/Nabvar';
 //pages
 import HomePage from './pages/HomePage';
 import RegUser from './pages/RegUser';
@@ -11,11 +12,11 @@ function App() {
   
   return (
    <Router>
+     <Route component={Nabvar}/>  
      <Switch>
-       <Route exact path="/" component={HomePage}/>
        <Route exact path="/reg" component={RegUser}/>
        <Route exact path="/log" component={LoginSession}/>
-
+       <Route exact path="/" component={HomePage}/>
      </Switch>
    </Router>
   );
