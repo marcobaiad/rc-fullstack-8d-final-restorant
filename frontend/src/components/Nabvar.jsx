@@ -3,8 +3,11 @@ import Carousel from 'react-bootstrap/Carousel';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Form from 'react-bootstrap/Form';
+import nabvarjs from './navbar';
 
 const Nabvar = () => {
+
+    window.onscroll = function () { nabvarjs() };
 
     return (
         <div className="d-flex flex-wrap">
@@ -34,8 +37,8 @@ const Nabvar = () => {
                     />
                 </Carousel.Item>
             </Carousel>
-            <div className="w-100 position-absolute align-self-end" >
-                <Navbar variant="dark" className="px-0 py-2 position-relative mb-3 mb-lg-5" style={{ background: "rgba(0,0,0,0.7)", borderBottom: "1px solid #333" }}>
+            <div className="w-100 position-absolute align-self-end" id="navbar">
+                <Navbar variant="dark" className="px-0 py-2 mb-3 mb-lg-4" style={{ background: "rgba(0,0,0,0.7)", borderBottom: "1px solid #333" }}>
                     <Navbar.Brand className="d-none d-md-block ml-3">Food & Drinks</Navbar.Brand>
                     <Nav className="mr-auto d-none d-sm-none d-md-flex d-lg-flex" style={{ flexDirection: "row" }}>
                         <Nav.Link className="mx-2" href="#features">Inicio</Nav.Link>
