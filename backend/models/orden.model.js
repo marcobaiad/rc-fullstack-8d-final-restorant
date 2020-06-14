@@ -1,10 +1,11 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const usuario = mongoose.model('usuario')
+console.log(usuario)
 
 const OrdenSchema = new mongoose.Schema({
     direccion: {
         type: String,
-        trim: true,
-        unique: true
+        trim: true
     },
 
     cantidad:{
@@ -20,7 +21,12 @@ const OrdenSchema = new mongoose.Schema({
     usersid: {
         type: Number,
         unique:true,
-        trim: true
+        trim: true,
+    },
+
+    usuario:{ 
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'usuario' 
     },
 
     foodsid: {

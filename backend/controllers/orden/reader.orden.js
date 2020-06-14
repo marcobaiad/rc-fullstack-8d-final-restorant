@@ -10,3 +10,12 @@ exports.MostrarOrden =  async (req, res) => {
         res.status(500).send(err);
     }
 }
+
+
+// const orden = function(req,res){
+//     await OrdenModel.find({}), function(err, orden){
+//         usuario.populate(orden, {path: 'usuario'}.exec, function(err, orden){
+//             res.status(200).send(orden)
+//         })
+//     }
+// } 
