@@ -1,47 +1,51 @@
 import React from 'react';
-
+import './Reguser.css'
 const RegUser = () => {
-  return ( 
+  return (
     <>
-    <form className='container'>
-    <h1 className='text-center'>Registro de Usuario</h1>
-  <div className="form-row">
-    <div className="form-group col-md-6">
-      <label for="inputEmail4">Correo Electronico</label>
-      <input type="email" className="form-control" id="inputEmail4"/>
-    </div>
-    <div className="form-group col-md-6">
-      <label for="inputPassword4">Contraseña</label>
-      <input type="password" className="form-control" id="inputPassword4"/>
-    </div>
-  </div>
-  <div className="form-group">
-    <label for="inputAddress">Dirección</label>
-    <input type="text" className="form-control" id="inputAddress" placeholder="Calle 1234"/>
-  </div>
-  
-  <div className="form-row">
-    <div className="form-group col-md-6">
-      <label for="inputCity">Provincia</label>
-      <input type="text" className="form-control" id="inputCity"/>
-    </div>
-    <div className="form-group col-md-4">
-      <label for="inputState">Ciudad</label>
-      <select id="inputState" className="form-control">
-        <option selected>Choose...</option>
-        <option>...</option>
-      </select>
-    </div>
-    <div className="form-group col-md-2">
-      <label for="inputZip">Código Postal</label>
-      <input type="text" className="form-control" id="inputZip"/>
-    </div>
-  </div> 
-  <button type="submit" className="btn btn-primary">Registrarse</button>
-</form>
+      <div className='imgBackgroundReg registration-form'>
+        <form className='container-fluid'>
+          <h1 className='titulo'>Registro de Usuario</h1>
+          <div className="form-row">
+            <div className="form-group col-md-6">
+              <input type="text" className="form-control item" id="formGroupExampleInput" placeholder="Nombre" />
+            </div>
+            <div className="form-group col-md-6">
+              <input type="text" className="form-control item" id="formGroupExampleInput2" placeholder="Apellido" />
+            </div>
+            <div className="form-group col-md-6">
+              <input type="email" className="form-control item" id="inputEmail4" placeholder="Correo electrónico" />
+            </div>
+            <div className="form-group col-md-6">
+              <input type="password" className="form-control item" id="inputPassword4" placeholder="Contraseña" />
+            </div>
+          </div>
+          <div className="form-group">
+            <input type="text" className="form-control item" id="inputAddress" placeholder="Dirección" />
+          </div>
+          <div className="form-row">
+            <div className="form-group col-md-6">
+              <input type="text" className="form-control item" id="inputCity" placeholder="Provincia" />
+            </div>
+            <div className="form-group col-md-6">
+              <select id="inputState" className="form-control item">
+                <option selected>Choose...</option>
+                <option>Capital</option>
+              </select>
+            </div>
+            <div className="form-group col-md-6">
+              <input type="text" className="form-control item" id="inputZip" placeholder="Código Postal" />
+            </div>
+            <div class="form-group col-md-6">
+              <input type="text" className="form-control item" id="phone-number" placeholder="Numero Telefónico" />
+            </div>
+          </div>
+          <button type="submit" className="btn btn-block create-account">Registrarse</button>
+        </form>
+      </div>
     </>
-   );
+  );
 }
- 
+
 export default RegUser;
 
