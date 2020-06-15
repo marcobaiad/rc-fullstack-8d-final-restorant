@@ -1,5 +1,5 @@
 import React from 'react';
-import './Reguser.css'
+import '../Css/Reguser.css'
 const RegUser = () => {
   return (
     <>
@@ -39,6 +39,8 @@ const RegUser = () => {
             <div class="form-group col-md-6">
               <input type="text" className="form-control item" id="phone-number" placeholder="Numero Telefónico" />
             </div>
+          </div>
+          <div>
           </div>
           <button type="submit" className="btn btn-block create-account">Registrarse</button>
         </form>
