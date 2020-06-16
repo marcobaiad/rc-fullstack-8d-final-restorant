@@ -2,8 +2,6 @@ const mongoose = require('mongoose')
 
 const UsersSchema = new mongoose.Schema({
     
-    _id: mongoose.Schema.Types.ObjectId,
-
     name:{
         type: String,
         trim: true,
@@ -12,6 +10,11 @@ const UsersSchema = new mongoose.Schema({
     lastname:{
         type: String,
         trim: true,
+    },
+
+    address: {
+        type: String,
+        trim: true
     },
 
     age:{

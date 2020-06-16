@@ -9,12 +9,9 @@ const ControllerDeleteOrden = require('../controllers/orden/delete.orden')
 
 router.post('/', [  
     
-    check('direccion', 'Direccion Vacia').notEmpty(),
     check('cantidad', 'Cantidad vacia').notEmpty(),
-    check('cantidadabonar', 'Cantidad a Abonar Vacio').notEmpty(),
-    check('usersid', 'usersid Vacio').notEmpty(),
-    check('foodsid', 'foodsid Vacio').notEmpty()
-    
+    check('cantidadabonar', 'Cantidad a Abonar Vacio').notEmpty()
+
 ],
 ControllerCreateOrden.CrearOrden)
 
