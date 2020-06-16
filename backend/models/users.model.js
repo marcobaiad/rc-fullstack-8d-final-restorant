@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 
 const UsersSchema = new mongoose.Schema({
+    
     name:{
         type: String,
         trim: true,
@@ -9,6 +10,11 @@ const UsersSchema = new mongoose.Schema({
     lastname:{
         type: String,
         trim: true,
+    },
+
+    address: {
+        type: String,
+        trim: true
     },
 
     age:{
