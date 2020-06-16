@@ -14,8 +14,8 @@ function App() {
    <Router>
      <Route component={Nabvar}/>  
      <Switch>
-       <Route exact path="/reg" component={RegUser}/>
-       <Route exact path="/log" component={LoginSession}/>
+       <Route path="/reg" exact component={RegUser}/>
+       <Route path="/log" exact component={LoginSession}/>
        <Route exact path="/" component={HomePage}/>
      </Switch>
    </Router>
