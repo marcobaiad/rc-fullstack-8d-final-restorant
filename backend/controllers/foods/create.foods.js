@@ -15,7 +15,9 @@ exports.CrearPlato = async (req, res) => {
         orden.usuario.push(usuario)
         orden.comida.push(plato)
         await orden.save()
+        
         res.send(plato)
+        
         console.log(plato)
     } catch (err) {
         res.status(500).send(err);

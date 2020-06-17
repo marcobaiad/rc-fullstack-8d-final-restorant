@@ -20,7 +20,13 @@ const OrdenSchema = new mongoose.Schema({
     comida: [{
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'comida' 
-    }]
+    }],
+
+    state:{
+        type: String,
+        required:true,
+        default: 'pendiente'
+    }
 })
 
 const OrdenModel = mongoose.model('orden', OrdenSchema)
