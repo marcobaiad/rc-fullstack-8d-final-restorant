@@ -2,7 +2,7 @@ const FoodsModel = require('../../models/foods.model');
 
 exports.MostrarPlato =  async function (req, res) {
     try {
-        const platos = await FoodsModel.findById(req.params).populate('comidas')
+        const platos = await FoodsModel.findById(req.params.id)
         res.send(platos)
         console.log(platos)
     } catch (err) {

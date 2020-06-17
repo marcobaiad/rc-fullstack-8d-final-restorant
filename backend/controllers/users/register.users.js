@@ -10,17 +10,14 @@ exports.registerUser = async (req, res) => {
 
     const { body } = req
 
-    let nombre = ({ name: body.name })
-    console.log(nombre)
-
-    let apellido = ({ lastname: body.lastname })
-    console.log(apellido)
-
-    let mail = ({ email: body.email })
-    console.log(mail)
-
+    let name = ({ name: body.name })
+    
+    let lastname = ({ lastname: body.lastname })
+   
+    let email = ({ email: body.email })
+   
     let edad = ({ age: body.age });
-    console.log(edad)
+  
     if (edad.age < 18) {
         return res.status(400).json({ mensaje: 'no podes tener cuenta' })
     }
@@ -44,7 +41,7 @@ exports.registerUser = async (req, res) => {
     user.password = await bcryptjs.hash(body.password, salt);
 
     const usuario = new UsersModel(user);
-
+    console.log(usuario)
     try {
         await usuario.save();
         res.send({ mensaje: 'Tu Usuario se Registro Correctamente' })
