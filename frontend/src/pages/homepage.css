@@ -31,4 +31,11 @@
     transform: translate(-50%, -50%);
     text-align: center;
 }
-  
+
+.box-menu {
+    z-index: 1100;
+}
+
+.Titulo-Presentacion {
+    height: 40vh;
+}

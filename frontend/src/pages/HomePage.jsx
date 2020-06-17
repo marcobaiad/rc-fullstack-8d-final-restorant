@@ -4,11 +4,17 @@ import './homepage.css'
 const HomePages = () => {
   return (
     <>
-      <div className="">
-        <h1 className="bg-dark text-white text-weight-bold mb-0">Home Page</h1>
+      <div className="Titulo-Presentacion bg-dark text-white text-weight-bold">
+        <div className="col-6 ml-5 pt-5">
+          <h2 className="mb-0">Nuestro</h2>
+          <h2 className="mb-0">Menu</h2>
+          <h2 className="mb-0">Excelentes platos y Bebidas</h2>
+        </div>
+        <div className="col-6">
 
+        </div>
       </div>
-      <div className="box-menu row flex-wrap mx-0 mw-100 " style={{ zIndex: "1100" }}>
+      <div className="box-menu row flex-wrap mx-0 mw-100">
         <a className="col-6 col-md-4 col-lg-3 px-0 containers" href="">
           <img className="w-100 image" src="https://www.jbgood.com/wp/wp-content/uploads/2015/05/BBQ-Ribs-350x300.jpg" alt="" />
           <div className="overlay">
@@ -42,7 +48,7 @@ const HomePages = () => {
           </div>
         </a>
         <a className="col-6 col-md-4 col-lg-3 px-0 containers" href="">
-          <img className="w-100 image" src="https://www.jbgood.com/wp/wp-content/uploads/2015/05/MacCheese-350x300.jpg" alt="" />
+          <img className="w-100 image h-100" src="https://www.jbgood.com/wp/wp-content/uploads/2015/05/MacCheese-350x300.jpg" alt="" />
           <div className="overlay">
             <div className="text">
               hola perro
@@ -50,7 +56,7 @@ const HomePages = () => {
           </div>
         </a>
         <a className="col-6 col-md-4 col-lg-3 px-0 containers" href="">
-          <img className="w-100 image" src="https://www.jbgood.com/wp/wp-content/uploads/2015/05/Dinner-Logo-350x300.jpg" alt="" />
+          <img className="w-100 image h-100" src="https://www.jbgood.com/wp/wp-content/uploads/2015/05/Dinner-Logo-350x300.jpg" alt="" />
           <div className="overlay">
             <div className="text">
               hola perro

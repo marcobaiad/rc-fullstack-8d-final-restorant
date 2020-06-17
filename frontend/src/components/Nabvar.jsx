@@ -37,7 +37,7 @@ const Nabvar = () => {
                     />
                 </Carousel.Item>
             </Carousel>
-            <div className="w-100 position-absolute align-self-end" id="navbar">
+            <div className="w-100 position-absolute align-self-end" id="navbar" style={{ zIndex: "1500" }}>
                 <Navbar variant="dark" className="px-0 py-2 mb-3 mb-lg-4" style={{ background: "rgba(0,0,0,0.7)", borderBottom: "1px solid #333", zIndex: "1200" }}>
                     <Navbar.Brand className="d-none d-md-block ml-3">Food & Drinks</Navbar.Brand>
                     <Nav className="mr-auto d-none d-sm-none d-md-flex d-lg-flex" style={{ flexDirection: "row" }}>
