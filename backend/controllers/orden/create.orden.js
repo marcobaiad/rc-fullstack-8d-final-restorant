@@ -4,11 +4,6 @@ const OrdenModel = require('../../models/orden.model');
 
 exports.CrearOrden = async (req, res) => {
 
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(422).json({ errors: errors.array() });
-    }
-
     const orden = new OrdenModel(req.body);
     try {
         await orden.save();

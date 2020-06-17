@@ -8,7 +8,7 @@ const ControllerReadPlato = require('../controllers/foods/readers.foods')
 const ControllerUpdatePlato = require('../controllers/foods/update.foods')
 const ControllerDeletePlato = require('../controllers/foods/delete.foods')
 
-router.post('/:_id', [  
+router.post('/:id', [  
     
     check('title', 'Campo Titulo esta Vacio').notEmpty(),
     check('summary', 'Campo Resumen esta en Vacio').notEmpty(),
@@ -21,7 +21,7 @@ ControllerCreatePlato.CrearPlato)
 //Traemos todos los Documentos
 router.get('/', ControllerReadPlatos.MostrarPlatos)
 
-router.get('/:_id', ControllerReadPlato.MostrarPlato)
+router.get('/:id', ControllerReadPlato.MostrarPlato)
 
 //Modificamos el Documento
 router.put('/:id', ControllerUpdatePlato.ModificarPlato)

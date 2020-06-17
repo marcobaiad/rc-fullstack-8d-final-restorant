@@ -3,7 +3,8 @@ const { check } = require('express-validator')
 const router = express.Router();
 
 const ControllerCreateOrden = require('../controllers/orden/create.orden')
-const ControllerReadOrden = require('../controllers/orden/reader.orden')
+const ControllerReaderOrden = require('../controllers/orden/reader.orden')
+const ControllerReadOrden = require('../controllers/orden/read.orden')
 const ControllerUpdateOrden = require('../controllers/orden/update.orden')
 const ControllerDeleteOrden = require('../controllers/orden/delete.orden')
 
@@ -15,13 +16,12 @@ router.post('/', [
 ],
 ControllerCreateOrden.CrearOrden)
 
-//Traemos todos los Documentos
-router.get('/', ControllerReadOrden.MostrarOrden)
+router.get('/', ControllerReaderOrden.MostrarOrdenes)
 
-//Modificamos el Documento
+router.get('/:id', ControllerReadOrden.MostrarOrden)
+
 router.put('/:id', ControllerUpdateOrden.ModificarOrden)
 
-//Borramos el Documento
 router.delete('/:id', ControllerDeleteOrden.EliminarOrden)
 
 module.exports = router;

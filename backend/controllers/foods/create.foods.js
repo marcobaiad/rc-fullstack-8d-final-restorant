@@ -7,16 +7,16 @@ const OrdenModel = require('../../models/orden.model')
 exports.CrearPlato = async (req, res) => {
 
     const plato = new FoodsModel(req.body);
-    const usuario = await UsersModel.findById(req.params)
+    const usuario = await UsersModel.findById(req.params.id)
     const orden = new OrdenModel(req.body)
-    console.log(usuario)
+
     try {
         await plato.save();
         orden.usuario.push(usuario)
         orden.comida.push(plato)
         await orden.save()
         res.send(plato)
-
+        console.log(plato)
     } catch (err) {
         res.status(500).send(err);
     }

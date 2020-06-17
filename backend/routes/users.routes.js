@@ -6,7 +6,9 @@ const router = express.Router();
 const usuarioControllerRegister = require('../controllers/users/register.users')
 const usuarioControllerLogin = require('../controllers/users/login.users')
 const usuarioControllerLogout = require('../controllers/users/logout.users')
-const usuarioControllerReader = require('../controllers/users/reader.users')
+const usuariosControllerReader = require('../controllers/users/reader.users')
+const usuarioControllerRead = require('../controllers/users/read.users')
+const usuarioControllerDelete = require('../controllers/users/delete.users')
 
 router.post('/', [
     check('name', 'Campo Nombre Vacio').notEmpty(),
@@ -24,5 +26,8 @@ router.post('/login', [
     check('password', 'contraseñaError: Campo Vacio').notEmpty(),
 ], usuarioControllerLogin.loginUser)
 router.get('/logout', autorizado, usuarioControllerLogout.logoutUser)
-router.get('/', usuarioControllerReader.MostrarUsuarios)
+router.get('/', usuariosControllerReader.MostrarUsuarios)
+router.get('/:id', usuarioControllerRead.MostrarUsuario)
+router.delete('/:id', usuarioControllerDelete.DeleteUser)
+
 module.exports = router;
