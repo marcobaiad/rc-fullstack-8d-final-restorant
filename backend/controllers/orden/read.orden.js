@@ -8,6 +8,8 @@ exports.MostrarOrden = async (req, res) => {
         // }
 
         const orden = await OrdenModel.findById(req.params.id)
+        .populate({path: 'usuario', select: '-_id name address'})
+        .populate({path: 'comida', select: '-_id title price'})
 
         if(!orden){
             return res.status(404).json({mensaje: 'No Existe la Orden'})
