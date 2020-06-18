@@ -12,6 +12,9 @@
   }
 
   .registration-form form {
+    background: #bdc3c7;
+    background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);
+    background: linear-gradient(to right, #2c3e50, #bdc3c7);
     max-width: 600px;
     margin: auto;
     padding: 50px 70px;

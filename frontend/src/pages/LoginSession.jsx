@@ -1,6 +1,6 @@
-import React from 'react'
-import Swal from 'sweetalert2'
-import '../Css/logUser.css'
+import React from 'react';
+import Swal from 'sweetalert2';
+import '../Css/logUser.css';
 
 const LoginSession = () => {
 
