@@ -41,7 +41,7 @@ const UsersSchema = new mongoose.Schema({
         trim: true
     },
 
-    orden: [{ 
+    order: [{ 
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'orden' 
     }],

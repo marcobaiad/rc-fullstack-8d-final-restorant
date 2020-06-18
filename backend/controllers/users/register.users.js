@@ -24,9 +24,9 @@ exports.registerUser = async (req, res) => {
         return res.status(400).json({ mensaje: 'no podes tener cuenta' })
     }
 
-    let usuarioExiste = await UsersModel.findOne({ username: body.username });
-    if (usuarioExiste) {
-        console.log(usuarioExiste)
+    let userExists = await UsersModel.findOne({ username: body.username });
+    if (userExists) {
+        console.log(userExists)
         return res.status(400).json({ mensaje: 'El Usuario ya existe' })
     }
 
