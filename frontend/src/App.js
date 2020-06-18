@@ -7,6 +7,7 @@ import clienteAxios from './config/axios';
 import HomePage from './pages/HomePage';
 import RegUser from './pages/RegUser';
 import LoginSession from './pages/LoginSession'
+import Footer from '../src/components/Footer';
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
        <Route path="/log" exact component={LoginSession}/>
        <Route exact path="/" component={HomePage}/>
      </Switch>
+     <Route component={Footer} />
    </Router>
   );
 }
