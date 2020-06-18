@@ -47,9 +47,9 @@
 }
 
 .tituloh1 {
-    font-size: 5rem;
+    font-size: 8rem;
     line-height: .75;
-    letter-spacing: -6px;
+    letter-spacing: -12px;
 }
 
 @media only screen and (max-width: 600px) {
@@ -79,6 +79,6 @@
 
 .font-parallax {
     max-width: 100%;
-    font-size: 3.5rem;
+    font-size: 3.3rem;
     color: white;
 }
