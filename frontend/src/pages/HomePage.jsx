@@ -1,14 +1,13 @@
 import React from 'react';
-import './homepage.css'
+import '../Css/homepage.css'
 
 const HomePages = () => {
   return (
     <>
-      <div className="Titulo-Presentacion bg-dark text-white text-weight-bold">
-        <div className="col-12 col-md-6 pl-3 pl-md-5 pt-3 pt-md-5">
-          <h2 className="mb-0">Nuestro</h2>
-          <h2 className="mb-0">Menu</h2>
-          <h2 className="mb-0">Excelentes platos y Bebidas</h2>
+      <div className="Titulo-Presentacion">
+        <div className="col-12 col-md-6 pl-3 pl-md-5 pt-3 pt-md-4 text-white">
+          <h1 className="tituloh1"><span className="redcolor">Nuestro</span><br></br>MENU</h1>
+          <h2 className="mb-0 text-white">Excelentes platos y Bebidas</h2>
         </div>
       </div>
       <div className="box-menu row flex-wrap mx-0 mw-100">
@@ -108,7 +107,12 @@ const HomePages = () => {
             </div>
           </div>
         </a>
-
+      </div>
+      <div className="parallaxHOME firstpara row m-0 justify-content-center align-items-center">
+        <h3 className="font-parallax">LIVE DE EXPERIENCE, ALL DAY, EVERY DAY</h3>
+      </div>
+      <div className="parallaxHOME secondpara row m-0 justify-content-center align-items-center">
+        <h3 className="font-parallax">THE MUSICAL EXPERIENCE</h3>
       </div>
     </>
   );
