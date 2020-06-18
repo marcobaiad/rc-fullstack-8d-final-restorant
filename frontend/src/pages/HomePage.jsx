@@ -3,7 +3,7 @@ import '../Css/homepage.css'
 
 const HomePages = () => {
   return (
-    <>
+    <div className="mw-100">
       <div className="Titulo-Presentacion">
         <div className="col-12 col-md-6 pl-3 pl-md-5 pt-3 pt-md-4 text-white">
           <h1 className="tituloh1"><span className="redcolor">Nuestro</span><br></br>MENU</h1>
@@ -114,7 +114,7 @@ const HomePages = () => {
       <div className="parallaxHOME secondpara row m-0 justify-content-center align-items-center">
         <h3 className="font-parallax">THE MUSICAL EXPERIENCE</h3>
       </div>
-    </>
+    </div>
   );
 }
 

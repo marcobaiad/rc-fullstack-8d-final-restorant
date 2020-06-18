@@ -1,5 +1,5 @@
 import React from 'react';
-import './navbar.css'
+import '../Css/navbar.css'
 import Carousel from 'react-bootstrap/Carousel';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
@@ -38,19 +38,19 @@ const Nabvar = () => {
             <div className="w-100 position-absolute align-self-end" id="navbar">
                 <Navbar variant="dark" className="px-0 py-2 mb-3 mb-lg-4 navbar-menu">
                     <Navbar.Brand className="d-none d-md-block ml-3">Food & Drinks</Navbar.Brand>
-                    <Nav className="mr-auto d-none d-sm-none d-md-flex d-lg-flex row">
-                        <Nav.Link className="mx-2" href="#features">Inicio</Nav.Link>
-                        <Nav.Link className="mx-2" href="#pricing">Menu</Nav.Link>
-                        <Nav.Link className="mx-2" href="#deets">Locales</Nav.Link>
-                        <Nav.Link className="mx-2" href="#memes">Delivery</Nav.Link>
+                    <Nav className="d-none d-sm-none d-md-flex d-lg-flex row">
+                        <Nav.Link className="text-white hover-navbar" href="/">HOME</Nav.Link>
+                        <Nav.Link className="text-white hover-navbar" href="#menu">MENU</Nav.Link>
+                        <Nav.Link className="text-white hover-navbar" href="#deets">CONTACT</Nav.Link>
+                        <Nav.Link className="text-white hover-navbar" href="#memes">ABOUT US</Nav.Link>
                     </Nav>
                     <Form className="w-100 px-2 mt-4 d-md-none">
                         <Form.Group controlId="exampleForm.SelectCustom">
                             <Form.Control className="drop-menu text-white" as="select" custom>
-                                <option>Inicio</option>
-                                <option>Menu</option>
-                                <option>Locales</option>
-                                <option>Delivery</option>
+                                <option>HOME</option>
+                                <option>MENU</option>
+                                <option>CONTACT</option>
+                                <option>ABOUT US</option>
                             </Form.Control>
                         </Form.Group>
                     </Form>
