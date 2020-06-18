@@ -4,11 +4,13 @@ const OrdenSchema = new mongoose.Schema({
   
     cantidad:{
         type: Number,
+        
         trim: true
     },
 
     cantidadabonar:{
         type: Number,
+        
         trim: true
     },
 

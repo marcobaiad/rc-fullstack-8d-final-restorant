@@ -41,9 +41,14 @@ const UsersSchema = new mongoose.Schema({
         trim: true
     },
 
+    orden: [{ 
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'orden' 
+    }],
+
     token: [String]
 })
-
+ 
 const UsersModel = mongoose.model('usuario', UsersSchema)
 
 module.exports = UsersModel;

@@ -8,7 +8,7 @@ const ControllerReadOrden = require('../controllers/orden/read.orden')
 const ControllerUpdateOrden = require('../controllers/orden/update.orden')
 const ControllerDeleteOrden = require('../controllers/orden/delete.orden')
 
-router.post('/:id', [  
+router.post('/', [  
     
     check('cantidad', 'Cantidad vacia').notEmpty(),
     check('cantidadabonar', 'Cantidad a Abonar Vacio').notEmpty()
