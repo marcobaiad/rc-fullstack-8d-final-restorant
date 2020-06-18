@@ -4,18 +4,18 @@ const FoodsModel = require('../../models/foods.model');
 const UsersModel = require('../../models/users.model')
 
 
-exports.CrearPlato = async (req, res) => {
+exports.CreatePlate = async (req, res) => {
 
-    const plato = new FoodsModel(req.body);
-    const usuario = await UsersModel.findById(req.params.id)
+    const plate = new FoodsModel(req.body);
+    const user = await UsersModel.findById(req.params.id)
    
     try {
-        await plato.save();
-        usuario.orden.push(plato)  
-        await usuario.save()      
-        res.send(plato)
+        await plate.save();
+        user.order.push(plate)  
+        await user.save()      
+        res.send(plate)
         
-        console.log(plato)
+        console.log(plate)
     } catch (err) {
         res.status(500).send(err);
     }

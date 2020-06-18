@@ -2,11 +2,11 @@ const express = require('express');
 const { check } = require('express-validator')
 const router = express.Router();
 
-const ControllerCreatePlato = require('../controllers/foods/create.foods')
-const ControllerReadPlatos = require('../controllers/foods/reader.foods')
-const ControllerReadPlato = require('../controllers/foods/readers.foods')
-const ControllerUpdatePlato = require('../controllers/foods/update.foods')
-const ControllerDeletePlato = require('../controllers/foods/delete.foods')
+const ControllerCreatePlate = require('../controllers/foods/create.foods')
+const ControllerReadDishes = require('../controllers/foods/readSeveral.foods')
+const ControllerReadPlate = require('../controllers/foods/readOne.foods')
+const ControllerUpdatePlate = require('../controllers/foods/update.foods')
+const ControllerDeletePlate = require('../controllers/foods/delete.foods')
 
 router.post('/:id', [  
     
@@ -16,17 +16,14 @@ router.post('/:id', [
     check('price', 'Campo Precio Vacio').notEmpty()
     
 ],
-ControllerCreatePlato.CrearPlato)
+ControllerCreatePlate.CreatePlate)
 
-//Traemos todos los Documentos
-router.get('/', ControllerReadPlatos.MostrarPlatos)
+router.get('/', ControllerReadDishes.seeDishes)
 
-router.get('/:id', ControllerReadPlato.MostrarPlato)
+router.get('/:id', ControllerReadPlate.seeDish)
 
-//Modificamos el Documento
-router.put('/:id', ControllerUpdatePlato.ModificarPlato)
+router.put('/:id', ControllerUpdatePlate.modifyPlate)
 
-//Borramos el Documento
-router.delete('/:id', ControllerDeletePlato.EliminarPlato)
+router.delete('/:id', ControllerDeletePlate.removePlate)
 
 module.exports = router;

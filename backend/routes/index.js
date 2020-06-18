@@ -1,14 +1,14 @@
 const express = require('express');
 const router = express.Router();
 
-const platosRouter = require('./foods.routes')
-const ordenRouter = require('./orden.routes')
-const usuariosRouter = require('./users.routes')
+const dishesRouter = require('./foods.routes')
+const orderRouter = require('./order.routes')
+const usersRouter = require('./users.routes')
 const statusRouter = require('./status.routes')
 
-router.use('/comidas', platosRouter)
-router.use('/orden', ordenRouter)
-router.use('/usuarios', usuariosRouter)
+router.use('/comidas', dishesRouter)
+router.use('/orden', orderRouter)
+router.use('/usuarios', usersRouter)
 router.use('/status', statusRouter)
 
 module.exports = router;
