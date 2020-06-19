@@ -3,7 +3,8 @@ const { check } = require('express-validator')
 const router = express.Router();
 
 const ControllerCreatePlate = require('../controllers/foods/create.foods')
-const ControllerReadDishes = require('../controllers/foods/readSeveral.foods')
+const ControllerReadDishesTrue = require('../controllers/foods/readSeveralTrue.foods')
+const ControllerReadDishesAll = require('../controllers/foods/readSeveralAll.foods')
 const ControllerReadPlate = require('../controllers/foods/readOne.foods')
 const ControllerUpdatePlate = require('../controllers/foods/update.foods')
 const ControllerDeletePlate = require('../controllers/foods/delete.foods')
@@ -18,12 +19,9 @@ router.post('/:id', [
 ],
 ControllerCreatePlate.CreatePlate)
 
-router.get('/', ControllerReadDishes.seeDishes)
-
+router.get('/', ControllerReadDishesTrue.seeDishesTrue)
+router.get('/todas', ControllerReadDishesAll.seeDishesAll)
 router.get('/:id', ControllerReadPlate.seeDish)
-
 router.put('/:id', ControllerUpdatePlate.modifyPlate)
-
 router.delete('/:id', ControllerDeletePlate.removePlate)
-
 module.exports = router;
