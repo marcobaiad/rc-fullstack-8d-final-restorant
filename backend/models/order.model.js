@@ -1,25 +1,26 @@
 const mongoose = require('mongoose');
 
-const OrdenSchema = new mongoose.Schema({
+const OrderSchema = new mongoose.Schema({
   
-    cantidad:{
+    quantity:{
         type: Number,
         
         trim: true
     },
 
-    cantidadabonar:{
+    
+    amountTopay:{
         type: Number,
         
         trim: true
     },
 
-    usuario: [{ 
+    user: [{ 
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'usuario' 
     }],
 
-    comida: [{
+    food: [{
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'comida' 
     }],
@@ -31,6 +32,6 @@ const OrdenSchema = new mongoose.Schema({
     }
 })
 
-const OrdenModel = mongoose.model('orden', OrdenSchema)
+const OrderModel = mongoose.model('orden', OrderSchema)
 
-module.exports = OrdenModel;
+module.exports = OrderModel;

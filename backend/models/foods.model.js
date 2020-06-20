@@ -26,6 +26,12 @@ const FoodsSchema = new mongoose.Schema({
         type: Number,
         required:true,
         trim: true
+    },
+
+    enable:{
+        type: Boolean,
+        required:true,
+        default: true
     }
 })
 

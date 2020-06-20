@@ -1,21 +1,16 @@
 const mongoose = require('mongoose');
 const {validationResult} = require('express-validator')
 const FoodsModel = require('../../models/foods.model');
-const UsersModel = require('../../models/users.model')
 
+exports.CreatePlate = async (req, res) => {
 
-exports.CrearPlato = async (req, res) => {
-
-    const plato = new FoodsModel(req.body);
-    const usuario = await UsersModel.findById(req.params.id)
+    const plate = new FoodsModel(req.body);
    
     try {
-        await plato.save();
-        usuario.orden.push(plato)  
-        await usuario.save()      
-        res.send(plato)
+        await plate.save();
+        res.send(plate)
         
-        console.log(plato)
+        console.log(plate)
     } catch (err) {
         res.status(500).send(err);
     }
