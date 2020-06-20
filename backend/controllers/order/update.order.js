@@ -10,7 +10,7 @@ exports.modifyOrder = async (req, res) => {
         }
         
         const order = await OrderModel.findByIdAndUpdate(req.params.id, req.body, { new: true })
-        res.send(order)
+        res.send(order) 
     } catch (err) {
         res.status(500).send(err);
     }

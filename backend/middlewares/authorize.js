@@ -8,15 +8,15 @@ module.exports = async(req, res, next) =>{
 
         const verificar = jsonwebtoken.verify(token, process.env.JWT_SECRET);
 
-        const usuarioLogueado = await UsersModel.findOne({ _id: verificar.user.id, token: token });
+        const userLogin = await UsersModel.findOne({ _id: verificar.user.id, token: token });
 
-        if(!usuarioLogueado){
+        if(!userLogin){
             return res.status(401).json({ mensaje: 'Dentro: No Autorizado' })
         }
 
-        res.locals.user = usuarioLogueado;
+        res.locals.user = userLogin;
         res.locals.token = token;
-
+        
         next();
     }
         

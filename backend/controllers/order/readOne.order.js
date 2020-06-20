@@ -3,7 +3,7 @@ const OrderModel = require('../../models/order.model');
 exports.seeOrder = async (req, res) => {
     try {
 
-        const order = await OrderModel.findById(req.params.id)
+        const order = await OrderModel.findByIdAndUpdate(req.params.id, {state:'En tramite'}, { new: true })
         .populate({path: 'user', select: '-_id name address'})
         .populate({path: 'food', select: '-_id title price'})
 
@@ -17,3 +17,4 @@ exports.seeOrder = async (req, res) => {
         res.status(500).send(err);
     }
 }
+ 
