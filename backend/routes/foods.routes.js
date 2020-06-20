@@ -8,6 +8,8 @@ const ControllerReadDishesAll = require('../controllers/foods/readSeveralAll.foo
 const ControllerReadPlate = require('../controllers/foods/readOne.foods')
 const ControllerUpdatePlate = require('../controllers/foods/update.foods')
 const ControllerDeletePlate = require('../controllers/foods/delete.foods')
+const ControllerPlateND = require('../controllers/foods/platend.foods')
+
 
 router.post('/:id', [  
     
@@ -23,5 +25,6 @@ router.get('/', ControllerReadDishesTrue.seeDishesTrue)
 router.get('/todas', ControllerReadDishesAll.seeDishesAll)
 router.get('/:id', ControllerReadPlate.seeDish)
 router.put('/:id', ControllerUpdatePlate.modifyPlate)
+router.put('/:id/nd', ControllerPlateND.PlateND)
 router.delete('/:id', ControllerDeletePlate.removePlate)
 module.exports = router;
