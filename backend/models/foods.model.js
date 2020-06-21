@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 
+
 const FoodsSchema = new mongoose.Schema({
     title: {
         type: String,
@@ -25,6 +26,12 @@ const FoodsSchema = new mongoose.Schema({
         type: Number,
         required:true,
         trim: true
+    },
+
+    enable:{
+        type: Boolean,
+        required:true,
+        default: true
     }
 })
 

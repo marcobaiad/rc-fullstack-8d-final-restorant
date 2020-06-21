@@ -2,12 +2,17 @@ const express = require('express');
 const { check } = require('express-validator')
 const router = express.Router();
 
-const ControllerCreatePlato = require('../controllers/foods/create.foods')
-const ControllerReadPlatos = require('../controllers/foods/reader.foods')
-const ControllerUpdatePlato = require('../controllers/foods/update.foods')
-const ControllerDeletePlato = require('../controllers/foods/delete.foods')
+const ControllerCreatePlate = require('../controllers/foods/create.foods')
+const ControllerReadDishesTrue = require('../controllers/foods/readSeveralTrue.foods')
+const ControllerReadDishesAll = require('../controllers/foods/readSeveralAll.foods')
+const ControllerReadPlate = require('../controllers/foods/readOne.foods')
+const ControllerUpdatePlate = require('../controllers/foods/update.foods')
+const ControllerDeletePlate = require('../controllers/foods/delete.foods')
+const ControllerPlateND = require('../controllers/foods/platend.foods')
+const ControllerPlateDis = require('../controllers/foods/plateDis.foods')
 
-router.post('/', [  
+
+router.post('/:id', [  
     
     check('title', 'Campo Titulo esta Vacio').notEmpty(),
     check('summary', 'Campo Resumen esta en Vacio').notEmpty(),
@@ -15,15 +20,13 @@ router.post('/', [
     check('price', 'Campo Precio Vacio').notEmpty()
     
 ],
-ControllerCreatePlato.CrearPlato)
+ControllerCreatePlate.CreatePlate)
 
-//Traemos todos los Documentos
-router.get('/', ControllerReadPlatos.MostrarPlatos)
-
-//Modificamos el Documento
-router.put('/:id', ControllerUpdatePlato.ModificarPlato)
-
-//Borramos el Documento
-router.delete('/:id', ControllerDeletePlato.EliminarPlato)
-
+router.get('/', ControllerReadDishesTrue.seeDishesTrue)
+router.get('/todas', ControllerReadDishesAll.seeDishesAll)
+router.get('/:id', ControllerReadPlate.seeDish)
+router.put('/:id', ControllerUpdatePlate.modifyPlate)
+router.put('/:id/nd', ControllerPlateND.PlateND)
+router.put('/:id/dis', ControllerPlateDis.PlateDis)
+router.delete('/:id', ControllerDeletePlate.removePlate)
 module.exports = router;

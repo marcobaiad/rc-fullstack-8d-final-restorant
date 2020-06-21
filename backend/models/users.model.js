@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 
 const UsersSchema = new mongoose.Schema({
+    
     name:{
         type: String,
         trim: true,
@@ -9,6 +10,11 @@ const UsersSchema = new mongoose.Schema({
     lastname:{
         type: String,
         trim: true,
+    },
+
+    address: {
+        type: String,
+        trim: true
     },
 
     age:{
@@ -35,9 +41,14 @@ const UsersSchema = new mongoose.Schema({
         trim: true
     },
 
+    order: [{ 
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'orden' 
+    }],
+
     token: [String]
 })
-
+ 
 const UsersModel = mongoose.model('usuario', UsersSchema)
 
 module.exports = UsersModel;

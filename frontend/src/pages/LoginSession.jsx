@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 import React, { useState } from 'react';
 import Swal from 'sweetalert2'
 import '../Css/logUser.css'
+=======
+import React from 'react';
+import Swal from 'sweetalert2';
+import '../Css/logUser.css';
+>>>>>>> a905fcf813b6a1cc98cbed34bebece47c0972617
 
 
 import clienteAxios from '../config/axios';
