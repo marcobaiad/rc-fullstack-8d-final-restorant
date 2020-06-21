@@ -12,7 +12,6 @@ app.use(express.urlencoded())
 require('./dataBase')
 const port = process.env.PORT
 
-
 const Routes = require('./routes')
 
 app.use('/api/v1', Routes)
