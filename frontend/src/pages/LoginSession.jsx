@@ -1,8 +1,47 @@
-import React from 'react'
+import React, { useState } from 'react';
 import Swal from 'sweetalert2'
 import '../Css/logUser.css'
 
-const LoginSession = () => {
+
+import clienteAxios from '../config/axios';
+
+const LoginSession = (props) => {
+
+  const [username, setUser] = useState({
+    username: ''
+  });
+  const [password, setPassword] = useState({
+    password: ''
+  });
+
+  const setStateUser = e => {
+    setUser({
+      ...username,
+      [e.target.name]: e.target.value
+    });
+  }
+
+  const setStatePassword = e => {
+    setPassword({
+      ...password,
+      [e.target.name]: e.target.value
+    });
+  }
+
+  const logUser = e => {
+    e.preventDefault();
+
+    clienteAxios.post('/api/v1/usuarios/login', username, password)
+      .then(response => {
+        console.log(response);
+        props.history.push('/')
+      })
+  }
+
+
+
+
+
 
   const recoverPass = () => {
     Swal.fire({
@@ -16,19 +55,35 @@ const LoginSession = () => {
   return (
     <>
       <div className="imgBackgroundLog registration-form log-form">
-        <form className='form'>
+        <form className='form'
+          onSubmit={logUser}
+        >
           <h1 className='titulo'>Iniciar Sesión</h1>
           <div className="form-group">
-            <input type="email" className="form-control item" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Correo electrónico" />
+            <input
+              type="tex"
+              className="form-control item"
+              placeholder="Usuario"
+              name="username"
+              onChange={setStateUser} />
           </div>
           <div className="form-group">
-            <input type="password" className="form-control item" id="exampleInputPassword1" placeholder="Contraseña" />
+            <input
+              type="password"
+              className="form-control item"
+              placeholder="Contraseña"
+              name="password"
+              onChange={setStatePassword}
+            />
           </div>
           <div className="row">
             <div className="form-group col-md-3">
               <div className="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="customCheck1" />
-                <label className="custom-control-label" for="customCheck1">Recordarme</label>
+                <input
+                  type="checkbox"
+                  className="custom-control-input"
+                  id="customCheck1" />
+                <label className="custom-control-label" htmlFor="customCheck1">Recordarme</label>
               </div>
             </div>
             <div className="col-md-9">
@@ -36,7 +91,7 @@ const LoginSession = () => {
                 Olvide mi Contraseña
               </a>
 
-              <div className="modal" id="exampleModalCentered" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenteredLabel" aria-hidden="true">
+              <div className="modal" id="exampleModalCentered" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenteredLabel" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered" role="document">
                   <div className="modal-content">
                     <div className="modal-header">
@@ -46,10 +101,14 @@ const LoginSession = () => {
                       </button>
                     </div>
                     <div className="modal-body">
-                      <div class="form-group">
-                        <div class="col-md-12">
-                          <label for="formGroupExampleInput">Ingresa tu email para recuperar tu contraseña</label>
-                          <input type="email" className="form-control item" id="inputEmail3" placeholder="Email" />
+                      <div className="form-group">
+                        <div className="col-md-12">
+                          <label htmlFor="formGroupExampleInput">Ingresa tu email para recuperar tu contraseña</label>
+                          <input
+                            type="email"
+                            className="form-control item"
+                            id="inputEmail3"
+                            placeholder="Email" />
                         </div>
                       </div>
                     </div>
@@ -61,7 +120,10 @@ const LoginSession = () => {
               </div>
             </div>
           </div>
-          <button type="submit" className="btn btn-block create-account">Ingresar</button>
+          <button
+            type="submit"
+            className="btn btn-block create-account"
+          >Ingresar</button>
         </form>
       </div>
     </>

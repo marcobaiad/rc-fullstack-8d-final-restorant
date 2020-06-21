@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import clienteAxios from './config/axios'
+
 //pages
 import HomePage from './pages/HomePage';
 import RegUser from './pages/RegUser';
