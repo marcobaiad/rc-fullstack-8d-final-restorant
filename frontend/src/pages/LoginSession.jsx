@@ -1,53 +1,27 @@
-<<<<<<< HEAD
+
 import React, { useState } from 'react';
 import Swal from 'sweetalert2'
 import '../Css/logUser.css'
-=======
-import React from 'react';
-import Swal from 'sweetalert2';
-import '../Css/logUser.css';
->>>>>>> a905fcf813b6a1cc98cbed34bebece47c0972617
+
 
 
 import clienteAxios from '../config/axios';
 
 const LoginSession = (props) => {
 
-  const [username, setUser] = useState({
-    username: ''
-  });
-  const [password, setPassword] = useState({
-    password: ''
-  });
-
-  const setStateUser = e => {
-    setUser({
-      ...username,
-      [e.target.name]: e.target.value
-    });
-  }
-
-  const setStatePassword = e => {
-    setPassword({
-      ...password,
-      [e.target.name]: e.target.value
-    });
-  }
+  const [username, setUser] = useState('');
+  const [password, setPassword] = useState('');
 
   const logUser = e => {
     e.preventDefault();
 
-    clienteAxios.post('/api/v1/usuarios/login', username, password)
+    clienteAxios.post('/api/v1/usuarios/login', { username, password })
       .then(response => {
         console.log(response);
+        localStorage.setItem('token', response.data.token)
         props.history.push('/')
       })
   }
-
-
-
-
-
 
   const recoverPass = () => {
     Swal.fire({
@@ -71,7 +45,7 @@ const LoginSession = (props) => {
               className="form-control item"
               placeholder="Usuario"
               name="username"
-              onChange={setStateUser} />
+              onChange={(e) => { setUser(e.target.value) }} />
           </div>
           <div className="form-group">
             <input
@@ -79,7 +53,7 @@ const LoginSession = (props) => {
               className="form-control item"
               placeholder="Contraseña"
               name="password"
-              onChange={setStatePassword}
+              onChange={(e) => { setPassword(e.target.value) }}
             />
           </div>
           <div className="row">
