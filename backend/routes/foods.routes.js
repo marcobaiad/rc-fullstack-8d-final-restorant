@@ -11,7 +11,6 @@ const ControllerDeletePlate = require('../controllers/foods/delete.foods')
 const ControllerPlateND = require('../controllers/foods/platend.foods')
 const ControllerPlateDis = require('../controllers/foods/plateDis.foods')
 
-
 router.post('/:id', [  
     
     check('title', 'Campo Titulo esta Vacio').notEmpty(),
@@ -22,11 +21,13 @@ router.post('/:id', [
 ],
 ControllerCreatePlate.CreatePlate)
 
-router.get('/', ControllerReadDishesTrue.seeDishesTrue)
 router.get('/todas', ControllerReadDishesAll.seeDishesAll)
 router.get('/:id', ControllerReadPlate.seeDish)
-router.put('/:id', ControllerUpdatePlate.modifyPlate)
-router.put('/:id/nd', ControllerPlateND.PlateND)
+router.get('/', ControllerReadDishesTrue.seeDishesTrue)
+
 router.put('/:id/dis', ControllerPlateDis.PlateDis)
+router.put('/:id/nd', ControllerPlateND.PlateND)
+router.put('/:id', ControllerUpdatePlate.modifyPlate)
+
 router.delete('/:id', ControllerDeletePlate.removePlate)
 module.exports = router;
