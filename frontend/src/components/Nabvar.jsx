@@ -15,7 +15,7 @@ const Nabvar = () => {
 
         if(window.location.pathname.includes("reg") || window.location.pathname.includes("log") ) {
             carrousel.classList.add("d-none");
-            carrousel.classList.add("position-absolute");
+            carrousel.classList.add("position-absolute"); 
             navbar.classList.remove("position-absolute");
         }
 
