@@ -10,6 +10,10 @@ const usuariosControllerReadSeveral = require('../controllers/users/readSeveral.
 const usuarioControllerReadOne = require('../controllers/users/readOne.user')
 const usuarioControllerDelete = require('../controllers/users/delete.users')
 
+router.post('/login', [
+    check('username', 'usuarioError: Campo Vacio.').notEmpty(),
+    check('password', 'contraseñaError: Campo Vacio').notEmpty(),
+], usuarioControllerLogin.loginUser)
 router.post('/', [
     check('name', 'Campo Nombre Vacio').notEmpty(),
     check('lastname', 'Campo Apellido Vacio').notEmpty(),
@@ -21,13 +25,11 @@ router.post('/', [
     check('password', ' Campo Vacio. Contraseña').notEmpty(),
     check('password', 'la contraseña debe tener un minimo de 8 caracteres').isLength({ min: 8 }),
 ], usuarioControllerRegister.registerUser)
-router.post('/login', [
-    check('username', 'usuarioError: Campo Vacio.').notEmpty(),
-    check('password', 'contraseñaError: Campo Vacio').notEmpty(),
-], usuarioControllerLogin.loginUser)
+
 router.get('/logout', authorize, usuarioControllerLogout.logoutUser)
-router.get('/', usuariosControllerReadSeveral.viewUsers) 
 router.get('/:id', usuarioControllerReadOne.viewUser)
+router.get('/', usuariosControllerReadSeveral.viewUsers) 
+
 router.delete('/:id', usuarioControllerDelete.DeleteUser)
 
 module.exports = router;

@@ -19,13 +19,12 @@ router.post('/', [
 
 ControllerCreateOrder.CreateOrder)
 
+router.get('/:id', ControllerReadOneOrder.seeOrder)
 router.get('/', ControllerReadSeveralOrders.seeOrders)
 
-router.get('/:id', ControllerReadOneOrder.seeOrder)
-
-router.put('/:id', ControllerUpdateOrder.modifyOrder)
+router.put('/:id/cancelar', ControllerCancelOrder.cancelOrder) 
 router.put('/:id/enviar', ControllerSendOrder.sendOrder)
-router.put('/:id/cancelar', ControllerCancelOrder.cancelOrder)
+router.put('/:id', ControllerUpdateOrder.modifyOrder)
 
 router.delete('/:id', ControllerDeleteOrder.DeleteOrder)
 
