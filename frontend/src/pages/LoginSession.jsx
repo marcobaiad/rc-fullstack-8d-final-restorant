@@ -3,8 +3,6 @@ import React, { useState } from 'react';
 import Swal from 'sweetalert2'
 import '../Css/logUser.css'
 
-
-
 import clienteAxios from '../config/axios';
 
 const LoginSession = (props) => {

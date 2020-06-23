@@ -9,6 +9,7 @@ import HomePage from './pages/HomePage';
 import RegUser from './pages/RegUser';
 import LoginSession from './pages/LoginSession'
 import Footer from '../src/components/Footer';
+import Menu from './pages/Menu'
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
     <Router>
       <Route component={Nabvar} />
       <Switch>
+        <Route path="/menu" exact component={Menu} />
         <Route path="/reg" exact component={RegUser} />
         <Route path="/log" exact component={LoginSession} />
         <Route exact path="/" component={HomePage} />
