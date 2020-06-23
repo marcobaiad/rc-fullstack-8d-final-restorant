@@ -6,7 +6,7 @@ const HomePages = () => {
     <div className="mw-100">
       <div className="Titulo-Presentacion">
         <div className="col-12 col-md-6 pl-3 pl-md-5 pt-3 pt-md-4 text-white">
-          <h1 className="tituloh1"><span className="redcolor">OUR</span><br></br>MENU</h1>
+          <h1 className="tituloh1"><span className="redcolor">Nuestro</span><br></br>MENU</h1>
           <h2 className="mb-0 text-white">GREAT MEALS, DRINKS & COFFEE.</h2>
         </div>
       </div>

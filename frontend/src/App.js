@@ -1,5 +1,5 @@
 import React from 'react';
-import Nabvar from '../src/components/Nabvar';
+import Nabvar from '../src/components/Navbar';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
