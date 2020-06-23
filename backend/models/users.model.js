@@ -41,6 +41,12 @@ const UsersSchema = new mongoose.Schema({
         trim: true
     },
 
+    roleType:{
+        type: String,
+        default:'user',
+        require:true  
+    },
+
     order: [{ 
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'orden' 
