@@ -2,16 +2,16 @@ const express = require('express');
 const { check } = require('express-validator')
 const router = express.Router();
 
-const ControllerCreatePlate = require('../controllers/foods/create.foods')
-const ControllerReadDishesTrue = require('../controllers/foods/readSeveralTrue.foods')
-const ControllerReadDishesAll = require('../controllers/foods/readSeveralAll.foods')
-const ControllerReadPlate = require('../controllers/foods/readOne.foods')
-const ControllerUpdatePlate = require('../controllers/foods/update.foods')
-const ControllerDeletePlate = require('../controllers/foods/delete.foods')
-const ControllerPlateND = require('../controllers/foods/platend.foods')
-const ControllerPlateDis = require('../controllers/foods/plateDis.foods')
+const ControllerCreatePlate = require('../controllers/foods/admin/create.foods')
+const ControllerReadDishesTrue = require('../controllers/foods/user/readSeveralTrue.foods')
+const ControllerReadDishesAll = require('../controllers/foods/admin/readSeveralAll.foods')
+const ControllerReadPlate = require('../controllers/foods/admin/readOne.foods')
+const ControllerUpdatePlate = require('../controllers/foods/admin/update.foods')
+const ControllerDeletePlate = require('../controllers/foods/admin/delete.foods')
+const ControllerPlateND = require('../controllers/foods/admin/platend.foods')
+const ControllerPlateDis = require('../controllers/foods/admin/plateDis.foods')
 
-router.post('/:id', [  
+router.post('/', [  
     
     check('title', 'Campo Titulo esta Vacio').notEmpty(),
     check('summary', 'Campo Resumen esta en Vacio').notEmpty(),
