@@ -3,11 +3,10 @@ import Nabvar from '../src/components/Nabvar';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
 //pages
 import HomePage from './pages/HomePage';
 import RegUser from './pages/RegUser';
-import LoginSession from './pages/LoginSession'
+import LoginSession from './pages/LoginSession';
 import Footer from '../src/components/Footer';
 import Menu from './pages/Menu'
 
