@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const {validationResult} = require('express-validator')
-const FoodsModel = require('../../models/foods.model');
+const FoodsModel = require('../../../models/foods.model');
 
 exports.CreatePlate = async (req, res) => {
 

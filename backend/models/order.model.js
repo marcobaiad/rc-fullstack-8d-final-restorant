@@ -4,14 +4,12 @@ const OrderSchema = new mongoose.Schema({
   
     quantity:{
         type: Number,
-        
         trim: true
     },
 
     
     amountTopay:{
         type: Number,
-        
         trim: true
     },
 

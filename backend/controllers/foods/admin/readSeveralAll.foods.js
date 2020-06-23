@@ -1,4 +1,4 @@
-const FoodsModel = require('../../models/foods.model');
+const FoodsModel = require('../../../models/foods.model');
 
 exports.seeDishesAll =  async (req, res) => {
     

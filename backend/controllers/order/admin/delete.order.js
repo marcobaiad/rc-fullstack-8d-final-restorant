@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const OrderModel = require('../../models/order.model');
+const OrderModel = require('../../../models/order.model');
 
 exports.DeleteOrder = async (req, res) => {
 
