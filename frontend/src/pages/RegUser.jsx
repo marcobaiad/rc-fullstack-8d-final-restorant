@@ -21,8 +21,8 @@ class RegUser extends React.Component {
       registro: []
     };
   }
-
   
+   
   handleChange = (e) => {
     const target = e.target;
     const value = e.target.value;
@@ -34,15 +34,20 @@ class RegUser extends React.Component {
     let registro = this.state.registro;
     registro.push({ name: this.state.name, lastname: this.state.lastname, address: this.state.address, age: this.state.age, username: this.state.username , password: this.state.password, phonenumber: this.state.phonenumber, email: this.state.email });
     this.setState({ registro })
-    e.preventDefault();    
-    setInterval(e.target.reset(), 500)
+    e.preventDefault();
+    
     try {
       await axios.post(`/api/v1/usuarios`, { name: this.state.name, lastname: this.state.lastname, address: this.state.address, age: this.state.age, username: this.state.username , password: this.state.password, phonenumber: this.state.phonenumber, email: this.state.email });
-      swal.fire({
+      await swal.fire({
         icon: 'success',
-        title: 'Registro correcto'
+        title: 'Registro correcto',
       });
+      this.props.history.push('/');
     } catch (e) {
+      swal.fire({
+        icon: 'error',
+        title: 'No se pudo registrar'
+      });
       console.log(('No se pudo crear el usuario'));
     }    
   }
