@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const UsersModel = require('../../../models/users.model');
+const UsersModel = require('../../models/users.model');
 
 exports.DeleteUser = async (req, res) => {
 

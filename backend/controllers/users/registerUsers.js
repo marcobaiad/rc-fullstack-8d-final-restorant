@@ -1,6 +1,6 @@
 const bcryptjs = require('bcryptjs')
 const { validationResult } = require('express-validator')
-const UsersModel = require('../../../models/users.model');
+const UsersModel = require('../../models/users.model');
 
 exports.registerUser = async (req, res) => {
     const errors = validationResult(req)

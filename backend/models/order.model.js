@@ -13,15 +13,15 @@ const OrderSchema = new mongoose.Schema({
         trim: true
     },
 
-    user: [{ 
+    user: { 
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'usuario' 
-    }],
+    },
 
-    food: [{
+    food: {
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'comida' 
-    }],
+    },
 
     state:{
         type: String,
