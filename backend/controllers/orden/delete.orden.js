@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-const OrderModel = require('../../models/order.model');
+const OrdenModel = require('../../models/orden.model');
 
-exports.DeleteOrder = async (req, res) => {
+exports.EliminarOrden = async (req, res) => {
 
     try {
 
@@ -9,9 +9,9 @@ exports.DeleteOrder = async (req, res) => {
             return res.status(404).json({mensaje: 'No hay resultado para la busqueda'});
         }
         
-        const order = await OrderModel.findByIdAndDelete(req.params.id)
+        const orden = await OrdenModel.findByIdAndDelete(req.params.id)
        
-        if (!order) res.status(404).send('No hay resultados')
+        if (!orden) res.status(404).send('No hay resultados')
 
         res.status(200).send({ mensaje: 'Se elimino la orden' })
     } catch (err) {
