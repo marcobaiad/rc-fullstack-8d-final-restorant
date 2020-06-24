@@ -1,9 +1,9 @@
 const UsersModel = require('../../models/users.model');
 
-exports.viewUsers =  async (req, res) => {
+exports.MostrarUsuarios =  async (req, res) => {
     try {
-        const users = await UsersModel.find({})
-        res.send(users)
+        const usuarios = await UsersModel.find({})
+        res.send(usuarios)
     } catch (err) {
         res.status(500).send(err);
     }
