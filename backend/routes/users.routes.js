@@ -27,9 +27,9 @@ router.post('/', [
 ], usuarioControllerRegister.registerUser)
 
 router.get('/logout', authorize([ 'user', 'admin' ]), usuarioControllerLogout.logoutUser)
-router.get('/:id', usuarioControllerReadOne.viewUser)
-router.get('/', usuariosControllerReadSeveral.viewUsers) 
+router.get('/:id',authorize('admin'), usuarioControllerReadOne.viewUser)
+router.get('/',authorize('admin'), usuariosControllerReadSeveral.viewUsers) 
 
-router.delete('/:id', usuarioControllerDelete.DeleteUser)
+router.delete('/:id',authorize('admin'), usuarioControllerDelete.DeleteUser)
 
 module.exports = router;

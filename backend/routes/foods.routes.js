@@ -22,13 +22,13 @@ router.post('/', [
 ],
 ControllerCreatePlate.CreatePlate)
 
-router.get('/todas', ControllerReadDishesAll.seeDishesAll)
-router.get('/:id',authorize('user'), ControllerReadPlate.seeDish)
+router.get('/todas',authorize('admin'), ControllerReadDishesAll.seeDishesAll)
+router.get('/:id',authorize(['user', 'admin']), ControllerReadPlate.seeDish)
 router.get('/', ControllerReadDishesTrue.seeDishesTrue)
 
-router.put('/:id/dis', ControllerPlateDis.PlateDis)
-router.put('/:id/nd', ControllerPlateND.PlateND)
-router.put('/:id', ControllerUpdatePlate.modifyPlate)
+router.put('/:id/dis',authorize('admin'), ControllerPlateDis.PlateDis)
+router.put('/:id/nd',authorize('admin'), ControllerPlateND.PlateND)
+router.put('/:id',authorize('admin'), ControllerUpdatePlate.modifyPlate)
 
-router.delete('/:id', ControllerDeletePlate.removePlate)
+router.delete('/:id',authorize('admin'), ControllerDeletePlate.removePlate)
 module.exports = router;
