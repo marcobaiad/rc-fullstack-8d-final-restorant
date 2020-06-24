@@ -17,11 +17,10 @@ const Menu = () => {
         })
     }
     consultApi();
-
   }, []);
 
   const cards = menu.map(a =>
-    <div key={a._id} className="card">
+    <div key={a._id} className="my-5 card">
       <img className="card-img-top" src="/images/pathToYourImage.png" alt="Card image cap" />
       <div className="card-body">
         <h4 className="card-title">{a.title}</h4>
@@ -30,15 +29,13 @@ const Menu = () => {
       </div>
     </div>
   );
+
   return (
     <>
       <h1 className="my-5 titulo">Nuestro Menu de Comidas</h1>
       <div className="card-columns">
         {cards}
       </div>
-
-
-
     </>
   );
 }

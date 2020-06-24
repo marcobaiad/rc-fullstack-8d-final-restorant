@@ -65,7 +65,7 @@ const LoginSession = (props) => {
               </div>
             </div>
             <div className="col-md-9">
-              <a type="" href="#" className="" data-toggle="modal" data-target="#exampleModalCentered">
+              <a type="" href="" className="" data-toggle="modal" data-target="#exampleModalCentered">
                 Olvide mi Contraseña
               </a>
 
