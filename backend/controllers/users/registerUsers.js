@@ -1,6 +1,6 @@
 const bcryptjs = require('bcryptjs')
 const { validationResult } = require('express-validator')
-const UsersModel = require('../../../models/users.model');
+const UsersModel = require('../../models/users.model');
 
 exports.registerUser = async (req, res) => {
     const errors = validationResult(req)
@@ -13,6 +13,8 @@ exports.registerUser = async (req, res) => {
     let name = ({ name: body.name })
     
     let lastname = ({ lastname: body.lastname })
+
+    let phonenumber = ({phonenumber: body.phonenumber})
 
     let address = ({address: body.address})
    
@@ -34,6 +36,7 @@ exports.registerUser = async (req, res) => {
         name: body.name,
         lastname: body.lastname,
         address: body.address,
+        phonenumber: body.phonenumber,
         age: body.age,
         email: body.email,
         username: body.username,
