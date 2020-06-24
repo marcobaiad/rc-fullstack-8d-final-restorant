@@ -14,6 +14,8 @@ exports.registerUser = async (req, res) => {
     
     let lastname = ({ lastname: body.lastname })
 
+    let phonenumber = ({phonenumber: body.phonenumber})
+
     let address = ({address: body.address})
    
     let email = ({ email: body.email })
@@ -34,6 +36,7 @@ exports.registerUser = async (req, res) => {
         name: body.name,
         lastname: body.lastname,
         address: body.address,
+        phonenumber: body.phonenumber,
         age: body.age,
         email: body.email,
         username: body.username,

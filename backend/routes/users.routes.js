@@ -19,6 +19,7 @@ router.post('/', [
     check('lastname', 'Campo Apellido Vacio').notEmpty(),
     check('address', 'Ingresar un Mail Correcto').notEmpty(),
     check('age', 'Campo Edad Vacio').notEmpty(),
+    check('phonenumber', 'Campo Celular Vacio').notEmpty(),
     check('email', 'Campo Mail Vacio').notEmpty(),
     check('email', 'Ingresar un Mail Correcto').isEmail(),
     check('username', 'Campo Vacio. Usuario').notEmpty(),

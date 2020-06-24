@@ -22,6 +22,10 @@ const UsersSchema = new mongoose.Schema({
         trim: true,
     },
 
+    phonenumber:{
+        type: Number
+    },
+
     email:{
         type: String,
         trim: true,
