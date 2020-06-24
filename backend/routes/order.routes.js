@@ -21,14 +21,15 @@ router.post('/', [
 
 ControllerCreateOrder.CreateOrder)
 
-router.get('/:id',authorize('user'), ControllerSearchOrderUser.searchOrder)
-router.get('/:id', ControllerReadOneOrder.seeOrder)
-router.get('/', ControllerReadSeveralOrders.seeOrders)
+router.get('/',authorize('admin'), ControllerReadSeveralOrders.seeOrders)
+router.get('/',authorize('admin'), ControllerReadOneOrder.seeOrder)
+router.get('/:id',authorize(['user', 'admin']), ControllerSearchOrderUser.searchOrder)
 
-router.put('/:id/cancelar', ControllerCancelOrder.cancelOrder) 
-router.put('/:id/enviar', ControllerSendOrder.sendOrder)
-router.put('/:id', ControllerUpdateOrder.modifyOrder)
 
-router.delete('/:id', ControllerDeleteOrder.DeleteOrder)
+router.put('/:id/cancelar',authorize(['user', 'admin']), ControllerCancelOrder.cancelOrder) 
+router.put('/:id/enviar',authorize('admin'), ControllerSendOrder.sendOrder)
+router.put('/:id',authorize(['user', 'admin']), ControllerUpdateOrder.modifyOrder)
+
+router.delete('/:id',authorize('admin'), ControllerDeleteOrder.DeleteOrder)
 
 module.exports = router;
