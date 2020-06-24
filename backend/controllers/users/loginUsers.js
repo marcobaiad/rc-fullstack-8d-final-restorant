@@ -1,7 +1,7 @@
 const bcryptjs = require('bcryptjs')
 const { validationResult } = require('express-validator')
 const jsonwebtoken = require('jsonwebtoken')
-const UsersModel = require('../../../models/users.model');
+const UsersModel = require('../../models/users.model');
 
 exports.loginUser = async (req, res) => {
     const errors = validationResult(req)
@@ -24,8 +24,9 @@ exports.loginUser = async (req, res) => {
 
     const jwt_payload = {
         user: {
-            id: userLogin,
-            username: userLogin.username
+            id: userLogin.id,
+            username: userLogin.username,
+            role: userLogin.roleType
         }
     }
 
@@ -33,7 +34,7 @@ exports.loginUser = async (req, res) => {
         const token = jsonwebtoken.sign(jwt_payload, process.env.JWT_SECRET, { expiresIn: process.env.TIME_EXP })
         userLogin.token = [ token ] 
         await UsersModel.update({ username: userLogin.username }, userLogin)
-        res.send({ mensaje: 'Logueado Correctamente', token })
+        res.send({ mensaje: 'Logueado Correctamente', token,  role: userLogin.roleType })
     } catch (error) {
         return res.status(500).json({ mensaje: 'ERROR', error })
     }
