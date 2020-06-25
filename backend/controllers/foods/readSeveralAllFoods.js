@@ -1,11 +1,11 @@
 const FoodsModel = require('../../models/foods.model');
 
-exports.seeDishesAll =  async (req, res) => {
+exports.GetFoods =  async (req, res) => {
     
-    const dishes = await FoodsModel.find({})
+    const foods = await FoodsModel.find({})
     
     try {
-        res.send(dishes)
+        res.send(foods)
     } catch (err) {
         res.status(500).send(err);
     }
