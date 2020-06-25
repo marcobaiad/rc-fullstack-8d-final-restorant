@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-const OrdenModel = require('../../models/orden.model');
+const OrderModel = require('../../models/order.model');
 
-exports.ModificarOrden = async (req, res) => {
+exports.modifyOrder = async (req, res) => {
 
     try {
 
@@ -9,8 +9,8 @@ exports.ModificarOrden = async (req, res) => {
             return res.status(404).json({mensaje: 'No hay resultado para la Busqueda'});
         }
         
-        const orden = await OrdenModel.findByIdAndUpdate(req.params.id, req.body, { new: true })
-        res.send(orden)
+        const order = await OrderModel.findByIdAndUpdate(req.params.id, req.body, { new: true })
+        res.send(order) 
     } catch (err) {
         res.status(500).send(err);
     }

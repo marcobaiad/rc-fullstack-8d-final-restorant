@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const FoodsModel = require('../../models/foods.model');
 
-exports.EliminarPlato = async (req, res) => {
+exports.removePlate = async (req, res) => {
 
     try {
 
@@ -9,9 +9,9 @@ exports.EliminarPlato = async (req, res) => {
             return res.status(404).json({mensaje: 'No hay resultado para la busqueda'});
         }
         
-        const plato = await FoodsModel.findByIdAndDelete(req.params.id)
+        const plate = await FoodsModel.findByIdAndDelete(req.params.id)
        
-        if (!plato) res.status(404).send('No hay resultados')
+        if (!plate) res.status(404).send('No hay resultados')
 
         res.status(200).send({ mensaje: 'Se elimino el Plato de la Lista' })
     } catch (err) {
