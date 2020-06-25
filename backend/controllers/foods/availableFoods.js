@@ -1,13 +1,12 @@
 const mongoose = require('mongoose');
 const FoodsModel = require('../../models/foods.model');
 
-exports.PlateND = async (req, res) => {
+exports.FoodsDis = async (req, res) => {
 
     try {        
-        const plate = await FoodsModel.findByIdAndUpdate(req.params.id, {enable:false}, { new: true })
-        res.send(plate)
+        const FoodsDis = await FoodsModel.findByIdAndUpdate(req.params.id, {enable:true}, { new: true })
+        res.send(FoodsDis)
     } catch (err) {
         res.status(500).send(err);
     }
 }
- 

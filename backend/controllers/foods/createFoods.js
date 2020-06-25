@@ -2,15 +2,15 @@ const mongoose = require('mongoose');
 const {validationResult} = require('express-validator')
 const FoodsModel = require('../../models/foods.model');
 
-exports.CreatePlate = async (req, res) => {
+exports.CreateFoods = async (req, res) => {
 
-    const plate = new FoodsModel(req.body);
+    const foods = new FoodsModel(req.body);
    
     try {
-        await plate.save();
-        res.send(plate)
+        await foods.save();
+        res.send(foods)
         
-        console.log(plate)
+        console.log(foods)
     } catch (err) {
         res.status(500).send(err);
     }

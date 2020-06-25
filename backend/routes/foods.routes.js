@@ -3,14 +3,14 @@ const { check } = require('express-validator')
 const authorize = require('../middlewares/authorize')
 const router = express.Router();
 
-const ControllerCreatePlate = require('../controllers/foods/createFoods')
-const ControllerReadDishesTrue = require('../controllers/foods/readSeveralTrueFoods')
-const ControllerReadDishesAll = require('../controllers/foods/readSeveralAllFoods')
-const ControllerReadPlate = require('../controllers/foods/readOneFoods')
-const ControllerUpdatePlate = require('../controllers/foods/updateFoods')
-const ControllerDeletePlate = require('../controllers/foods/deleteFoods')
-const ControllerPlateND = require('../controllers/foods/platendFoods')
-const ControllerPlateDis = require('../controllers/foods/plateDisFoods')
+const ControllerCreateFoods = require('../controllers/foods/createFoods')
+const ControllerReadFoodsTrue = require('../controllers/foods/readSeveralTrueFoods')
+const ControllerReadFoodsAll = require('../controllers/foods/readSeveralAllFoods')
+const ControllerReadFoods = require('../controllers/foods/readOneFoods')
+const ControllerUpdateFoods = require('../controllers/foods/updateFoods')
+const ControllerDeleteFoods = require('../controllers/foods/deleteFoods')
+const ControllerFoodsND = require('../controllers/foods/notAvailableFoods')
+const ControllerFoodsDis = require('../controllers/foods/availableFoods')
 
 router.post('/', [  
     
@@ -20,15 +20,15 @@ router.post('/', [
     check('price', 'Campo Precio Vacio').notEmpty()
     
 ],
-ControllerCreatePlate.CreatePlate)
+ControllerCreateFoods.CreateFoods)
 
-router.get('/todas',authorize('admin'), ControllerReadDishesAll.seeDishesAll)
-router.get('/:id',authorize(['user', 'admin']), ControllerReadPlate.seeDish)
-router.get('/', ControllerReadDishesTrue.seeDishesTrue)
+router.get('/todas',authorize('admin'), ControllerReadFoodsAll.GetFoods)
+router.get('/:id',authorize(['user', 'admin']), ControllerReadFoods.GetOneFood)
+router.get('/', ControllerReadFoodsTrue.GetFoodsTrue)
 
-router.put('/:id/dis',authorize('admin'), ControllerPlateDis.PlateDis)
-router.put('/:id/nd',authorize('admin'), ControllerPlateND.PlateND)
-router.put('/:id',authorize('admin'), ControllerUpdatePlate.modifyPlate)
+router.put('/:id/dis',authorize('admin'), ControllerFoodsDis.FoodsDis)
+router.put('/:id/nd',authorize('admin'), ControllerFoodsND.FoodsND)
+router.put('/:id',authorize('admin'), ControllerUpdateFoods.ModifyFoods)
 
-router.delete('/:id',authorize('admin'), ControllerDeletePlate.removePlate)
-module.exports = router;
+router.delete('/:id',authorize('admin'), ControllerDeleteFoods.RemoveFoods)
+module.exports = router; 
