@@ -55,6 +55,10 @@
   margin-top: 20px;
 }
 
+.remember {
+  color: gray;
+}
+
 @media (max-width: 768px) {
   .registration-form form {
     padding: 50px 30px;

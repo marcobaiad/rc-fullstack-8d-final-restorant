@@ -76,7 +76,7 @@ const Header = () => {
                     </Nav>
                     <Nav className="row mx-3 order-1 order-md-2 ">
                         <Nav.Link className="text-white hover-navbar" href="/reg">REGISTRO</Nav.Link>
-                        <Nav.Link className="text-white hover-navbar" href="/log"><i class="far fa-user"></i> INICIAR SESIÓN</Nav.Link>
+                        <Nav.Link className="text-white hover-navbar" href="/log"><i className="far fa-user"></i> INICIAR SESIÓN</Nav.Link>
                     </Nav>
                     <Form className="w-100 px-2 mt-4 d-md-none">
                         <Form.Group controlId="exampleForm.SelectCustom">
