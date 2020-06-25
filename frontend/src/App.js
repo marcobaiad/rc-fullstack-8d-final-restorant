@@ -1,5 +1,5 @@
 import React from 'react';
-import Nabvar from '../src/components/Nabvar';
+import Navbar from '../src/components/Navbar';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -11,7 +11,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 //pages
 import HomePage from './pages/HomePage';
 import RegUser from './pages/RegUser';
-import LoginSession from './pages/LoginSession'
+import LoginSession from './pages/LoginSession';
 import Footer from '../src/components/Footer';
 import Menu from './pages/Menu'
 
@@ -19,7 +19,7 @@ function App() {
 
   return (
     <Router>
-      <Route component={Nabvar} />
+      <Route component={Navbar} />
       <Switch>
         <Route path="/menu" exact component={Menu} />
         <Route path="/reg" exact component={RegUser} />
