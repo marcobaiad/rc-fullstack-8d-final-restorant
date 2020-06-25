@@ -1,5 +1,5 @@
 import React from 'react';
-import Navbar from '../src/components/Navbar';
+import Header from '../src/components/Header';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -19,7 +19,7 @@ function App() {
 
   return (
     <Router>
-      <Route component={Navbar} />
+      <Route component={Header} />
       <Switch>
         <Route path="/menu" exact component={Menu} />
         <Route path="/reg" exact component={RegUser} />

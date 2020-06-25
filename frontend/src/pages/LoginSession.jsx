@@ -39,7 +39,8 @@ const LoginSession = (props) => {
           <h1 className='titulo'>Iniciar Sesión</h1>
           <div className="form-group">
             <input
-              type="tex"
+              type="text" 
+              autoFocus
               className="form-control item"
               placeholder="Usuario"
               name="username"

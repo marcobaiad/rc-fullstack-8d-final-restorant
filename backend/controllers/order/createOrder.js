@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const OrderModel = require('../../../models/order.model');
+const OrderModel = require('../../models/order.model');
 
 exports.CreateOrder =  async (req, res) => {
 
@@ -11,6 +11,7 @@ exports.CreateOrder =  async (req, res) => {
         res.send(order)
         
     } catch (err) {
+        console.log(err)
         res.status(500).send(err);
     }
 }

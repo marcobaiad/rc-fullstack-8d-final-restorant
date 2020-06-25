@@ -7,7 +7,7 @@ const Footer = () => {
         <footer className="row m-0 bg-dark text-white align-items-center text-center">
             <div className="col-12 col-md-6 my-4">
                 <h2 className="text-white">Asturias Food & Drink</h2>
-                <p>Nuestas Redes Sociales</p>
+                <p>Nuestras Redes Sociales</p>
                 <div id="Redes" className="my-4">
                     <i className="fab mx-3 fa-facebook"></i>
                     <i className="fab mx-3 fa-twitter-square"></i>

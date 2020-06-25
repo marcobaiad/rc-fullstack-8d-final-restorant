@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const FoodsModel = require('../../../models/foods.model');
+const FoodsModel = require('../../models/foods.model');
 
 exports.PlateDis = async (req, res) => {
 

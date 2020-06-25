@@ -1,15 +1,16 @@
 const express = require('express');
 const { check } = require('express-validator')
+const authorize = require('../middlewares/authorize')
 const router = express.Router();
 
-const ControllerCreatePlate = require('../controllers/foods/admin/create.foods')
-const ControllerReadDishesTrue = require('../controllers/foods/user/readSeveralTrue.foods')
-const ControllerReadDishesAll = require('../controllers/foods/admin/readSeveralAll.foods')
-const ControllerReadPlate = require('../controllers/foods/admin/readOne.foods')
-const ControllerUpdatePlate = require('../controllers/foods/admin/update.foods')
-const ControllerDeletePlate = require('../controllers/foods/admin/delete.foods')
-const ControllerPlateND = require('../controllers/foods/admin/platend.foods')
-const ControllerPlateDis = require('../controllers/foods/admin/plateDis.foods')
+const ControllerCreatePlate = require('../controllers/foods/createFoods')
+const ControllerReadDishesTrue = require('../controllers/foods/readSeveralTrueFoods')
+const ControllerReadDishesAll = require('../controllers/foods/readSeveralAllFoods')
+const ControllerReadPlate = require('../controllers/foods/readOneFoods')
+const ControllerUpdatePlate = require('../controllers/foods/updateFoods')
+const ControllerDeletePlate = require('../controllers/foods/deleteFoods')
+const ControllerPlateND = require('../controllers/foods/platendFoods')
+const ControllerPlateDis = require('../controllers/foods/plateDisFoods')
 
 router.post('/', [  
     
@@ -21,13 +22,13 @@ router.post('/', [
 ],
 ControllerCreatePlate.CreatePlate)
 
-router.get('/todas', ControllerReadDishesAll.seeDishesAll)
-router.get('/:id', ControllerReadPlate.seeDish)
+router.get('/todas',authorize('admin'), ControllerReadDishesAll.seeDishesAll)
+router.get('/:id',authorize(['user', 'admin']), ControllerReadPlate.seeDish)
 router.get('/', ControllerReadDishesTrue.seeDishesTrue)
 
-router.put('/:id/dis', ControllerPlateDis.PlateDis)
-router.put('/:id/nd', ControllerPlateND.PlateND)
-router.put('/:id', ControllerUpdatePlate.modifyPlate)
+router.put('/:id/dis',authorize('admin'), ControllerPlateDis.PlateDis)
+router.put('/:id/nd',authorize('admin'), ControllerPlateND.PlateND)
+router.put('/:id',authorize('admin'), ControllerUpdatePlate.modifyPlate)
 
-router.delete('/:id', ControllerDeletePlate.removePlate)
+router.delete('/:id',authorize('admin'), ControllerDeletePlate.removePlate)
 module.exports = router;

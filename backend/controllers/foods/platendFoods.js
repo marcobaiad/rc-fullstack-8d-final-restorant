@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const FoodsModel = require('../../../models/foods.model');
+const FoodsModel = require('../../models/foods.model');
 
 exports.PlateND = async (req, res) => {
 
@@ -10,3 +10,4 @@ exports.PlateND = async (req, res) => {
         res.status(500).send(err);
     }
 }
+ 
