@@ -23,7 +23,7 @@ ControllerCreateOrder.CreateOrder)
 
 router.get('/',authorize('admin'), ControllerReadSeveralOrders.seeOrders)
 router.get('/',authorize('admin'), ControllerReadOneOrder.seeOrder)
-router.get('/:id',authorize(['user', 'admin']), ControllerSearchOrderUser.searchOrder)
+router.get('/user/:id',authorize(['user', 'admin']), ControllerSearchOrderUser.searchOrder)
 
 
 router.put('/:id/cancelar',authorize(['user', 'admin']), ControllerCancelOrder.cancelOrder) 
