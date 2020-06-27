@@ -11,36 +11,36 @@ import Restorant from '../img/CarrouselNav/Restorant.jpg'
 
 const Header = () => {
 
-    const {pathname} = window.location; 
-    const isLogReg = pathname.includes("reg") || pathname.includes("log"); 
+    const { pathname } = window.location;
+    const isLogReg = pathname.includes("reg") || pathname.includes("log");
 
 
     const StickyNav = () => {
         let navbar = document.getElementById("navbar");
         let carrousel = document.getElementById("carrousel");
         let sticky = navbar.offsetTop;
-    
+
         if (window.pageYOffset >= sticky) {
             navbar.classList.add("position-fixed");
-            navbar.classList.remove("align-self-end");  
-        } 
+            navbar.classList.remove("align-self-end");
+        }
 
         if (carrousel) {
             if (window.pageYOffset <= carrousel.clientHeight - (window.screen.width > 767 ? 80 : 160)) {
                 navbar.classList.remove("position-fixed");
                 navbar.classList.add("align-self-end");
-            } 
+            }
         }
-        
+
     }
 
-    
+
     window.onload = StickyNav
     window.onscroll = StickyNav
-    
+
     return (
         <div className="d-flex flex-wrap">
-            {!isLogReg &&  
+            {!isLogReg &&
                 <Carousel controls={false} indicators={false} id="carrousel">
                     <Carousel.Item>
                         <img
@@ -76,7 +76,7 @@ const Header = () => {
                     </Nav>
                     <Nav className="row mx-3 order-1 order-md-2 ">
                         <Nav.Link className="text-white hover-navbar" href="/reg">REGISTRO</Nav.Link>
-                        <Nav.Link className="text-white hover-navbar" href="/log"><i class="far fa-user"></i> INICIAR CESIÓN</Nav.Link>
+                        <Nav.Link className="text-white hover-navbar" href="/log"><i className="far fa-user"></i> INICIAR SESIÓN</Nav.Link>
                     </Nav>
                     <Form className="w-100 px-2 mt-4 d-md-none">
                         <Form.Group controlId="exampleForm.SelectCustom">
