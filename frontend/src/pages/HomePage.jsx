@@ -35,10 +35,8 @@ const HomePages = () => {
           <h2 className="mb-0 text-white">EXCELENTE COMIDA, BEBIDAS & CAFE.</h2>
         </div>
       </div>
-      <div className="box-menu row flex-wrap mx-0 mw-100">
-
-      {platos}
-
+      <div className="box-menu row flex-wrap mx-0 mw-100" id="Menu">
+        {platos}
       </div>
       <div className="parallaxHOME firstpara row m-0 text-center justify-content-center align-items-center">
         <h3 className="font-parallax">VIVÍ LA EXPERIENCIA, TODO EL DÍA, TODOS LOS DÍAS</h3>
