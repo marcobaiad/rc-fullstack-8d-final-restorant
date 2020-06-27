@@ -20,6 +20,12 @@
     transform: scale(1);
 }
 
+.PlatosHomeimg:hover {
+    position: absolute;
+    transform: scale(1.2);
+    transition: all .1s ease-in-out;
+}
+
 .text {
     color: white;
     font-size: 20px;
@@ -79,6 +85,6 @@
 
 .font-parallax {
     max-width: 100%;
-    font-size: 3.3rem;
+    font-size: 3.1rem;
     color: white;
 }
