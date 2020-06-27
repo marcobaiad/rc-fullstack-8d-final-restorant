@@ -13,7 +13,7 @@ import HomePage from './pages/HomePage';
 import RegUser from './pages/RegUser';
 import LoginSession from './pages/LoginSession';
 import Footer from '../src/components/Footer';
-import Menu from './pages/Menu'
+import Menu from './pages/Menu';
 
 function App() {
 

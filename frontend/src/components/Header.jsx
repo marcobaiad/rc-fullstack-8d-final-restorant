@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import '../Css/navbar.css';
+import Auth from '../utils/auth';
 import Carousel from 'react-bootstrap/Carousel';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Form from 'react-bootstrap/Form';
+import axios from 'axios';
+import sweet from 'sweetalert2';
 
 import Lampara from '../img/CarrouselNav/Lampara.jpg'
 import Pizzas from '../img/CarrouselNav/Pizzas.jpg'
@@ -38,6 +41,41 @@ const Header = () => {
     window.onload = StickyNav
     window.onscroll = StickyNav
 
+    const [isLogedIn, SetIsLogedIn] = useState(false);
+    const localToken = localStorage.getItem('token');        
+    
+    useEffect(() => {
+        if (isLogedIn) {
+            SetIsLogedIn(false)
+        }
+    }, [isLogedIn]);
+
+    
+
+    const LogUotHandler = async () => {   
+        try {
+            await axios.get(`/api/v1/usuarios/logout`, 
+                {
+                    headers: {
+                        'authorization': 'Bearer ' + localToken
+                    } 
+                }
+            );
+            SetIsLogedIn(true);
+            console.log('Despues del try' + isLogedIn);
+            localStorage.removeItem('token')
+        } catch (e) {
+            sweet.fire({
+                icon: 'error',
+                title: 'No se pudo registrar'
+            });
+        }
+    }
+
+    /* const onchangeSelectHandler = (e) => {
+        
+    } */
+    
     return (
         <div className="d-flex flex-wrap">
             {!isLogReg &&
@@ -70,13 +108,21 @@ const Header = () => {
                     <Nav className="d-none d-sm-none d-md-flex d-lg-flex row pl-5 order-2 order-md-1">
                         <Navbar.Brand className="d-none d-lg-block ml-3">Asturias Food & Drinks</Navbar.Brand>
                         <Nav.Link className="text-white hover-navbar" href="/">INICIO</Nav.Link>
-                        <Nav.Link className="text-white hover-navbar" href="#menu">MENU</Nav.Link>
-                        <Nav.Link className="text-white hover-navbar" href="#deets">CONTACTO</Nav.Link>
-                        <Nav.Link className="text-white hover-navbar" href="#memes">SOBRE NOSOTROS</Nav.Link>
+                        <Nav.Link className="text-white hover-navbar" href="menu">MENU</Nav.Link>
+                        <Nav.Link className="text-white hover-navbar" href="#Contacto">CONTACTO</Nav.Link>
+                        <Nav.Link className="text-white hover-navbar" href="#AboutUs">SOBRE NOSOTROS</Nav.Link>
                     </Nav>
                     <Nav className="row mx-3 order-1 order-md-2 ">
-                        <Nav.Link className="text-white hover-navbar" href="/reg">REGISTRO</Nav.Link>
-                        <Nav.Link className="text-white hover-navbar" href="/log"><i className="far fa-user"></i> INICIAR SESIÓN</Nav.Link>
+
+                        { Auth.isAuthenticated() ? 
+                            <Nav.Link className="text-white hover-navbar" onClick={LogUotHandler}><i className="far fa-user"></i> CERRAR CESIÓN</Nav.Link>
+                            :
+                            <>
+                                <Nav.Link className="text-white hover-navbar" href="/reg">REGISTRO</Nav.Link>
+                                <Nav.Link className="text-white hover-navbar" href="/log"><i className="far fa-user"></i> INICIAR CESIÓN</Nav.Link> 
+                            </>
+                        }
+
                     </Nav>
                     <Form className="w-100 px-2 mt-4 d-md-none">
                         <Form.Group controlId="exampleForm.SelectCustom">
@@ -94,4 +140,4 @@ const Header = () => {
     )
 }
 
-export default Header
+export default Header;
