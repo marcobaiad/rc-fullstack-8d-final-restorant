@@ -6,7 +6,7 @@ import '../Css/logUser.css'
 import clienteAxios from '../config/axios';
 
 const LoginSession = (props) => {
-  
+
   const [username, setUser] = useState('');
   const [password, setPassword] = useState('');
 
@@ -65,7 +65,7 @@ const LoginSession = (props) => {
             </div>
             <div className="col-md-9 ">
               <a type="" href="" className="" data-toggle="modal" data-target="#exampleModalCentered">
-                Olvide mi Contraseña
+                Olvidé mi Contraseña
               </a>
 
               <div className="modal" id="exampleModalCentered" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenteredLabel" aria-hidden="true">
