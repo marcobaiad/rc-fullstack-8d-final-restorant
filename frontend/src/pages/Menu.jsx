@@ -8,7 +8,7 @@ const Menu = () => {
 
   useEffect(() => {
     const consultApi = () => {
-      clienteAxios.get('/api/v1/comidas')
+      clienteAxios.get('/api/v1/comidas/')
         .then(response => {
           setMenu(response.data)
         })
@@ -26,6 +26,7 @@ const Menu = () => {
         <h4 className="card-title">{a.title}</h4>
         <p className="card-text">{a.description}</p>
         <p className="card-text">{a.price}</p>
+
       </div>
     </div>
   );
