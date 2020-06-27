@@ -6,7 +6,7 @@ import '../Css/logUser.css'
 import clienteAxios from '../config/axios';
 
 const LoginSession = (props) => {
-  
+
   const [username, setUser] = useState('');
   const [password, setPassword] = useState('');
 
@@ -14,11 +14,24 @@ const LoginSession = (props) => {
     e.preventDefault();
 
     clienteAxios.post('/api/v1/usuarios/login', { username, password })
-      .then(response => {
-        console.log(response);
-        localStorage.setItem('token', response.data.token)
-        props.history.push('/')
-      })
+    .then(response => {
+      /* console.log(response); */
+      localStorage.setItem('token', response.data.token);
+      Swal.fire({
+        icon: "success",
+        title: "Logueado correctamente",
+        showConfirmButton: false,
+        timer: 1000
+      });
+      props.history.push('/');
+    }).catch(function() {
+      Swal.fire({
+        icon: "error",
+        title: "Credenciales incorrectas",
+        showConfirmButton: false,
+        timer: 3000
+      });
+    })
   }
 
   const recoverPass = () => {
@@ -39,11 +52,12 @@ const LoginSession = (props) => {
           <h1 className='titulo'>Iniciar Sesión</h1>
           <div className="form-group">
             <input
-              type="text" 
+              type="text"
               autoFocus
               className="form-control item"
               placeholder="Usuario"
               name="username"
+              minLength="4"
               onChange={(e) => { setUser(e.target.value) }} />
           </div>
           <div className="form-group">
@@ -52,6 +66,7 @@ const LoginSession = (props) => {
               className="form-control item"
               placeholder="Contraseña"
               name="password"
+              pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
               onChange={(e) => { setPassword(e.target.value) }}
             />
           </div>
