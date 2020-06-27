@@ -46,9 +46,7 @@ const LoginSession = (props) => {
   return (
     <>
       <div className="imgBackgroundLog registration-form log-form">
-        <form className='form'
-          onSubmit={logUser}
-        >
+        <form className="form" onSubmit={logUser}>
           <h1 className='titulo'>Iniciar Sesión</h1>
           <div className="form-group">
             <input
@@ -70,33 +68,33 @@ const LoginSession = (props) => {
               onChange={(e) => { setPassword(e.target.value) }}
             />
           </div>
-          <div className="row">
+          <div className="d-flex text-right">
             <div className="form-group col-md-3">
               <div className="custom-control custom-checkbox">
                 <input
                   type="checkbox"
                   className="custom-control-input"
                   id="customCheck1" />
-                <label className="custom-control-label" htmlFor="customCheck1">Recordarme</label>
+                <label className="custom-control-label remember" htmlFor="customCheck1">Recordarme</label>
               </div>
             </div>
-            <div className="col-md-9">
-              <a type="" href="#" className="" data-toggle="modal" data-target="#exampleModalCentered">
-                Olvide mi Contraseña
+            <div className="col-md-9 ">
+              <a type="" href="" className="" data-toggle="modal" data-target="#exampleModalCentered">
+                Olvidé mi Contraseña
               </a>
 
               <div className="modal" id="exampleModalCentered" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenteredLabel" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered" role="document">
                   <div className="modal-content">
-                    <div className="modal-header">
-                      <h5 className="" id="exampleModalCenteredLabel">Recuperar contraseña</h5>
+                    <div className="modal-header d-block">
+                      <h5 className="text-center" id="exampleModalCenteredLabel">Recuperar contraseña</h5>
                       <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                       </button>
                     </div>
                     <div className="modal-body">
                       <div className="form-group">
-                        <div className="col-md-12">
+                        <div className="col-md-12 text-center">
                           <label htmlFor="formGroupExampleInput">Ingresa tu email para recuperar tu contraseña</label>
                           <input
                             type="email"

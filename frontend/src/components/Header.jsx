@@ -14,31 +14,33 @@ import Restorant from '../img/CarrouselNav/Restorant.jpg'
 
 const Header = () => {
 
+    const { pathname } = window.location;
+    const isLogReg = pathname.includes("reg") || pathname.includes("log");
+
+
     const StickyNav = () => {
         let navbar = document.getElementById("navbar");
         let carrousel = document.getElementById("carrousel");
         let sticky = navbar.offsetTop;
-    
+
         if (window.pageYOffset >= sticky) {
             navbar.classList.add("position-fixed");
-            navbar.classList.remove("align-self-end");  
-        } 
+            navbar.classList.remove("align-self-end");
+        }
 
         if (carrousel) {
             if (window.pageYOffset <= carrousel.clientHeight - (window.screen.width > 767 ? 80 : 160)) {
                 navbar.classList.remove("position-fixed");
                 navbar.classList.add("align-self-end");
-            } 
+            }
         }
-        
+
     }
 
-    
+
     window.onload = StickyNav
     window.onscroll = StickyNav
 
-    const {pathname} = window.location; 
-    const isLogReg = pathname.includes("reg") || pathname.includes("log");
     const [isLogedIn, SetIsLogedIn] = useState(false);
     const localToken = localStorage.getItem('token');        
     
@@ -76,7 +78,7 @@ const Header = () => {
     
     return (
         <div className="d-flex flex-wrap">
-            {!isLogReg &&  
+            {!isLogReg &&
                 <Carousel controls={false} indicators={false} id="carrousel">
                     <Carousel.Item>
                         <img
