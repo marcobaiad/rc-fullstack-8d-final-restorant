@@ -8,7 +8,8 @@ const Menu = () => {
 
   useEffect(() => {
     const consultApi = () => {
-      clienteAxios.get('/api/v1/comidas/')
+      clienteAxios.get('api/v1/comidas/todas')
+
         .then(response => {
           setMenu(response.data)
         })
@@ -18,6 +19,7 @@ const Menu = () => {
     }
     consultApi();
   }, []);
+  console.log(menu)
 
   const cards = menu.map(a =>
     <div key={a._id} className="my-5 card">
@@ -26,6 +28,7 @@ const Menu = () => {
         <h4 className="card-title">{a.title}</h4>
         <p className="card-text">{a.description}</p>
         <p className="card-text">{a.price}</p>
+        <p className="card-text">{a.enable}</p>
 
       </div>
     </div>
