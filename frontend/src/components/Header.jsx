@@ -57,17 +57,18 @@ const Header = () => {
             await axios.get(`/api/v1/usuarios/logout`, 
                 {
                     headers: {
-                        'authorization': 'Bearer ' + localToken
+                        'authorization': `Bearer ` + localToken
                     } 
                 }
             );
             SetIsLogedIn(true);
-            console.log('Despues del try' + isLogedIn);
-            localStorage.removeItem('token')
+            Auth.logOut();
         } catch (e) {
+            const { response } = e;
+            console.log(response);
             sweet.fire({
                 icon: 'error',
-                title: 'No se pudo registrar'
+                title: 'No se pudo desloguear'
             });
         }
     }

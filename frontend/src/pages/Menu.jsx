@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Auth from '../utils/auth';
 
 import clienteAxios from '../config/axios';
 
@@ -8,12 +9,13 @@ const Menu = () => {
 
   useEffect(() => {
     const consultApi = () => {
-      clienteAxios.get('/api/v1/comidas/')
+      clienteAxios.get('/api/v1/comidas/todas')
         .then(response => {
           setMenu(response.data)
         })
         .catch(error => {
-          console.log(error)
+          const { response } = error
+          console.log(response)
         })
     }
     consultApi();
