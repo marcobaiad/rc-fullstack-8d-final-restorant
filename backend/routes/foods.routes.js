@@ -11,6 +11,7 @@ const ControllerUpdateFoods = require('../controllers/foods/updateFoods')
 const ControllerDeleteFoods = require('../controllers/foods/deleteFoods')
 const ControllerFoodsND = require('../controllers/foods/notAvailableFoods')
 const ControllerFoodsDis = require('../controllers/foods/availableFoods')
+const ControllerFoodsImages = require('../controllers/foods/uploadImagesFoods')
 
 router.post('/', [  
     
@@ -21,6 +22,7 @@ router.post('/', [
     
 ],
 ControllerCreateFoods.CreateFoods)
+router.post('/:resourceId/upload', ControllerFoodsImages.uploadImages);
 
 router.get('/todas',authorize('admin'), ControllerReadFoodsAll.GetFoods)
 router.get('/:id',authorize(['user', 'admin']), ControllerReadFoods.GetOneFood)

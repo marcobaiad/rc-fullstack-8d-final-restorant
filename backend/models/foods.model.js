@@ -34,6 +34,10 @@ const FoodsSchema = new mongoose.Schema({
         default: true
     },
 
+    imageUrl:{
+        type: String
+    },
+
     type:{
         type: String
     }
