@@ -23,13 +23,19 @@ exports.registerUser = async (req, res) => {
     let edad = ({ age: body.age });
   
     if (edad.age < 18) {
-        return res.status(400).json({ mensaje: 'no podes tener cuenta' })
+        return res.status(400).json({ mensaje: 'No podes tener cuenta, debes ser mayor de edad' })
     }
 
     let userExists = await UsersModel.findOne({ username: body.username });
     if (userExists) {
         console.log(userExists)
         return res.status(400).json({ mensaje: 'El Usuario ya existe' })
+    }
+    
+    let mailExists = await UsersModel.findOne({ email: body.email });
+    if (mailExists) {
+        console.log(mailExists)
+        return res.status(400).json({ mensaje: 'El mail ya se encuentra en uso' })
     }
 
     const user = {
