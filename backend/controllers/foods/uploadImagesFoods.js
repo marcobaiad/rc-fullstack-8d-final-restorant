@@ -118,7 +118,7 @@ exports.uploadImages = async (req, res) => {
 
       try {
         await upload.save();
-        await FoodsModel.findByIdAndUpdate(req.params.resourceId, { imageUrl: '/public/' + upload.files[0].filename }, { new: true });
+        await FoodsModel.findByIdAndUpdate(req.params.resourceId, { imageUrl: '/static/' + upload.files[0].filename }, { new: true });
         res.send(upload);
       } catch (err) {
         console.log(err)
