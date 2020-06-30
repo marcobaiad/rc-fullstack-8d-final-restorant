@@ -1,0 +1,13 @@
+.previewImagen{
+    width: 300px;
+    height: 200px;
+}
+
+.border{
+    width: 300px;
+    height: 200px;
+}
+
+.borderInputImg{
+    outline: none;
+}
