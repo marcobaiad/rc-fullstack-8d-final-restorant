@@ -22,14 +22,15 @@ const Menu = () => {
   console.log(menu)
 
   const cards = menu.map(a =>
-    <div key={a._id} className="my-5 card">
-      <img className="card-img-top" src="/images/pathToYourImage.png" alt="Card image cap" />
-      <div className="card-body">
-        <h4 className="card-title">{a.title}</h4>
-        <p className="card-text">{a.description}</p>
-        <p className="card-text">{a.price}</p>
-        <p className="card-text">{a.enable}</p>
-
+    <div className="column">
+      <div key={a._id} className="card">
+        <img className="card-img-top" src="/images/pathToYourImage.png" alt="Card image cap" />
+        <div className="card-body">
+          <h4 className="card-title">{a.title}</h4>
+          <p className="card-text">{a.description}</p>
+          <p className="card-text">$ {a.price}</p>
+          <p className="card-text">{'' + a.enable}</p>
+        </div>
       </div>
     </div>
   );
