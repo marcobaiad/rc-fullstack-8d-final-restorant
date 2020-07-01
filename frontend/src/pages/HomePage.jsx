@@ -1,30 +1,31 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import '../Css/homepage.css'
 import axios from 'axios';
 
 const HomePages = () => {
 
   const [platosHome, setPlatosHome] = useState([]);
-  
+
   useEffect(() => {
-    (  async () => {
+    (async () => {
       const response = await axios.get('/api/v1/comidas')
       setPlatosHome(response.data);
-      })();
-    }, []);
+    })();
+  }, []);
 
-    const platos = platosHome.map(p =>
-      <a className="col-6 col-md-4 col-lg-3 px-0 containers" href={`plato/` + p._id}>
-      <img className="w-100 PlatosHomeimg" src="https://www.jbgood.com/wp/wp-content/uploads/2015/05/Bacardi-Mojito-350x300.jpg" alt="" />
+  const platos = platosHome.map(p =>
+    <a className="col-6 col-md-4 col-lg-3 px-0 containers" href={`plato/` + p._id}>
+      <img className="w-100 PlatosHomeimg"
+        src={`http://localhost:3001` + p.imageUrl} alt="" />
       <div className="overlay col p-0 text-white text-center">
-          <h3 className="mb-0">{ p.title }</h3>
-          <p className="mb-0">{p.summary}</p>
-          <hr className="bg-white"/>
+        <h3 className="mb-0">{p.title}</h3>
+        <p className="mb-0">{p.summary}</p>
+        <hr className="bg-white" />
         <div className="text">
-          { p.description }
+          {p.description}
         </div>
       </div>
-      </a>
+    </a>
   )
 
   return (
