@@ -29,13 +29,13 @@ const HomePages = () => {
 
   return (
     <div className="mw-100">
-      <div className="Titulo-Presentacion">
+      <div className="Titulo-Presentacion" id="Menu">
         <div className="col-12 col-md-6 pl-3 pl-md-5 pt-3 pt-md-4 text-white">
           <h1 className="tituloh1"><span className="redcolor">Nuestro</span><br></br>MENU</h1>
           <h2 className="mb-0 text-white">EXCELENTE COMIDA, BEBIDAS & CAFE.</h2>
         </div>
       </div>
-      <div className="box-menu row flex-wrap mx-0 mw-100" id="Menu">
+      <div className="box-menu row flex-wrap mx-0 mw-100">
         {platos}
       </div>
       <div className="parallaxHOME firstpara row m-0 text-center justify-content-center align-items-center">

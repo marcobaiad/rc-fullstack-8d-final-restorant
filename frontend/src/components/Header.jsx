@@ -16,7 +16,8 @@ const Header = () => {
 
     const { pathname } = window.location;
     const isLogReg = pathname.includes("reg") || pathname.includes("log");
-
+    console.log(pathname);
+    
 
     const StickyNav = () => {
         let navbar = document.getElementById("navbar");
@@ -109,7 +110,7 @@ const Header = () => {
                     <Nav className="d-none d-sm-none d-md-flex d-lg-flex row pl-5 order-2 order-md-1">
                         <Navbar.Brand className="d-none d-lg-block ml-3">Asturias Food & Drinks</Navbar.Brand>
                         <Nav.Link className="text-white hover-navbar" href="/">INICIO</Nav.Link>
-                        <Nav.Link className="text-white hover-navbar" href="menu">MENU</Nav.Link>
+                        <Nav.Link className="text-white hover-navbar">MENU</Nav.Link>
                         <Nav.Link className="text-white hover-navbar" href="#Contacto">CONTACTO</Nav.Link>
                         <Nav.Link className="text-white hover-navbar" href="#AboutUs">SOBRE NOSOTROS</Nav.Link>
                     </Nav>

@@ -23,7 +23,6 @@ function App() {
       <Route component={Header} />
       <Switch>
         <PrivateRoute path="/todas" exact component={Menu} />
-        {/* <Route path="/menu" exact component={Menu} /> */}
         <Route path="/reg" exact component={RegUser} />
         <Route path="/log" exact component={LoginSession} />
         <Route exact path="/" component={HomePage} />
