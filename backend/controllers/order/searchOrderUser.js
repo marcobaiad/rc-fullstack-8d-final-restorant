@@ -7,12 +7,12 @@ exports.searchOrder = async (req, res) => {
         return res.status(404).json({mensaje: 'No hay resultado para la busqueda'});
     }
     
-    const order = await OrderModel.find({user: req.params.id})
+    const order = await OrderModel.find({user: req.params.id, state:'enviado'} )
     
     try {
         
-          res.send(order)     
-      
+          res.send(order) 
+       
     } catch (err) {
         console.log(err)
         res.status(500).send(err);
