@@ -10,22 +10,47 @@ const HomePages = () => {
     (async () => {
       const response = await axios.get('/api/v1/comidas')
       setPlatosHome(response.data);
+      console.log(response.data);
+      
     })();
   }, []);
 
+  const AddClassBTN = () => {
+    if (platosHome.filter(() => { "desayuno"})) {
+      platosHome.map(p =>
+        <article key={p._id} className="col-6 col-md-4 col-lg-3 px-0 containers">
+          <a href={`plato/` + p._id}>
+            <img className="w-100 PlatosHomeimg"
+              src={`http://localhost:3001` + p.imageUrl} alt="" />
+            <div className="overlay col p-0 text-white text-center">
+              <h3 className="mb-0">{p.title}</h3>
+              <p className="mb-0">{p.summary}</p>
+              <hr className="bg-white" />
+              <div className="text">
+                {p.description}
+              </div>
+            </div>
+          </a>
+        </article>
+    )
+    }
+  }
+
   const platos = platosHome.map(p =>
-    <a className="col-6 col-md-4 col-lg-3 px-0 containers" href={`plato/` + p._id}>
-      <img className="w-100 PlatosHomeimg"
-        src={`http://localhost:3001` + p.imageUrl} alt="" />
-      <div className="overlay col p-0 text-white text-center">
-        <h3 className="mb-0">{p.title}</h3>
-        <p className="mb-0">{p.summary}</p>
-        <hr className="bg-white" />
-        <div className="text">
-          {p.description}
+    <article key={p._id} className="col-6 col-md-4 col-lg-3 px-0 containers">
+      <a href={`plato/` + p._id}>
+        <img className="w-100 PlatosHomeimg"
+          src={`http://localhost:3001` + p.imageUrl} alt="" />
+        <div className="overlay col p-0 text-white text-center">
+          <h3 className="mb-0">{p.title}</h3>
+          <p className="mb-0">{p.summary}</p>
+          <hr className="bg-white" />
+          <div className="text">
+            {p.description}
+          </div>
         </div>
-      </div>
-    </a>
+      </a>
+    </article>
   )
 
   return (
@@ -35,6 +60,14 @@ const HomePages = () => {
           <h1 className="tituloh1"><span className="redcolor">Nuestro</span><br></br>MENU</h1>
           <h2 className="mb-0 text-white">EXCELENTE COMIDA, BEBIDAS & CAFE.</h2>
         </div>
+      </div>
+      <div className="row justify-content-around flex-nowrap m-0 bg-dark">
+        <button className="btn btn-foods px-1 py-2">Todas</button>
+        <button onClick={AddClassBTN} className="btn btn-foods px-1 py-2">Desayuno</button>
+        <button className="btn btn-foods px-1 py-2">Almuerzo</button>
+        <button className="btn btn-foods px-1 py-2">Merienda</button>
+        <button className="btn btn-foods px-1 py-2">Cena</button>
+        <button className="btn btn-foods px-1 py-2">Tragos</button>
       </div>
       <div className="box-menu row flex-wrap mx-0 mw-100">
         {platos}

@@ -18,7 +18,7 @@ axios.interceptors.response.use(
     return response;
   }, error => {
   const { response } = error;
-  if (response.status === 401 && response.data.error) {
+  if (response.status === 401 && response.data.mensaje.includes("Fuera: No Autorizado")) {
     Auth.logOut();
     window.location('/log');
   }

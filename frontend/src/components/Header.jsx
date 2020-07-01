@@ -129,10 +129,10 @@ const Header = () => {
                     <Form className="w-100 px-2 mt-4 d-md-none">
                         <Form.Group controlId="exampleForm.SelectCustom">
                             <Form.Control className="drop-menu text-white" as="select" custom>
-                                <option>INICIO</option>
-                                <option>MENU</option>
-                                <option>CONTACTO</option>
-                                <option>SOBRE NOSOTROS</option>
+                                <option value="/">INICIO</option>
+                                <option value="Menu">MENU</option>
+                                <option value="#Contacto">CONTACTO</option>
+                                <option value="#AboutUs">SOBRE NOSOTROS</option>
                             </Form.Control>
                         </Form.Group>
                     </Form>
