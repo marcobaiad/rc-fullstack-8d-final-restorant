@@ -1,20 +1,14 @@
+const mongoose = require('mongoose');
 const OrderModel = require('../../models/order.model');
 
-exports.seeOrder = async (req, res) => {
+exports.getOrder =  async(req, res) => {
+    console.log('entra al read...')
     try {
-
-        const order = await OrderModel.findByIdAndUpdate(req.params.id, {state:'Preparando Tu Pedido'}, { new: true })
-        .populate({path: 'user', select: '-_id name address'})
-        .populate({path: 'food', select: '-_id title price'})
-
-        if(!order){
-            return res.status(404).json({mensaje: 'No Existe la Orden'})
-        }
-
-        res.send(order)
-
+    
+        const orders = await OrderModel.findById(req.params.id)
+        
+        res.send(orders)
     } catch (err) {
         res.status(500).send(err);
     }
 }
- 

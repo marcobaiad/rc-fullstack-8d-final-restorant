@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const OrderModel = require('../../models/order.model');
-const { seeOrder } = require('./readOneOrder');
 
 exports.seeOrders =  async(req, res) => {
     console.log('entra al read...')
