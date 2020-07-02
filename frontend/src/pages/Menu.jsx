@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-
+import { Link } from 'react-router-dom';
+import '../Css/logUser.css'
 import clienteAxios from '../config/axios';
 
 const Menu = () => {
@@ -21,25 +22,27 @@ const Menu = () => {
 	}, []);
 
 	const cards = menu.map(a =>
-		<div className="column" >
-			<div key={a._id}
-				className="card" >
-				<img className="card-img-top"
-					src={`http://localhost:3001` + a.imageUrl} alt=""
-					alt="Card image cap" />
-				<div className="card-body" >
-					<h4 className="card-title"> {a.title} </h4>
-					<p className="card-text" > {a.description} </p>
-					<p className="card-text" > $ {a.price} </p>
-					<p className="card-text" > {'' + a.enable} </p>
+		<Link >
+			<div className="column" >
+				<div key={a._id}
+					className="card" >
+					<img className="card-img-top"
+						src={`http://localhost:3001` + a.imageUrl} alt=""
+						alt="Card image cap" />
+					<div className="card-body" >
+						<h4 className="card-title"> {a.title} </h4>
+						<p className="card-text" > {a.description} </p>
+						<p className="card-text" > $ {a.price} </p>
+						<p className="card-text" > {'' + a.enable} </p>
+					</div>
 				</div>
 			</div>
-		</div>
+		</Link>
 	);
 
 	return (
 		<>
-			<h1 className="my-5 titulo" > Nuestro Menu de Comidas </h1>
+			<h1 className="my-5 text-center titleAdmFoods" > Administrador Menu de Comidas </h1>
 			<div className="card-columns" >
 				{cards}
 			</div>
