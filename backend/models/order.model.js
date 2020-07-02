@@ -31,12 +31,11 @@ const OrderSchema = new mongoose.Schema({
     state:{
         type: String,
         required:true,
-        default: 'pendiente'
+        default: 'Pendiente'
     },
 
     score:{
-        type: Number,
-        required: true
+        type: Number
     }
 })
 
