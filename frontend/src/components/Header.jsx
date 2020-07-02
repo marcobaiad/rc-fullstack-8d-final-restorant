@@ -16,7 +16,6 @@ const Header = () => {
 
     const { pathname } = window.location;
     const isLogReg = pathname.includes("reg") || pathname.includes("log");
-    console.log(pathname);
     
 
     const StickyNav = () => {

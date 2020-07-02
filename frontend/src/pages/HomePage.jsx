@@ -5,69 +5,76 @@ import axios from 'axios';
 const HomePages = () => {
 
   const [platosHome, setPlatosHome] = useState([]);
-  const [desayunos, setDesayuno] = useState([]);
-  /* const [desayunos, setDesayuno] = useState([]); */
+  const [renderMomento, setRenderMomento] = useState([]);
+  const [desayunos, setDesayunos] = useState([]);
+  const [almuerzos, setAlmuerzos] = useState([]);
+  const [meriendas, setMeriendas] = useState([]);
+  const [cenas, setCenas] = useState([]);
+  const [tragos, setTragos] = useState([]);
 
   useEffect(() => {
     (async () => {
       const response = await axios.get('/api/v1/comidas')
       setPlatosHome(response.data);
-      console.log(response.data);
       
-      let desayuno = response.data.filter(DesayunoHome => DesayunoHome.title === "DESAYUNO LIGHT")
+      
+      let desayuno = response.data.filter(DesayunoHome => DesayunoHome.category === "Desayuno");
+      let almuerzo = response.data.filter(AlmuerzoHome => AlmuerzoHome.category === "Almuerzo");
+      let merienda = response.data.filter(MeriendaHome => MeriendaHome.category === "Merienda");
+      let cena = response.data.filter(CenaoHome => CenaoHome.category === "Cena");
+      let tragos = response.data.filter(TragosHome => TragosHome.category === "Tragos");
 
       if (desayuno) {
-        setDesayuno(desayuno)
+        setDesayunos(desayuno)
+      }
+
+      if (almuerzo) {
+        setAlmuerzos(almuerzo)
       }
       
-
-      /* if (response.data.title === "DESAYUNO") {
-        GetDesayunos()
+      if (merienda) {
+        setMeriendas(merienda)
       }
 
-      if (response.data.title === "EMPANADA") {
-        GetDesayunos()
+      if (cena) {
+        setCenas(cena)
       }
 
-      if (response.data.title === "EMPANADA") {
-        GetDesayunos()
+      if (tragos) {
+        setTragos(tragos)
       }
-
-      if (response.data.title === "EMPANADA") {
-        GetDesayunos()
-      } */
 
     })();
   }, []);
 
-  const GetDesayunos = () => {
-    console.log("ENTRANDO AL GET DESAYUNO");
-    console.log(desayunos);
-    
-    /* if (desayuno.title.includes("EMPANADAS")) {
-      console.log("si hay perro");
-      desayuno.map(d =>
-        <article key={d._id} className="col-6 col-md-4 col-lg-3 px-0 containers">
-          <a href={`plato/` + d._id}>
-            <img className="w-100 PlatosHomeimg"
-              src={`http://localhost:3001` + d.imageUrl} alt="" />
-            <div className="overlay col p-0 text-white text-center">
-              <h3 className="mb-0">{d.title}</h3>
-              <p className="mb-0">{d.summary}</p>
-              <hr className="bg-white" />
-              <div className="text">
-                {d.description}
-              </div>
-            </div>
-          </a>
-        </article>
-      ) 
-    } */
+
+  const GetTodas = () => {
+    setRenderMomento(platosHome);
   }
 
-  const platos = platosHome.map(p =>
+  const GetDesayunos = () => {
+    setRenderMomento(desayunos);
+  }
+
+  const GetAlmuerzos = () => {
+    setRenderMomento(almuerzos);
+  }
+
+  const GetMeriendas = () => {
+    setRenderMomento(meriendas);
+  }
+
+  const GetCenas = () => {
+    setRenderMomento(cenas);
+  }
+
+  const GetTragos = () => {
+    setRenderMomento(tragos);
+  }
+
+  const platos = renderMomento.map(p =>
     <article key={p._id} className="col-6 col-md-4 col-lg-3 px-0 containers">
-      <a href={`plato/` + p._id}>
+      <a href={'plato/' + p._id}>
         <img className="w-100 PlatosHomeimg"
           src={`http://localhost:3001` + p.imageUrl} alt="" />
         <div className="overlay col p-0 text-white text-center">
@@ -82,6 +89,8 @@ const HomePages = () => {
     </article>
   )
 
+  window.onload = GetTodas;
+
   return (
     <div className="mw-100">
       <div className="Titulo-Presentacion" id="Menu">
@@ -91,12 +100,12 @@ const HomePages = () => {
         </div>
       </div>
       <div className="row justify-content-around flex-nowrap m-0 bg-dark">
-        <button className="btn btn-foods px-1 py-2">Todas</button>
+        <button onClick={GetTodas} className="btn btn-foods px-1 py-2">Todas</button>
         <button onClick={GetDesayunos} className="btn btn-foods px-1 py-2">Desayuno</button>
-        <button className="btn btn-foods px-1 py-2">Almuerzo</button>
-        <button className="btn btn-foods px-1 py-2">Merienda</button>
-        <button className="btn btn-foods px-1 py-2">Cena</button>
-        <button className="btn btn-foods px-1 py-2">Tragos</button>
+        <button onClick={GetAlmuerzos} className="btn btn-foods px-1 py-2">Almuerzo</button>
+        <button onClick={GetMeriendas} className="btn btn-foods px-1 py-2">Merienda</button>
+        <button onClick={GetCenas} className="btn btn-foods px-1 py-2">Cena</button>
+        <button onClick={GetTragos} className="btn btn-foods px-1 py-2">Tragos</button>
       </div>
       <div className="box-menu row flex-wrap mx-0 mw-100">
         {platos}
