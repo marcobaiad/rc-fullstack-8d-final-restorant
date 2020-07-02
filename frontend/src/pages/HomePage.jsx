@@ -5,6 +5,8 @@ import axios from 'axios';
 const HomePages = () => {
 
   const [platosHome, setPlatosHome] = useState([]);
+  const [desayunos, setDesayuno] = useState([]);
+  /* const [desayunos, setDesayuno] = useState([]); */
 
   useEffect(() => {
     (async () => {
@@ -12,28 +14,55 @@ const HomePages = () => {
       setPlatosHome(response.data);
       console.log(response.data);
       
+      let desayuno = response.data.filter(DesayunoHome => DesayunoHome.title === "DESAYUNO LIGHT")
+
+      if (desayuno) {
+        setDesayuno(desayuno)
+      }
+      
+
+      /* if (response.data.title === "DESAYUNO") {
+        GetDesayunos()
+      }
+
+      if (response.data.title === "EMPANADA") {
+        GetDesayunos()
+      }
+
+      if (response.data.title === "EMPANADA") {
+        GetDesayunos()
+      }
+
+      if (response.data.title === "EMPANADA") {
+        GetDesayunos()
+      } */
+
     })();
   }, []);
 
-  const AddClassBTN = () => {
-    if (platosHome.filter(() => { "desayuno"})) {
-      platosHome.map(p =>
-        <article key={p._id} className="col-6 col-md-4 col-lg-3 px-0 containers">
-          <a href={`plato/` + p._id}>
+  const GetDesayunos = () => {
+    console.log("ENTRANDO AL GET DESAYUNO");
+    console.log(desayunos);
+    
+    /* if (desayuno.title.includes("EMPANADAS")) {
+      console.log("si hay perro");
+      desayuno.map(d =>
+        <article key={d._id} className="col-6 col-md-4 col-lg-3 px-0 containers">
+          <a href={`plato/` + d._id}>
             <img className="w-100 PlatosHomeimg"
-              src={`http://localhost:3001` + p.imageUrl} alt="" />
+              src={`http://localhost:3001` + d.imageUrl} alt="" />
             <div className="overlay col p-0 text-white text-center">
-              <h3 className="mb-0">{p.title}</h3>
-              <p className="mb-0">{p.summary}</p>
+              <h3 className="mb-0">{d.title}</h3>
+              <p className="mb-0">{d.summary}</p>
               <hr className="bg-white" />
               <div className="text">
-                {p.description}
+                {d.description}
               </div>
             </div>
           </a>
         </article>
-    )
-    }
+      ) 
+    } */
   }
 
   const platos = platosHome.map(p =>
@@ -63,7 +92,7 @@ const HomePages = () => {
       </div>
       <div className="row justify-content-around flex-nowrap m-0 bg-dark">
         <button className="btn btn-foods px-1 py-2">Todas</button>
-        <button onClick={AddClassBTN} className="btn btn-foods px-1 py-2">Desayuno</button>
+        <button onClick={GetDesayunos} className="btn btn-foods px-1 py-2">Desayuno</button>
         <button className="btn btn-foods px-1 py-2">Almuerzo</button>
         <button className="btn btn-foods px-1 py-2">Merienda</button>
         <button className="btn btn-foods px-1 py-2">Cena</button>
