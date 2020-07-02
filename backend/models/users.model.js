@@ -51,11 +51,6 @@ const UsersSchema = new mongoose.Schema({
         require:true  
     },
 
-    order: [{ 
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'orden' 
-    }],
-
     token: [String]
 })
  
