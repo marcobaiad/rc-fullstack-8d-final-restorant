@@ -14,7 +14,6 @@ exports.searchOrder = async (req, res) => {
           res.send(order) 
        
     } catch (err) {
-        console.log(err)
         res.status(500).send(err);
     }
 } 

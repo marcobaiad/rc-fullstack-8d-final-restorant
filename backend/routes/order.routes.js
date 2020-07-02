@@ -13,24 +13,33 @@ const ControllerSendOrder = require('../controllers/order/sendOrder')
 const ControllerCancelOrder = require('../controllers/order/cancelOrder')
 const ControllerSearchOrderUser = require('../controllers/order/searchOrderUser')
 const ControllerCompletedOrder = require('../controllers/order/completedOrder')
+const ControllerScoreOrder = require('../controllers/order/scoreOrder')
 
-router.post('/', [  
+router.post('/',authorize(['user','admin']), [  
      
     check('quantity', 'Cantidad vacia').notEmpty(),
-    check('amountTopay', 'Cantidad a Abonar Vacio').notEmpty()
+    check('amountTopay', 'Cantidad a Abonar Vacio').notEmpty(),
+    check('address', 'Direccion esta Vacio').notEmpty(),
 
 ],
 
 ControllerCreateOrder.CreateOrder)
+router.post('/:id/puntaje',authorize(['user','admin']), [  
+     
+    check('score', 'Score vacia').notEmpty(),
+
+],
+
+ControllerScoreOrder.scoreOrder)
 
 router.get('/',authorize('admin'), ControllerReadSeveralOrders.seeOrders)
 router.get('/:id',authorize('admin'), ControllerReadOneOrder.getOrder)
 router.get('/user/:id',authorize(['user', 'admin']), ControllerSearchOrderUser.searchOrder)
 
-router.put('/:id/ep',authorize('admin'), ControllerInProcessOrder.processOrder)
-router.put('/:id/fin',authorize('admin'), ControllerCompletedOrder.completedOrder)
+router.put('/:id/finalizado',authorize('admin'), ControllerCompletedOrder.completedOrder)
 router.put('/:id/cancelar',authorize('admin'), ControllerCancelOrder.cancelOrder) 
 router.put('/:id/enviar',authorize('admin'), ControllerSendOrder.sendOrder)
+router.put('/:id/ep',authorize('admin'), ControllerInProcessOrder.processOrder)
 router.put('/:id',authorize(['user', 'admin']), ControllerUpdateOrder.modifyOrder)
 
 router.delete('/:id',authorize('admin'), ControllerDeleteOrder.DeleteOrder)
