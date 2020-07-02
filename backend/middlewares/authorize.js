@@ -2,6 +2,7 @@ const jsonwebtoken = require('jsonwebtoken');
 const UsersModel = require('../models/users.model');
 
 module.exports = (role) => async (req, res, next) => {
+    console.log(role)
     try {
         const token = req.header('authorization').replace('Bearer ', '');
 
