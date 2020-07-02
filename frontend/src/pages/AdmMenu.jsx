@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import '../Css/logUser.css'
 import clienteAxios from '../config/axios';
 
-const Menu = () => {
+const AdmMenu = () => {
 
 	const [menu, setMenu] = useState([]);
 
@@ -50,4 +50,4 @@ const Menu = () => {
 	);
 }
 
-export default Menu;
+export default AdmMenu;

@@ -13,7 +13,7 @@ import HomePage from './pages/HomePage';
 import RegUser from './pages/RegUser';
 import LoginSession from './pages/LoginSession';
 import Footer from '../src/components/Footer';
-import Menu from './pages/Menu';
+import AdmMenu from './pages/AdmMenu';
 import PrivateRoute from './components/PrivateRoute';
 import CreateFoodsPage from './pages/CreateFoodsPage'
 
@@ -23,7 +23,7 @@ function App() {
 		<Router>
 			<Route component={Header} />
 			<Switch>
-				<PrivateRoute path="/todas" exact component={Menu} />
+				<PrivateRoute path="/todas" exact component={AdmMenu} />
 				<PrivateRoute path="/createfoods" exact component={CreateFoodsPage} />
 				<Route path="/reg" exact component={RegUser} />
 				<Route path="/log" exact component={LoginSession} />
