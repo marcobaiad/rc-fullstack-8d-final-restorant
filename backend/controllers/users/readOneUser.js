@@ -1,6 +1,6 @@
 const UsersModel = require('../../models/users.model');
 
-exports.viewUser = async (req, res) => {
+exports.GetUser = async (req, res) => {
     try {
 
         const user = await UsersModel.findById(req.params.id)
