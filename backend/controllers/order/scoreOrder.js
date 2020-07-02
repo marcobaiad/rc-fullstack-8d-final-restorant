@@ -10,14 +10,14 @@ exports.scoreOrder =  async (req, res) => {
     const order = await OrderModel.findById(req.params.id)
 
     try {
-       if(order.state !== 'enviado'){
-        return res.send({mensaje: 'no esta en enviado su pedido'})
+       if(order.state !== 'Enviado'){
+        return res.send({mensaje: 'ERR: solo se puede Puntuar un Pedido Enviado.'})
        }
         if(order.score > 5 || order.score < 1){
             res.send({mensaje:'Solamente se puede puntuar de 1 a 5'})
         }else{
             order.score = req.body.score
-            order.state = 'finalizado'
+            order.state = 'Finalizado'
             await order.save();
             res.send({mensaje: 'Muchas Gracias Por Puntuarnos', order})
         }

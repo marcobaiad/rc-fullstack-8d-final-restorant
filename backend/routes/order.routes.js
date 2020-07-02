@@ -24,21 +24,21 @@ router.post('/',authorize(['user','admin']), [
 ],
 
 ControllerCreateOrder.CreateOrder)
-router.post('/:id/puntaje',authorize(['user','admin']), [  
+router.put('/:id/puntaje',authorize(['user','admin']), [  
      
     check('score', 'Score vacia').notEmpty(),
 
 ],
 
-ControllerScoreOrder.scoreOrder)
+ControllerScoreOrder.scoreOrder) 
 
 router.get('/',authorize('admin'), ControllerReadSeveralOrders.seeOrders)
 router.get('/:id',authorize('admin'), ControllerReadOneOrder.getOrder)
 router.get('/user/:id',authorize(['user', 'admin']), ControllerSearchOrderUser.searchOrder)
 
-router.put('/:id/finalizado',authorize('admin'), ControllerCompletedOrder.completedOrder)
+router.put('/:id/finalizar',authorize('admin'), ControllerCompletedOrder.completedOrder)
 router.put('/:id/cancelar',authorize('admin'), ControllerCancelOrder.cancelOrder) 
-router.put('/:id/enviar',authorize('admin'), ControllerSendOrder.sendOrder)
+router.put('/:id/enviar',authorize('admin'), ControllerSendOrder.sendOrder)  
 router.put('/:id/ep',authorize('admin'), ControllerInProcessOrder.processOrder)
 router.put('/:id',authorize(['user', 'admin']), ControllerUpdateOrder.modifyOrder)
 
