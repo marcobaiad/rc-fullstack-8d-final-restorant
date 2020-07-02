@@ -15,7 +15,7 @@ const ControllerSearchOrderUser = require('../controllers/order/searchOrderUser'
 const ControllerCompletedOrder = require('../controllers/order/completedOrder')
 const ControllerScoreOrder = require('../controllers/order/scoreOrder')
 
-router.post('/',authorize('admin'), [  
+router.post('/',authorize(['user','admin']), [  
      
     check('quantity', 'Cantidad vacia').notEmpty(),
     check('amountTopay', 'Cantidad a Abonar Vacio').notEmpty(),
@@ -24,9 +24,10 @@ router.post('/',authorize('admin'), [
 ],
 
 ControllerCreateOrder.CreateOrder)
-router.post('/:id/puntaje', [  
+router.post('/:id/puntaje',authorize(['user','admin']), [  
      
     check('score', 'Score vacia').notEmpty(),
+
 ],
 
 ControllerScoreOrder.scoreOrder)
