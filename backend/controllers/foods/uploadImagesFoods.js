@@ -19,16 +19,15 @@ exports.uploadImages = async (req, res) => {
   } catch (err) {
     res.status(500).send(err);
   }
-    console.log('ingresa al upload images...')
-
+   
     const form = formidable({
       hash: 'sha256',
       multiples: true,
       keepExtensions: true
     });
-    console.log('sale de form/formidable...')
+  
     form.onPart = part => {
-      console.log('ingresa form.onPart...')
+     
       if (['image/jpeg', 'image/png', 'image/gif'].indexOf(part.mime) !== -1) {
           // Here is the invalid file types will be handled. 
           // You can listen on 'error' event
@@ -38,7 +37,7 @@ exports.uploadImages = async (req, res) => {
     };
   
     const validateFiles = files => {
-      console.log('ingresa al validate files image/...')
+     
       let validfileTypes = ['image/jpeg', 'image/png', 'image/gif'];
       let result = true;
   
@@ -67,10 +66,9 @@ exports.uploadImages = async (req, res) => {
   
       return result;
     };
-    console.log('sale del validate files...')
-  
+   
     form.parse(req, async (err, fields, files) => {
-      console.log('ingresa form.parse...')
+  
       const filesResult = [];
   
       if (!validateFiles(files)) {
@@ -121,7 +119,6 @@ exports.uploadImages = async (req, res) => {
         await FoodsModel.findByIdAndUpdate(req.params.resourceId, { imageUrl: '/static/' + upload.files[0].filename }, { new: true });
         res.send(upload);
       } catch (err) {
-        console.log(err)
         res.status(500).send(err);
       }
   
