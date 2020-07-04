@@ -22,8 +22,8 @@ const AdmMenu = () => {
 	}, []);
 
 	const cards = menu.map(a =>
-		<Link >
-			<div className="col-md-4 p-2" >
+		<Link to={'edit/' + a._id} >
+			<div className=" p-5" >
 				<div
 					key={a._id}
 					className="card" >
@@ -33,6 +33,7 @@ const AdmMenu = () => {
 						alt="Card image cap" />
 					<div className="card-body" >
 						<h4 className="card-title"> {a.title} </h4>
+						<p className="card-text" > {a.summary} </p>
 						<p className="card-text" > {a.description} </p>
 						<p className="card-text" > $ {a.price} </p>
 						<p className="card-text" > {'' + a.enable} </p>
@@ -44,8 +45,8 @@ const AdmMenu = () => {
 
 	return (
 		<>
-			<h1 className="my-5 text-center titleAdmFoods" > Administrador Menu de Comidas </h1>
-			<div className="" >
+			<h1 className="my-5 text-center titleAdmFoods" > Menu de Comidas (administrador) </h1>
+			<div className="justify-content-center align-items-center" >
 				{cards}
 			</div>
 		</>
