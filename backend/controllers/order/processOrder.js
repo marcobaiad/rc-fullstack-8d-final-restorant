@@ -1,15 +1,15 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 const OrderModel = require('../../models/order.model');
 
-exports.sendOrder =  async (req, res) => {
+exports.processOrder = async (req, res) => {
     if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
         return res.status(404).json({ mensaje: 'No hay resultado para la busqueda' });
     }
     const order = await OrderModel.findById(req.params.id)
         
     try {
-            if(order.state === 'En Proceso'){
-                order.state = 'Enviado'
+            if(order.state === 'Pendiente'){
+                order.state = 'En Proceso'
                 await order.save();
                 res.send(order)
             }else{

@@ -13,7 +13,7 @@ const ControllerFoodsND = require('../controllers/foods/notAvailableFoods')
 const ControllerFoodsDis = require('../controllers/foods/availableFoods')
 const ControllerFoodsImages = require('../controllers/foods/uploadImagesFoods')
 
-router.post('/', [  
+router.post('/',authorize('admin'), [  
     
     check('title', 'Campo Titulo esta Vacio').notEmpty(),
     check('summary', 'Campo Resumen esta en Vacio').notEmpty(),
@@ -22,7 +22,7 @@ router.post('/', [
     
 ],
 ControllerCreateFoods.CreateFoods)
-router.post('/:resourceId/upload', ControllerFoodsImages.uploadImages);
+router.post('/:resourceId/upload',authorize('admin'), ControllerFoodsImages.uploadImages);
 
 router.get('/todas',authorize('admin'), ControllerReadFoodsAll.GetFoods)
 router.get('/:id',authorize(['user', 'admin']), ControllerReadFoods.GetOneFood)

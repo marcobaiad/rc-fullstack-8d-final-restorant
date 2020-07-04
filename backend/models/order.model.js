@@ -1,6 +1,11 @@
 const mongoose = require('mongoose');
 
 const OrderSchema = new mongoose.Schema({
+
+    address:{
+        type: String,
+        trim:true
+    },
   
     quantity:{
         type: Number,
@@ -26,7 +31,11 @@ const OrderSchema = new mongoose.Schema({
     state:{
         type: String,
         required:true,
-        default: 'pendiente'
+        default: 'Pendiente'
+    },
+
+    score:{
+        type: Number
     }
 })
 

@@ -28,7 +28,6 @@ exports.registerUser = async (req, res) => {
 
     let userExists = await UsersModel.findOne({ username: body.username });
     if (userExists) {
-        console.log(userExists)
         return res.status(400).json({ mensaje: 'El Usuario ya existe' })
     }
 
@@ -47,7 +46,6 @@ exports.registerUser = async (req, res) => {
     user.password = await bcryptjs.hash(body.password, salt);
 
     const usuario = new UsersModel(user);
-    console.log(usuario)
     try {
         await usuario.save();
         res.send({ mensaje: 'Tu Usuario se Registro Correctamente' })

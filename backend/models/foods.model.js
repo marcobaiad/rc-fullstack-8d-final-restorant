@@ -37,7 +37,7 @@ const FoodsSchema = new mongoose.Schema({
         type: String
     },
 
-    type:{
+    category:{
         type: String
     }
 })
