@@ -1,8 +1,7 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 import '../Css/CreateFoodsPage.css'
-
 
 function CreateFoodsPage() {
 	const history = useHistory()
@@ -56,9 +55,7 @@ function CreateFoodsPage() {
 		}
 	}
 
-
 	return (
-
 		<div className='pb-5 mb-5'>
 			<div className='text-center py-5'>
 				<h1>Create Foods Page</h1>
@@ -73,10 +70,9 @@ function CreateFoodsPage() {
 									<input type="text" name='title' className="form-control"
 										id="exampleInputEmail1" aria-describedby="emailHelp"
 										onChange={handleChange} />
-
 								</div>
 								<div className="form-group">
-									<label htmlFor="exampleInputPassword1">Descripcion</label>
+									<label htmlFor="exampleInputPassword1">Descripción</label>
 									<input type="text" name='description' className="form-control"
 										id="exampleInputPassword1" onChange={handleChange} />
 								</div>
@@ -90,11 +86,8 @@ function CreateFoodsPage() {
 									<input type="text" name='price' className="form-control"
 										id="exampleInputPassword1" onChange={handleChange} />
 								</div>
-
-
 								<button type="submit" className="btn btn-outline-primary w-100">Publicar</button>
 							</form>
-
 						</div>
 					</div>
 					<div className="col col-6">
@@ -125,16 +118,12 @@ function CreateFoodsPage() {
 									<img src={previewImage} className='previewImagen' alt="" />
 									<input type="text" placeholder='Subir Imagen'
 										className=' border-0 borderInputImg' readOnly />
-
 								</div>
 							</form>
-
 						</div>
 					</div>
 				</div>
 			</div>
-
-
 		</div>
 	)
 }

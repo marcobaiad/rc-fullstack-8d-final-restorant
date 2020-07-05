@@ -47,6 +47,7 @@ const Editfoods = () => {
     try {
       if (image !== null) {
         const newFoods = await axios.post('/api/v1/comidas', createFoods)
+        console.log(newFoods)
         const formData = new FormData()
         formData.append('file', image)
         await axios.post(`/api/v1/comidas/${newFoods.data._id}/upload`, formData, {
