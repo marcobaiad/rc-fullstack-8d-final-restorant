@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, } from 'react'
 import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 import '../Css/CreateFoodsPage.css'

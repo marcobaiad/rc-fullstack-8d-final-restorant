@@ -19,6 +19,7 @@ const Editfoods = () => {
   const [previewImage, setPreviewImage] = useState('')
   const [image, setImage] = useState(null)
 
+
   const getFood = useCallback(async () => {
     const res = await clienteAxios.get(`api/v1/comidas/${params.id}`)
     setCreateFoods(res.data)
@@ -98,9 +99,9 @@ const Editfoods = () => {
       history.goBack();
     }
     catch (e) {
-      console.log('NO SE PUDO ACTUALIZAR')
+      console.log('NO SE PUDO ACTUALIZAR');
     }
-  }
+  };
 
   return (
     <div className='pb-5 mb-5'>
@@ -173,7 +174,7 @@ const Editfoods = () => {
                     type="file"
                     className="form-control-file"
                     name='file'
-                    onChange={e => {
+                    onChange={(e) => {
                       setImage(e.target.files[0])
                       let file = e.target.files
                       if (file.length === 1 && validateupload(e)) {

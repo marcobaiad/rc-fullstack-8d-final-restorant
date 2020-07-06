@@ -1,7 +1,9 @@
 
 import React, { useState } from 'react';
-import Swal from 'sweetalert2'
-import '../Css/logUser.css'
+import Swal from 'sweetalert2';
+import '../Css/logUser.css';
+import Auth from '../utils/auth';
+
 
 import clienteAxios from '../config/axios';
 
@@ -15,8 +17,8 @@ const LoginSession = (props) => {
 
     clienteAxios.post('/api/v1/usuarios/login', { username, password })
     .then(response => {
-      /* console.log(response); */
-      localStorage.setItem('token', response.data.token);
+      Auth.role(response.data.role)
+      Auth.logedIn(response.data.token);
       Swal.fire({
         icon: "success",
         title: "Logueado correctamente",

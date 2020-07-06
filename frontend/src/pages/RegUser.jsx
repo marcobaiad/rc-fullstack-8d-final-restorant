@@ -42,13 +42,16 @@ class RegUser extends React.Component {
         icon: 'success',
         title: 'Registro correcto',
       });
-      this.props.history.push('/');
-    } catch (e) {
+      this.props.history.push('/log');
+    } catch (err) {
+      const { response } = err;
+      const errores = response.data.mensaje;
+      
       swal.fire({
         icon: 'error',
-        title: 'No se pudo registrar'
+        title: 'No se pudo registrar',
+        text: errores
       });
-      console.log(('No se pudo crear el usuario'));
     }    
   }
 
