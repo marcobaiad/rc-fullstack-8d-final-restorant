@@ -3,26 +3,30 @@ import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 import '../Css/CreateFoodsPage.css'
 
-
 function CreateFoodsPage() {
     const history = useHistory()
     const wrapperRef = useRef(null)
     const [createFoods, setCreateFoods] = useState()
     const [previewImage, setPreviewImage] = useState('')
     const [image, setImage] = useState(null)
-    console.log(createFoods)
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
             if (image !== null) {
-                const newFoods = await axios.post('/api/v1/comidas', createFoods)
+                const newFoods = await axios.post('/api/v1/comidas', createFoods, {
+					headers: {
+						'authorization': 'Bearer ' + localStorage.getItem('token')
+                    }
+				})
                 console.log(newFoods)
                 const formData = new FormData()
                 formData.append('file', image)
                 await axios.post(`/api/v1/comidas/${newFoods.data._id}/upload`, formData, {
                     headers: {
+                        'authorization': 'Bearer ' + localStorage.getItem('token'),
                         'content-type': 'multipart/form-data'
+                        
                     }
                 })
             }

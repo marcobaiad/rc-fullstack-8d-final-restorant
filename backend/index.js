@@ -19,7 +19,7 @@ const port = process.env.PORT
 
 app.use(function (req, res, next) {
    
-    res.status(404).json({ mensaje: 'ERROR: 404 not found' })
+    res.status(404).json({ mensaje: 'ERROR: 404 not found index' })
 })
 
 app.listen(port, () => console.log(`Escuchando http://localhost:${port}`))
