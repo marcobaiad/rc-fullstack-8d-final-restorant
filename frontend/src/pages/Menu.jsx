@@ -14,7 +14,8 @@ const Menu = () => {
           setMenu(response.data)
         })
         .catch(error => {
-          console.log(error)
+          const { response } = error
+          console.log(response)
         })
     }
     consultApi();
