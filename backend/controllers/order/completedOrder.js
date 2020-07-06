@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+    const mongoose = require('mongoose');
 const OrderModel = require('../../models/order.model');
 
 exports.completedOrder =  async (req, res) => {
