@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../src/components/Header';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 import $ from 'jquery';
 import Popper from 'popper.js';

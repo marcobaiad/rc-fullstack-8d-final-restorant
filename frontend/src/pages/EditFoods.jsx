@@ -8,22 +8,20 @@ const Editfoods = () => {
   const history = useHistory()
   const params = useParams()
   const wrapperRef = useRef(null)
-  const [createFoods, setCreateFoods] = useState()
+  const [createFoods, setCreateFoods] = useState({
+    title: '',
+    description: '',
+    summary: '',
+    price: ''
+  })
+
+  const { title, description, summary, price } = createFoods
   const [previewImage, setPreviewImage] = useState('')
   const [image, setImage] = useState(null)
 
-  const [title, setTitle] = useState('')
-  const [description, setDescription] = useState('')
-  const [summary, setSummary] = useState('')
-  const [price, setPrice] = useState('')
-
   const getFood = useCallback(async () => {
     const res = await clienteAxios.get(`api/v1/comidas/${params.id}`)
-    console.log('res', res);
-    setTitle(res.data.title)
-    setDescription(res.data.description)
-    setSummary(res.data.summary)
-    setPrice(res.data.price)
+    setCreateFoods(res.data)
   }, [params.id])
 
   useEffect(() => {
@@ -38,7 +36,6 @@ const Editfoods = () => {
       }
       )
     } catch (error) {
-
     }
   }
 
@@ -46,11 +43,11 @@ const Editfoods = () => {
     e.preventDefault()
     try {
       if (image !== null) {
-        const newFoods = await axios.post('/api/v1/comidas', createFoods)
+        const newFoods = await clienteAxios.post('/api/v1/comidas', createFoods)
         console.log(newFoods)
         const formData = new FormData()
         formData.append('file', image)
-        await axios.post(`/api/v1/comidas/${newFoods.data._id}/upload`, formData, {
+        await clienteAxios.post(`/api/v1/comidas/${newFoods.data._id}/upload`, formData, {
           headers: {
             'content-type': 'multipart/form-data'
           }
@@ -85,6 +82,26 @@ const Editfoods = () => {
       alert('subir algo min 2 mb')
     }
   }
+
+  const onClickUpdateHandler = async () => {
+    try {
+      await clienteAxios.put(`/api/v1/comidas/${params.id}`)
+      const formData = new FormData()
+      formData.append('file', image)
+      await clienteAxios.post(`/api/v1/comidas/${params.id}/upload`, formData, {
+        headers: {
+          'authorization': 'Bearer ' + localStorage.getItem('token'),
+          'content-type': 'multipart/form-data'
+        }
+      })
+      console.log('llega?')
+      history.goBack();
+    }
+    catch (e) {
+      console.log('NO SE PUDO ACTUALIZAR')
+    }
+  }
+
   return (
     <div className='pb-5 mb-5'>
       <div className='text-center py-5'>
@@ -94,38 +111,62 @@ const Editfoods = () => {
         <div className="row">
           <div className="col col-6">
             <div className='d-flex justify-content-center'>
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={onClickUpdateHandler}>
                 <div className="form-group">
                   <label htmlFor="exampleInputEmail1">Titulo</label>
-                  <input type="text" name='title'
-                    value={title} className="form-control"
+                  <input
+                    type="text"
+                    name='title'
+                    value={title}
+                    className="form-control"
                     id="exampleInputEmail1" aria-describedby="emailHelp"
-                    onChange={handleChange} />
+                    onChange={handleChange}
+                  />
                 </div>
                 <div className="form-group">
                   <label htmlFor="exampleInputPassword1">Descripción</label>
-                  <input type="text" name='description'
-                    value={description} className="form-control"
-                    id="exampleInputPassword1" onChange={handleChange} />
+                  <input
+                    type="text"
+                    name='description'
+                    value={description}
+                    className="form-control"
+                    id="exampleInputPassword1"
+                    onChange={handleChange}
+                  />
                 </div>
                 <div className="form-group">
                   <label htmlFor="exampleInputPassword1">Detalles</label>
-                  <input type="text" name='summary'
-                    value={summary} className="form-control"
-                    id="exampleInputPassword1" onChange={handleChange} />
+                  <input
+                    type="text"
+                    name='summary'
+                    value={summary}
+                    className="form-control"
+                    id="exampleInputPassword1"
+                    onChange={handleChange}
+                  />
                 </div>
                 <div className="form-group">
                   <label htmlFor="exampleInputPassword1">Precio</label>
-                  <input type="text" name='price'
-                    value={price} className="form-control"
-                    id="exampleInputPassword1" onChange={handleChange} />
+                  <input
+                    type="text"
+                    name='price'
+                    value={price}
+                    className="form-control"
+                    id="exampleInputPassword1"
+                    onChange={handleChange}
+                  />
                 </div>
-                <button type="submit" className="btn btn-outline-primary w-100" onClick={handlePutFood}>Editar</button>
+                <button
+                  type="submit"
+                  className="btn btn-outline-primary w-100"
+                  onClick={handlePutFood}
+                >Editar
+                </button>
               </form>
             </div>
           </div>
           <div className="col col-6">
-            <div  >
+            <div>
               <form>
                 <div className="form-group d-none">
                   <input

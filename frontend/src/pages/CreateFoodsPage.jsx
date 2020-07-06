@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 import '../Css/CreateFoodsPage.css'
+import clienteAxios from '../config/axios';
 
 function CreateFoodsPage() {
 
@@ -16,11 +17,11 @@ function CreateFoodsPage() {
 		e.preventDefault()
 		try {
 			if (image !== null) {
-				const newFoods = await axios.post('/api/v1/comidas', createFoods)
+				const newFoods = await clienteAxios.post('/api/v1/comidas', createFoods)
 				console.log(newFoods)
 				const formData = new FormData()
 				formData.append('file', image)
-				await axios.post(`/api/v1/comidas/${newFoods.data._id}/upload`, formData, {
+				await clienteAxios.post(`/api/v1/comidas/${newFoods.data._id}/upload`, formData, {
 					headers: {
 						'content-type': 'multipart/form-data'
 					}
@@ -92,7 +93,7 @@ function CreateFoodsPage() {
 						</div>
 					</div>
 					<div className="col col-6">
-						<div  >
+						<div>
 							<form>
 								<div className="form-group d-none">
 									<input
