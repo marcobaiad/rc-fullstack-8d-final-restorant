@@ -17,6 +17,7 @@ const LoginSession = (props) => {
     .then(response => {
       /* console.log(response); */
       localStorage.setItem('token', response.data.token);
+      console.log('role...', response.data.role)
       Swal.fire({
         icon: "success",
         title: "Logueado correctamente",

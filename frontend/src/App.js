@@ -24,7 +24,7 @@ function App() {
       <Route component={Header} />
       <Switch>
         <PrivateRoute path="/todas" exact component={Menu} />
-        <Route path="/createfoods" exact component={CreateFoodsPage} />
+        <PrivateRoute path="/createfoods" exact component={CreateFoodsPage} />
         {/* <Route path="/menu" exact component={Menu} /> */}
         <Route path="/reg" exact component={RegUser} />
         <Route path="/log" exact component={LoginSession} />
