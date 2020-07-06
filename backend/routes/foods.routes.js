@@ -18,8 +18,9 @@ router.post('/',authorize('admin'), [
     check('title', 'Campo Titulo esta Vacio').notEmpty(),
     check('summary', 'Campo Resumen esta en Vacio').notEmpty(),
     check('description', 'Campo Descripcion esta en Vacio').notEmpty(),
-    check('price', 'Campo Precio Vacio').notEmpty()
-    
+    check('price', 'Campo Precio Vacio').notEmpty(),
+    check('category', 'Campo Categoria Vacio').notEmpty()
+     
 ],
 ControllerCreateFoods.CreateFoods)
 router.post('/:resourceId/upload',authorize('admin'), ControllerFoodsImages.uploadImages);
