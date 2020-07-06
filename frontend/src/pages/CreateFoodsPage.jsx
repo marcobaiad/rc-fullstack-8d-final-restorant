@@ -9,16 +9,16 @@ function CreateFoodsPage() {
     const [createFoods, setCreateFoods] = useState()
     const [previewImage, setPreviewImage] = useState('')
     const [image, setImage] = useState(null)
-
+    console.log(createFoods)
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
             if (image !== null) {
                 const newFoods = await axios.post('/api/v1/comidas', createFoods, {
-					headers: {
-						'authorization': 'Bearer ' + localStorage.getItem('token')
+                    headers: {
+                        'authorization': 'Bearer ' + localStorage.getItem('token')
                     }
-				})
+                })
                 console.log(newFoods)
                 const formData = new FormData()
                 formData.append('file', image)
@@ -26,7 +26,7 @@ function CreateFoodsPage() {
                     headers: {
                         'authorization': 'Bearer ' + localStorage.getItem('token'),
                         'content-type': 'multipart/form-data'
-                        
+
                     }
                 })
             }
@@ -40,25 +40,25 @@ function CreateFoodsPage() {
         setCreateFoods({ ...createFoods, [e.target.name]: e.target.value })
     }
 
-        const validateupload = e =>
-            e.target.files[0].type == 'image/png' ||
-            e.target.files[0].type == 'image/jpg' ||
-            e.target.files[0].type == 'image/jpeg'
-    
-    
-        const upload = e => {
-            if (e.target.files[0].size <= 20000000) {
-                let file = e.target.files[0];
-                let reader = new FileReader()
-                reader.onload = function (e) {
-                    setPreviewImage(e.target.result)
-                }
-                reader.readAsDataURL(file)
-            } else {
-                e.target.value = ''
-                alert('subir algo min 2 mb')
+    const validateupload = e =>
+        e.target.files[0].type == 'image/png' ||
+        e.target.files[0].type == 'image/jpg' ||
+        e.target.files[0].type == 'image/jpeg'
+
+
+    const upload = e => {
+        if (e.target.files[0].size <= 20000000) {
+            let file = e.target.files[0];
+            let reader = new FileReader()
+            reader.onload = function (e) {
+                setPreviewImage(e.target.result)
             }
-        } 
+            reader.readAsDataURL(file)
+        } else {
+            e.target.value = ''
+            alert('subir algo min 2 mb')
+        }
+    }
 
 
     return (
@@ -94,9 +94,24 @@ function CreateFoodsPage() {
                                     <input type="text" name='price' className="form-control"
                                         id="exampleInputPassword1" onChange={handleChange} />
                                 </div>
-
-
-                                <button type="submit" className="btn btn-outline-primary w-100">Publicar</button>
+                                <div className="form-group">
+                                    {/*   <label htmlFor="exampleInputPassword1">Categoria</label>
+                                    <input type="text" name='category' className="form-control"
+                                        id="exampleInputPassword1" onChange={handleChange} /> */}
+                                    <label for="inputState">Categoria</label>
+                                    <select id="inputState" class="form-control"
+                                        name='category' onChange={handleChange} required>
+                                        <option value=''>Seleccione Una Categoria...</option>
+                                        <option >Desayuno</option>
+                                        <option>Almuerzo</option>
+                                        <option>Merienda</option>
+                                        <option>Cena</option>
+                                        <option>Tragos</option>
+                                    </select>
+                                </div>
+                                <div className='pt-3'>
+                                    <button type="submit" className="btn btn-outline-primary w-100">Publicar</button>
+                                </div>
                             </form>
 
                         </div>
@@ -104,7 +119,7 @@ function CreateFoodsPage() {
                     <div className="col col-6">
                         <div  >
                             <form>
-                                 <div className="form-group d-none">
+                                <div className="form-group d-none">
                                     <input
                                         type="file"
                                         className="form-control-file"
