@@ -7,10 +7,12 @@ exports.CreateOrder =  async (req, res) => {
     
     try {
         if(req.body.address){
+            order.user = res.locals.user._id;
             await order.save();
             res.send(order)
         }else{            
             order.address = res.locals.user.address;
+            order.user = res.locals.user._id;
             await order.save();
             res.send(order)
         } 
