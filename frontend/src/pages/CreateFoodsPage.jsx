@@ -2,7 +2,6 @@ import React, { useState, useRef, } from 'react'
 import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 import '../Css/CreateFoodsPage.css'
-import clienteAxios from '../config/axios';
 
 function CreateFoodsPage() {
 
@@ -17,13 +16,19 @@ function CreateFoodsPage() {
 		e.preventDefault()
 		try {
 			if (image !== null) {
-				const newFoods = await clienteAxios.post('/api/v1/comidas', createFoods)
+				const newFoods = await axios.post('/api/v1/comidas', createFoods, {
+					headers: {
+						'authorization': 'Bearer ' + localStorage.getItem('token')
+					}
+				})
 				console.log(newFoods)
 				const formData = new FormData()
 				formData.append('file', image)
-				await clienteAxios.post(`/api/v1/comidas/${newFoods.data._id}/upload`, formData, {
+				await axios.post(`/api/v1/comidas/${newFoods.data._id}/upload`, formData, {
 					headers: {
+						'authorization': 'Bearer ' + localStorage.getItem('token'),
 						'content-type': 'multipart/form-data'
+
 					}
 				})
 			}
@@ -58,6 +63,7 @@ function CreateFoodsPage() {
 	}
 
 	return (
+
 		<div className='pb-5 mb-5'>
 			<div className='text-center py-5'>
 				<h1>Create Foods Page</h1>
@@ -88,12 +94,29 @@ function CreateFoodsPage() {
 									<input type="text" name='price' className="form-control"
 										id="exampleInputPassword1" onChange={handleChange} />
 								</div>
-								<button type="submit" className="btn btn-outline-primary w-100">Publicar</button>
+								<div className="form-group">
+									{/*   <label htmlFor="exampleInputPassword1">Categoria</label>
+                                    <input type="text" name='category' className="form-control"
+                                        id="exampleInputPassword1" onChange={handleChange} /> */}
+									<label for="inputState">Categoría</label>
+									<select id="inputState" class="form-control"
+										name='category' onChange={handleChange} required>
+										<option value=''>Seleccione Una Categoría...</option>
+										<option >Desayuno</option>
+										<option>Almuerzo</option>
+										<option>Merienda</option>
+										<option>Cena</option>
+										<option>Tragos</option>
+									</select>
+								</div>
+								<div className='pt-3'>
+									<button type="submit" className="btn btn-outline-primary w-100">Publicar</button>
+								</div>
 							</form>
 						</div>
 					</div>
 					<div className="col col-6">
-						<div>
+						<div  >
 							<form>
 								<div className="form-group d-none">
 									<input

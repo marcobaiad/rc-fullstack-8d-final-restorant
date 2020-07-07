@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
-import axios from 'axios'
 import '../Css/CreateFoodsPage.css'
 import clienteAxios from '../config/axios';
 
@@ -29,37 +28,6 @@ const Editfoods = () => {
     getFood()
   }, [getFood])
 
-  const handlePutFood = async (e) => {
-    e.preventDefault()
-    try {
-      await clienteAxios.put(`api/v1/comidas/${params.id}`, {
-        title, description, summary, price
-      }
-      )
-    } catch (error) {
-    }
-  }
-
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    try {
-      if (image !== null) {
-        const newFoods = await clienteAxios.post('/api/v1/comidas', createFoods)
-        console.log(newFoods)
-        const formData = new FormData()
-        formData.append('file', image)
-        await clienteAxios.post(`/api/v1/comidas/${newFoods.data._id}/upload`, formData, {
-          headers: {
-            'content-type': 'multipart/form-data'
-          }
-        })
-      }
-      history.push('/')
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
   const handleChange = (e) => {
     setCreateFoods({ ...createFoods, [e.target.name]: e.target.value })
   }
@@ -84,21 +52,23 @@ const Editfoods = () => {
     }
   }
 
-  const onClickUpdateHandler = async () => {
+  const onClickUpdateHandler = async (e) => {
+    e.preventDefault()
     try {
-      await clienteAxios.put(`/api/v1/comidas/${params.id}`)
+      await clienteAxios.put(`api/v1/comidas/${params.id}`, {
+        title, description, summary, price
+      }
+      )
       const formData = new FormData()
       formData.append('file', image)
       await clienteAxios.post(`/api/v1/comidas/${params.id}/upload`, formData, {
         headers: {
-          'authorization': 'Bearer ' + localStorage.getItem('token'),
           'content-type': 'multipart/form-data'
         }
       })
-      console.log('llega?')
       history.goBack();
     }
-    catch (e) {
+    catch {
       console.log('NO SE PUDO ACTUALIZAR');
     }
   };
@@ -160,7 +130,6 @@ const Editfoods = () => {
                 <button
                   type="submit"
                   className="btn btn-outline-primary w-100"
-                  onClick={handlePutFood}
                 >Editar
                 </button>
               </form>
