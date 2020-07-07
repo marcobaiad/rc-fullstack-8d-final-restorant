@@ -46,7 +46,7 @@ const AdmMenu = () => {
 	return (
 		<>
 			<h1 className="my-5 text-center titleAdmFoods" > Menu de Comidas (administrador) </h1>
-			<div className="justify-content-center align-items-center" >
+			<div className="container col col-8" >
 				{cards}
 			</div>
 		</>
