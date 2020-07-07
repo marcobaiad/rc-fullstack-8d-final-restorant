@@ -17,6 +17,8 @@ import Menu from './pages/Menu';
 import PrivateRoute from './components/PrivateRoute';
 import CreateFoodsPage from './pages/CreateFoodsPage';
 import PlatoPage from './pages/PlatoPage';
+import GetOrderPages from './pages/GetOrderPages'
+import GetOrderUserPages from './pages/GetOrderUserPages'
 
 function App() {
 
@@ -25,7 +27,9 @@ function App() {
       <Route component={Header} />
       <Switch>
         <PrivateRoute path="/todas" exact component={Menu} />
-        <PrivateRoute path="/createfoods" exact component={CreateFoodsPage} />
+        <PrivateRoute path="/admin/allorder" exact component={GetOrderPages} />
+        <PrivateRoute path="/admin/createfoods" exact component={CreateFoodsPage} />
+        <PrivateRoute path="/user/orders" exact component={GetOrderUserPages} />
         <Route path="/plato/:id" exact component={PlatoPage} />
         <Route path="/reg" exact component={RegUser} />
         <Route path="/log" exact component={LoginSession} />
