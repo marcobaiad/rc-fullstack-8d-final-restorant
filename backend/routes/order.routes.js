@@ -35,7 +35,7 @@ router.get('/user',authorize('user'), ControllerSearchOrderUser.searchOrder)
 router.get('/:id',authorize('admin'), ControllerReadOneOrder.getOrder)
 router.get('/',authorize('admin'), ControllerReadSeveralOrders.seeOrders)
 
-router.put('/:id/finalizar',authorize('admin'), ControllerCompletedOrder.completedOrder)
+router.put('/:id/finalizar',authorize('user'), ControllerCompletedOrder.completedOrder)
 router.put('/:id/cancelar',authorize('admin'), ControllerCancelOrder.cancelOrder) 
 router.put('/:id/enviar',authorize('admin'), ControllerSendOrder.sendOrder)  
 router.put('/:id/ep',authorize('admin'), ControllerInProcessOrder.processOrder)
