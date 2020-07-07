@@ -40,6 +40,11 @@
   color: white;
 }
 
+titleAdmFoods {
+  font-family: 'Oswald', sans-serif; 
+  color: black;
+}
+
 .registration-form .item {
   border-radius: 20px;
   margin-bottom: 25px;
