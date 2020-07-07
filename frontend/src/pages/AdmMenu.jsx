@@ -22,7 +22,7 @@ const AdmMenu = () => {
 	}, []);
 
 	const cards = menu.map(a =>
-		<Link to={'edit/' + a._id} >
+		<Link to={'/admin/edit/' + a._id} >
 			<div className=" p-5" >
 				<div
 					key={a._id}
