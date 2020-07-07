@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom'
 
 import clienteAxios from '../config/axios';
 
 const Menu = () => {
-
+  const params = useParams()
   const [menu, setMenu] = useState([]);
+
 
   useEffect(() => {
     const consultApi = () => {
@@ -20,7 +22,6 @@ const Menu = () => {
     }
     consultApi();
   }, []);
-  console.log(menu)
 
   const cards = menu.map(a =>
     <div key={a._id} className="my-5 card">
@@ -29,8 +30,9 @@ const Menu = () => {
         <h4 className="card-title">{a.title}</h4>
         <p className="card-text">{a.description}</p>
         <p className="card-text">{a.price}</p>
-        <p className="card-text">{a.enable}</p>
-
+        <p className="card-text">{a.category}</p>
+          <p className="card-text"> {a.enable ? 'Habilitado' : 'Deshabilitado'}</p>
+          <button type='submit' className='btn btn-outline-primary'>Habilitar</button>
       </div>
     </div>
   );

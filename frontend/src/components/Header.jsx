@@ -7,13 +7,14 @@ import Nav from 'react-bootstrap/Nav';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
 import sweet from 'sweetalert2';
+import { useHistory } from 'react-router-dom'
 
 import Lampara from '../img/CarrouselNav/Lampara.jpg'
 import Pizzas from '../img/CarrouselNav/Pizzas.jpg'
 import Restorant from '../img/CarrouselNav/Restorant.jpg'
 
 const Header = () => {
-
+    const history = useHistory()
     const { pathname } = window.location;
     const isLogReg = pathname.includes("reg") || pathname.includes("log");
     
@@ -63,6 +64,7 @@ const Header = () => {
             );
             SetIsLogedIn(true);
             Auth.logOut();
+            history.push('/')
         } catch (e) {
             const { response } = e;
             console.log(response);
@@ -116,11 +118,11 @@ const Header = () => {
                     <Nav className="row mx-3 order-1 order-md-2 ">
 
                         { Auth.isAuthenticated() ? 
-                            <Nav.Link className="text-white hover-navbar" onClick={LogUotHandler}><i className="far fa-user"></i> CERRAR CESIÓN</Nav.Link>
+                            <Nav.Link className="text-white hover-navbar" onClick={LogUotHandler}><i className="far fa-user"></i> CERRAR SESIÓN</Nav.Link>
                             :
                             <>
                                 <Nav.Link className="text-white hover-navbar" href="/reg">REGISTRO</Nav.Link>
-                                <Nav.Link className="text-white hover-navbar" href="/log"><i className="far fa-user"></i> INICIAR CESIÓN</Nav.Link> 
+                                <Nav.Link className="text-white hover-navbar" href="/log"><i className="far fa-user"></i> INICIAR SESIÓN</Nav.Link> 
                             </>
                         }
 
