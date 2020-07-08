@@ -23,20 +23,23 @@ const AdmMenu = () => {
 
 	const cards = menu.map(a =>
 		<Link to={'/admin/edit/' + a._id} >
-			<div className=" p-5" >
+			<div className=" p-5">
 				<div
 					key={a._id}
-					className="card" >
+					className="card">
 					<img
 						className="card-img-top"
 						src={`http://localhost:3001` + a.imageUrl}
 						alt="Card image cap" />
-					<div className="card-body" >
+					<div className="card-body">
 						<h4 className="card-title"> {a.title} </h4>
-						<p className="card-text" > {a.summary} </p>
-						<p className="card-text" > {a.description} </p>
-						<p className="card-text" > $ {a.price} </p>
-						<p className="card-text" > {'' + a.enable} </p>
+						<p className="card-text"> {a.summary} </p>
+						<p className="card-text"> {a.description} </p>
+						<p className="card-text"> $ {a.price} </p>
+						{a.enable ?
+							<p className="card-text">Activo</p> :
+							<p className="card-text">Inactivo</p>
+						}
 					</div>
 				</div>
 			</div>

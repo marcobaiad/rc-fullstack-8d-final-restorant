@@ -13,15 +13,15 @@ const Editfoods = () => {
     summary: '',
     price: ''
   })
-
   const { title, description, summary, price } = createFoods
+
   const [previewImage, setPreviewImage] = useState('')
   const [image, setImage] = useState(null)
-
 
   const getFood = useCallback(async () => {
     const res = await clienteAxios.get(`api/v1/comidas/${params.id}`)
     setCreateFoods(res.data)
+    setPreviewImage(res.data.imageUrl)
   }, [params.id])
 
   useEffect(() => {
@@ -143,6 +143,7 @@ const Editfoods = () => {
                     type="file"
                     className="form-control-file"
                     name='file'
+                    // value={file}
                     onChange={(e) => {
                       setImage(e.target.files[0])
                       let file = e.target.files

@@ -9,7 +9,7 @@ export default {
         localStorage.removeItem('token');
     },
     role: role => {
-        return role 
+        return role
     }
 
 }
