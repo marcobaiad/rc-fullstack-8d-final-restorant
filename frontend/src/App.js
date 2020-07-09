@@ -22,6 +22,7 @@ import GetOrderPages from './pages/GetOrderPages'
 import GetOrderUserPages from './pages/GetOrderUserPages'
 
 function App() {
+
   return (
     <Router>
       <Route component={Header} />
@@ -39,6 +40,7 @@ function App() {
       <Route component={Footer} />
     </Router>
   );
+
 }
 
 export default App;

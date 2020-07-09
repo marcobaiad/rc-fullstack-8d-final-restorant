@@ -18,7 +18,11 @@ const Editfoods = () => {
     enable: ''
   })
 
+
   const { title, description, summary, price, category, enable } = createFoods
+
+
+
   const [previewImage, setPreviewImage] = useState('')
   const [image, setImage] = useState(null)
 
