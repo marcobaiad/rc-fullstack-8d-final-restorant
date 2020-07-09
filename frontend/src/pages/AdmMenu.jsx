@@ -36,7 +36,7 @@ const AdmMenu = () => {
 						<p className="card-text" > {a.summary} </p>
 						<p className="card-text" > {a.description} </p>
 						<p className="card-text" > $ {a.price} </p>
-						<p className="card-text" > {'' + a.enable} </p>
+						<p className="card-text"> {a.enable ? 'Habilitado' : 'Deshabilitado'}</p>
 					</div>
 				</div>
 			</div>

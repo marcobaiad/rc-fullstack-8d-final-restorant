@@ -6,7 +6,7 @@ import clienteAxios from '../config/axios';
 
 const GetOderPages = () => {
   const [order, setOrder] = useState([]);
-
+  
   const GetOrder = useCallback(async () => {
     const res = await clienteAxios.get(`/api/v1/orden/`, order, {
       headers: {
@@ -54,8 +54,8 @@ const GetOderPages = () => {
         </div>
         <p className="card-text">Pagara Con: {a.amountTopay}</p>
         <p className="card-text">Direccion: {a.address}</p>
-        <p className="card-text">ID Comida: {a.food}</p>
-        <p className="card-text">ID Usuario: {a.user}</p>
+        <p className="card-text">Comida: {a.food.title}</p>
+        <p className="card-text">Usuario: {a.user.name}</p>
         <p className="card-text">Estado: {a.state}</p>
         <p className="card-text">Puntuacion de Servicio: {a.score}</p>
         <div className='d-flex justify-content-around'>
@@ -76,6 +76,7 @@ const GetOderPages = () => {
     </div>
   );
 
+ 
 
   return (
     <>

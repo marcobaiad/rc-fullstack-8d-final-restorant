@@ -31,8 +31,7 @@ const Menu = () => {
         <p className="card-text">{a.description}</p>
         <p className="card-text">{a.price}</p>
         <p className="card-text">{a.category}</p>
-          <p className="card-text"> {a.enable ? 'Habilitado' : 'Deshabilitado'}</p>
-          <button type='submit' className='btn btn-outline-primary'>Habilitar</button>
+         
       </div>
     </div>
   );

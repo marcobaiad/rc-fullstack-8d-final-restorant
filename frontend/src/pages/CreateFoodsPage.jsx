@@ -95,9 +95,6 @@ function CreateFoodsPage() {
 										id="exampleInputPassword1" onChange={handleChange} />
 								</div>
 								<div className="form-group">
-									{/*   <label htmlFor="exampleInputPassword1">Categoria</label>
-                                    <input type="text" name='category' className="form-control"
-                                        id="exampleInputPassword1" onChange={handleChange} /> */}
 									<label for="inputState">Categoría</label>
 									<select id="inputState" class="form-control"
 										name='category' onChange={handleChange} required>
