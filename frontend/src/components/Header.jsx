@@ -17,7 +17,7 @@ const Header = () => {
     const history = useHistory()
     const { pathname } = window.location;
     const isLogReg = pathname.includes("reg") || pathname.includes("log");
-    
+
 
     const StickyNav = () => {
         let navbar = document.getElementById("navbar");
@@ -43,23 +43,23 @@ const Header = () => {
     window.onscroll = StickyNav
 
     const [isLogedIn, SetIsLogedIn] = useState(false);
-    const localToken = localStorage.getItem('token');        
-    
+    const localToken = localStorage.getItem('token');
+
     useEffect(() => {
         if (isLogedIn) {
             SetIsLogedIn(false)
         }
     }, [isLogedIn]);
 
-    
 
-    const LogUotHandler = async () => {   
+
+    const LogUotHandler = async () => {
         try {
-            await axios.get(`/api/v1/usuarios/logout`, 
+            await axios.get(`/api/v1/usuarios/logout`,
                 {
                     headers: {
                         'authorization': `Bearer ` + localToken
-                    } 
+                    }
                 }
             );
             SetIsLogedIn(true);
@@ -78,7 +78,7 @@ const Header = () => {
     /* const onchangeSelectHandler = (e) => {
         
     } */
-    
+
     return (
         <div className="d-flex flex-wrap">
             {!isLogReg &&
@@ -117,12 +117,12 @@ const Header = () => {
                     </Nav>
                     <Nav className="row mx-3 order-1 order-md-2 ">
 
-                        { Auth.isAuthenticated() ? 
+                        {Auth.isAuthenticated() ?
                             <Nav.Link className="text-white hover-navbar" onClick={LogUotHandler}><i className="far fa-user"></i> CERRAR SESIÓN</Nav.Link>
                             :
                             <>
                                 <Nav.Link className="text-white hover-navbar" href="/reg">REGISTRO</Nav.Link>
-                                <Nav.Link className="text-white hover-navbar" href="/log"><i className="far fa-user"></i> INICIAR SESIÓN</Nav.Link> 
+                                <Nav.Link className="text-white hover-navbar" href="/log"><i className="far fa-user"></i> INICIAR SESIÓN</Nav.Link>
                             </>
                         }
 

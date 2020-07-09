@@ -10,10 +10,12 @@ export default {
         localStorage.removeItem('token');
         localStorage.removeItem('role');
     },
+
     hasRole: role => {
         return localStorage.getItem('role') === role
     },
     
+
 
 }
 
