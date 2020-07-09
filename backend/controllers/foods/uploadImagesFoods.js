@@ -107,6 +107,9 @@ exports.uploadImages = async (req, res) => {
       }
     }
 
+    UploadsModel.findOneAndDelete({ resourceType: 'comida', 
+       resourceId: new mongoose.Types.ObjectId(req.params.resourceId) });
+
     const upload = new UploadsModel({
       resourceType: 'comida',
       resourceId: new mongoose.Types.ObjectId(req.params.resourceId),
