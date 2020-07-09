@@ -4,7 +4,6 @@ import axios from 'axios'
 import '../Css/CreateFoodsPage.css'
 
 function CreateFoodsPage() {
-
 	const history = useHistory()
 	const wrapperRef = useRef(null)
 	const [createFoods, setCreateFoods] = useState()
