@@ -27,10 +27,10 @@ function App() {
     <Router>
       <Route component={Header} />
       <Switch>
-        <PrivateRoute path="/todas" role={'admin'} exact component={AdmMenu} />
+        <PrivateRoute path="/admin/todas" role={'admin'} exact component={AdmMenu} />
         <PrivateRoute path="/admin/allorder" role={'admin'} exact component={GetOrderPages} />
         <PrivateRoute path="/admin/createfoods" role={'admin'} exact component={CreateFoodsPage} />
-        <PrivateRoute path="/edit/:id" exact role={'admin'} component={EditFoods} />
+        <PrivateRoute path="/admin/edit/:id" exact role={'admin'} component={EditFoods} />
         <PrivateRoute path="/user/orders" exact role={'user'} component={GetOrderUserPages} />
         <Route path="/plato/:id" exact component={PlatoPage} />
         <Route path="/reg" exact component={RegUser} />
