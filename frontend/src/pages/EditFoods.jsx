@@ -2,18 +2,26 @@ import React, { useState, useRef, useEffect, useCallback } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 import '../Css/CreateFoodsPage.css'
 import clienteAxios from '../config/axios';
+import Swal from 'sweetalert2'
 
 const Editfoods = () => {
   const history = useHistory()
   const params = useParams()
   const wrapperRef = useRef(null)
+  const [food, setFood] = useState({enable: false})
   const [createFoods, setCreateFoods] = useState({
     title: '',
     description: '',
     summary: '',
-    price: ''
+    price: '',
+    category: '',
+    enable: ''
   })
-  const { title, description, summary, price } = createFoods
+
+
+  const { title, description, summary, price, category, enable } = createFoods
+
+
 
   const [previewImage, setPreviewImage] = useState('')
   const [image, setImage] = useState(null)
@@ -51,12 +59,12 @@ const Editfoods = () => {
       alert('subir algo min 2 mb')
     }
   }
-
+  
   const onClickUpdateHandler = async (e) => {
     e.preventDefault()
     try {
       await clienteAxios.put(`api/v1/comidas/${params.id}`, {
-        title, description, summary, price
+        title, description, summary, price, category, enable
       }
       )
       const formData = new FormData()
@@ -66,12 +74,45 @@ const Editfoods = () => {
           'content-type': 'multipart/form-data'
         }
       })
+
+      onChangeState()
+
       history.goBack();
     }
     catch {
       console.log('NO SE PUDO ACTUALIZAR');
     }
   };
+
+  const onChangeState = () =>{
+    if(enable.value === true){
+
+      return setFood({enable: true})
+
+    }else{
+      
+    /*   Swal.fire({
+        title: 'Esta Seguro de Deshabilitar esta Comida del Menu?',
+        text: "Deshabiltiar!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, Deshabilitar!' 
+
+      }).then((result) => {
+        if (result.value) {
+          Swal.fire(
+             setFood({enable: false}),
+            'Se ha Deshabilitado!',
+            'Confirmado.',
+            'success'
+          )
+        }
+      }) */
+    }
+  }
+
 
   return (
     <div className='pb-5 mb-5'>
@@ -126,6 +167,41 @@ const Editfoods = () => {
                     id="exampleInputPassword1"
                     onChange={handleChange}
                   />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="exampleInputPassword1">Categoria</label>
+                  <input
+                    type="text"
+                    name='category'
+                    value={category}
+                    className="form-control"
+                    id="exampleInputPassword1"
+                    readOnly
+                  />
+                </div>
+                {/*  <div className='d-flex pb-3'>
+                  <div class="form-check mx-3">
+                    <input class="form-check-input" type="radio" 
+                    name="gridRadios" id="gridRadios1" value="option1" onClick={enableTrue}/>
+                    <label class="form-check-label" for="gridRadios1">
+                      Habilitar
+                      </label>
+                  </div>
+                  <div class="form-check mx-3">
+                    <input class="form-check-input" type="radio" 
+                    name="gridRadios" id="gridRadios2" value="option2" onClick={enableFalse}/>
+                    <label class="form-check-label" for="gridRadios2">
+                      Deshabilitar
+                     </label>
+                  </div>
+                </div> */}
+                <div className="form-group">
+                  <label for="inputState">Estado</label>
+                  <select id="inputState" class="form-control"
+                    name='enable' value={enable} onChange={handleChange} required>
+                    <option value={true}>Habilitar</option>
+                    <option value={false}>Deshabilitar</option>
+                  </select>
                 </div>
                 <button
                   type="submit"

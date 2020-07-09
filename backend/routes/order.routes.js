@@ -23,7 +23,7 @@ router.post('/',authorize('user'), [
 ],
 
 ControllerCreateOrder.CreateOrder)
-router.put('user/:id/puntaje',authorize('user'), [  
+router.put('/user/:id/puntaje',authorize('user'), [  
      
     check('score', 'Score vacia').notEmpty(),
 

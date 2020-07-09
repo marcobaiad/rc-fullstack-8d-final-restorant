@@ -23,23 +23,23 @@ import GetOrderUserPages from './pages/GetOrderUserPages'
 
 function App() {
 
-	return (
-		<Router>
-			<Route component={Header} />
-			<Switch>
-				<PrivateRoute path="/admin/todas" exact component={AdmMenu} />
-				<PrivateRoute path="/admin/allorder" exact component={GetOrderPages} />
-				<PrivateRoute path="/admin/createfoods" exact component={CreateFoodsPage} />
-				<PrivateRoute path="/user/orders" exact component={GetOrderUserPages} />
-				<PrivateRoute path="/admin/edit/:id" exact component={EditFoods} />
-				<Route path="/plato/:id" exact component={PlatoPage} />
-				<Route path="/reg" exact component={RegUser} />
-				<Route path="/log" exact component={LoginSession} />
-				<Route exact path="/" component={HomePage} />
-			</Switch>
-			<Route component={Footer} />
-		</Router>
-	);
+  return (
+    <Router>
+      <Route component={Header} />
+      <Switch>
+        <PrivateRoute path="/todas" role={'admin'} exact component={AdmMenu} />
+        <PrivateRoute path="/admin/allorder" role={'admin'} exact component={GetOrderPages} />
+        <PrivateRoute path="/admin/createfoods" role={'admin'} exact component={CreateFoodsPage} />
+        <PrivateRoute path="/edit/:id" exact role={'admin'} component={EditFoods} />
+        <PrivateRoute path="/user/orders" exact role={'user'} component={GetOrderUserPages} />
+        <Route path="/plato/:id" exact component={PlatoPage} />
+        <Route path="/reg" exact component={RegUser} />
+        <Route path="/log" exact component={LoginSession} />
+        <Route exact path="/" component={HomePage} />
+      </Switch>
+      <Route component={Footer} />
+    </Router>
+  );
 
 }
 

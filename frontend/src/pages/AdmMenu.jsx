@@ -33,13 +33,12 @@ const AdmMenu = () => {
 						alt="Card image cap" />
 					<div className="card-body">
 						<h4 className="card-title"> {a.title} </h4>
-						<p className="card-text"> {a.summary} </p>
-						<p className="card-text"> {a.description} </p>
-						<p className="card-text"> $ {a.price} </p>
-						{a.enable ?
-							<p className="card-text">Activo</p> :
-							<p className="card-text">Inactivo</p>
-						}
+
+						<p className="card-text" > {a.summary} </p>
+						<p className="card-text" > {a.description} </p>
+						<p className="card-text" > $ {a.price} </p>
+						<p className="card-text"> {a.enable ? 'Habilitado' : 'Deshabilitado'}</p>
+
 					</div>
 				</div>
 			</div>

@@ -4,7 +4,9 @@ const OrderModel = require('../../models/order.model');
 exports.searchOrder = async (req, res) => {
 
     const order = await OrderModel.find({ user: res.locals.user.id })
-
+    .populate({ path: 'user', select: '-_id, name' })
+    .populate({ path: 'food', select: '-_id, title' })
+    
     try {
 
        let newOrder = order.filter( orden => {
