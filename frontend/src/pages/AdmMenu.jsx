@@ -23,23 +23,18 @@ const AdmMenu = () => {
 
 	const cards = menu.map(a =>
 		<Link to={'/admin/edit/' + a._id} >
-			<div className=" p-5">
-				<div
-					key={a._id}
-					className="card">
-					<img
-						className="card-img-top"
-						src={`http://localhost:3001` + a.imageUrl}
-						alt="Card image cap" />
-					<div className="card-body">
-						<h4 className="card-title"> {a.title} </h4>
-
-						<p className="card-text" > {a.summary} </p>
-						<p className="card-text" > {a.description} </p>
-						<p className="card-text" > $ {a.price} </p>
-						<p className="card-text"> {a.enable ? 'Habilitado' : 'Deshabilitado'}</p>
-
-					</div>
+			<div key={a._id} className="my-5 card">
+				<img
+					className="card-img-top"
+					src={`http://localhost:3001` + a.imageUrl}
+					alt="Card image cap"
+				/>
+				<div className="card-body">
+					<h4 className="card-title"> {a.title} </h4>
+					<p className="card-text" > {a.summary} </p>
+					<p className="card-text" > {a.description} </p>
+					<p className="card-text" > $ {a.price} </p>
+					<p className="card-text"> {a.enable ? 'Habilitado' : 'Deshabilitado'}</p>
 				</div>
 			</div>
 		</Link>
@@ -48,7 +43,7 @@ const AdmMenu = () => {
 	return (
 		<>
 			<h1 className="my-5 text-center titleAdmFoods" > Menu de Comidas (administrador) </h1>
-			<div className="container col col-8" >
+			<div className="card-columns col-12" >
 				{cards}
 			</div>
 		</>
