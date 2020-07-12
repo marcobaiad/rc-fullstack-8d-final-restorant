@@ -59,7 +59,7 @@ const HomePages = () => {
           src={`http://localhost:3001` + p.imageUrl} alt="" />
         <div className="overlay col p-0 text-white text-center">
           <h3 className="mb-0">{p.title}</h3>
-          <p className="mb-0">{p.summary}</p>
+          {/* <p className="mb-0">{p.summary}</p> */}
           <hr className="bg-white" />
           <div className="text">
             {p.description}
