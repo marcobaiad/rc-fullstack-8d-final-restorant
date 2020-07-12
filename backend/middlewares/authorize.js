@@ -2,10 +2,11 @@ const jsonwebtoken = require('jsonwebtoken');
 const UsersModel = require('../models/users.model');
 
 module.exports = (role) => async (req, res, next) => {
-    console.log(role)
+  
     try {
+        
         const token = req.header('authorization').replace('Bearer ', '');
-
+       
         const verificar = jsonwebtoken.verify(token, process.env.JWT_SECRET);
 
         const userLogin = await UsersModel.findOne({ _id: verificar.user.id, token: token });
@@ -21,7 +22,7 @@ module.exports = (role) => async (req, res, next) => {
 
         res.locals.user = userLogin;
         res.locals.token = token;
-
+       
         next();
     }
 

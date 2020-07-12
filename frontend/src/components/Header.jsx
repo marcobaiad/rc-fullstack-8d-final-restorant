@@ -42,6 +42,9 @@ const Header = () => {
     }
 
 
+    window.onload = StickyNav
+    window.onscroll = StickyNav
+
     useEffect(() => {
         if (isLogedIn) {
             SetIsLogedIn(false)
@@ -61,6 +64,7 @@ const Header = () => {
             );
             SetIsLogedIn(true);
             Auth.logOut();
+            history.push('/')
         } catch (e) {
             const { response } = e;
             console.log(response);
@@ -89,11 +93,6 @@ const Header = () => {
         }
         
     }
-    
-    
-
-    window.onload = StickyNav
-    window.onscroll = StickyNav
 
     return (
         <div className="d-flex flex-wrap">

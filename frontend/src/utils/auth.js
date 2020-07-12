@@ -2,15 +2,21 @@ export default {
     isAuthenticated: () => {
         return localStorage.getItem('token') ? true : false
     },
-    logedIn: token => {
+    logedIn: (token, role) => {
         localStorage.setItem('token', token)
+        localStorage.setItem('role', role)
     },
     logOut: () => {
         localStorage.removeItem('token');
+        localStorage.removeItem('role');
     },
-    role: role => {
-        return role 
-    }
+
+    hasRole: role => {
+        return localStorage.getItem('role') === role
+    },
+    
+
+
 
 }
 
