@@ -4,7 +4,7 @@ import '../Css/footer.css';
 
 const Footer = () => {
     return (
-        <footer className="row m-0 bg-dark text-white align-items-center text-center">
+        <footer className="row m-0 bg-dark text-white align-items-center text-center" id="AboutUs">
             <div className="col-12 col-md-6 my-4">
                 <h2 className="text-white">Asturias Food & Drink</h2>
                 <p>Nuestras Redes Sociales</p>
