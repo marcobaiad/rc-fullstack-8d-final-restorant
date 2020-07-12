@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, createRef } from 'react';
+import { useHistory, useLocation, Link } from 'react-router-dom';
 import '../Css/navbar.css';
 import Auth from '../utils/auth';
 import Carousel from 'react-bootstrap/Carousel';
@@ -7,16 +8,19 @@ import Nav from 'react-bootstrap/Nav';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
 import sweet from 'sweetalert2';
-import { useHistory } from 'react-router-dom'
-
 import Lampara from '../img/CarrouselNav/Lampara.jpg'
 import Pizzas from '../img/CarrouselNav/Pizzas.jpg'
 import Restorant from '../img/CarrouselNav/Restorant.jpg'
 
 const Header = () => {
-    const history = useHistory()
-    const { pathname } = window.location;
-    const isLogReg = pathname.includes("reg") || pathname.includes("log");
+    
+
+    const [isLogedIn, SetIsLogedIn] = useState(false);
+    const localToken = localStorage.getItem('token');
+    const [nameButton, setNameButton] = useState('INICIO');
+    const history = useHistory();
+    const pathHome = history.location.pathname === '/';
+    
 
 
     const StickyNav = () => {
@@ -35,15 +39,11 @@ const Header = () => {
                 navbar.classList.add("align-self-end");
             }
         }
-
     }
 
 
     window.onload = StickyNav
     window.onscroll = StickyNav
-
-    const [isLogedIn, SetIsLogedIn] = useState(false);
-    const localToken = localStorage.getItem('token');
 
     useEffect(() => {
         if (isLogedIn) {
@@ -75,13 +75,28 @@ const Header = () => {
         }
     }
 
-    /* const onchangeSelectHandler = (e) => {
+
+    const onchangeSelectHandler = (e) => {
+        if (!pathHome && e.target.value === '/') {
+            history.push('/');
+            return
+        }
+        if (!pathHome && e.target.value === 'SobreNosotros') {
+            history.push('/SobreNosotros');
+            return
+        }
+        if (!pathHome) {
+            window.location = (`/${e.target.value}`)
+            return            
+        } else {
+            window.location = (`${e.target.value}`);
+        }
         
-    } */
+    }
 
     return (
         <div className="d-flex flex-wrap">
-            {!isLogReg &&
+            {pathHome &&
                 <Carousel controls={false} indicators={false} id="carrousel">
                     <Carousel.Item>
                         <img
@@ -110,30 +125,30 @@ const Header = () => {
                 <Navbar variant="dark" className="px-0 py-2 mb-3 mb-lg-4 navbar-menu row flex-wrap justify-content-center justify-content-md-between m-0">
                     <Nav className="d-none d-sm-none d-md-flex d-lg-flex row pl-5 order-2 order-md-1">
                         <Navbar.Brand className="d-none d-lg-block ml-3">Asturias Food & Drinks</Navbar.Brand>
-                        <Nav.Link className="text-white hover-navbar" href="/">INICIO</Nav.Link>
-                        <Nav.Link className="text-white hover-navbar">MENU</Nav.Link>
-                        <Nav.Link className="text-white hover-navbar" href="#Contacto">CONTACTO</Nav.Link>
-                        <Nav.Link className="text-white hover-navbar" href="#AboutUs">SOBRE NOSOTROS</Nav.Link>
+                        <Link className="text-white hover-navbar mt-2" to="/">INICIO</Link>
+                        <Nav.Link className="text-white hover-navbar" href="#Menu">MENU</Nav.Link>
+                        <Nav.Link className="text-white hover-navbar" href="#AboutUs">CONTACTO</Nav.Link>
+                        <Link className="text-white hover-navbar mt-2" to="#AboutUs">SOBRE NOSOTROS</Link>
+
                     </Nav>
                     <Nav className="row mx-3 order-1 order-md-2 ">
-
                         {Auth.isAuthenticated() ?
-                            <Nav.Link className="text-white hover-navbar" onClick={LogUotHandler}><i className="far fa-user"></i> CERRAR SESIÓN</Nav.Link>
+                            <Nav.Link className="text-white hover-navbar" onClick={LogUotHandler}><i className="far fa-user"></i> CERRAR CESIÓN</Nav.Link>
                             :
                             <>
-                                <Nav.Link className="text-white hover-navbar" href="/reg">REGISTRO</Nav.Link>
-                                <Nav.Link className="text-white hover-navbar" href="/log"><i className="far fa-user"></i> INICIAR SESIÓN</Nav.Link>
+                                <Link className="text-white hover-navbar mx-2" to="/reg">REGISTRO</Link>
+                                <Link className="text-white hover-navbar mx-2" to="/log"><i className="far fa-user"></i> INICIAR CESIÓN</Link>
                             </>
                         }
-
                     </Nav>
-                    <Form className="w-100 px-2 mt-4 d-md-none">
+                    <Form className="w-100 px-3 d-md-none mt-3 mb-0">
                         <Form.Group controlId="exampleForm.SelectCustom">
-                            <Form.Control className="drop-menu text-white" as="select" custom>
+                            <Form.Control onChange={onchangeSelectHandler} className="drop-menu text-white" as="select" custom>
+                                <option value="" disabled selected>IR A...</option>
                                 <option value="/">INICIO</option>
-                                <option value="Menu">MENU</option>
-                                <option value="#Contacto">CONTACTO</option>
-                                <option value="#AboutUs">SOBRE NOSOTROS</option>
+                                <option value="#Menu">MENU</option>
+                                <option value="#AboutUs">CONTACTO</option>
+                                <option value="SobreNosotros">SOBRE NOSOTROS</option>
                             </Form.Control>
                         </Form.Group>
                     </Form>
