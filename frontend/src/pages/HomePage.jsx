@@ -86,10 +86,10 @@ const HomePages = () => {
       <div className="box-menu row flex-wrap mx-0 mw-100 bg-dark">
         { platos }
       </div>
-      <div className="parallaxHOME firstpara row m-0 text-center justify-content-center align-items-center">
+      <div className="parallaxHOME firstpara row m-0 text-center shadow justify-content-center align-items-center">
         <h3 className="font-parallax">VIVÍ LA EXPERIENCIA, TODO EL DÍA, TODOS LOS DÍAS</h3>
       </div>
-      <div className="parallaxHOME secondpara row m-0 justify-content-center align-items-center">
+      <div className="parallaxHOME secondpara row m-0 text-center shadow justify-content-center align-items-center">
         <h3 className="font-parallax">EXCELENTE MÚSICA</h3>
       </div>
     </div>
