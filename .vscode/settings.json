@@ -3,5 +3,8 @@
   "editor.defaultFormatter": "vscode.debug-server-ready",
   "[javascript]": {
     "editor.defaultFormatter": "vscode.typescript-language-features"
-  }
+  },
+  "cSpell.words": [
+    "toggleclass"
+  ]
 }
