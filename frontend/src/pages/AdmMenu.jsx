@@ -23,7 +23,7 @@ const AdmMenu = () => {
 
 	const cards = menu.map(a =>
 		<Link to={'/admin/edit/' + a._id} >
-			<div key={a._id} className="my-5 card">
+			<div key={a._id} className=" row my-5 card">
 				<img
 					className="card-img-top"
 					src={`http://localhost:3001` + a.imageUrl}
@@ -43,7 +43,7 @@ const AdmMenu = () => {
 	return (
 		<>
 			<h1 className="my-5 text-center titleAdmFoods" > Menu de Comidas (administrador) </h1>
-			<div className="card-columns col-12" >
+			<div className="container" >
 				{cards}
 			</div>
 		</>
