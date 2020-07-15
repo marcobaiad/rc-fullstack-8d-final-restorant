@@ -30,7 +30,6 @@ const GetOrderUserPages = () => {
         <p className="card-text">Pagara Con: {a.amountTopay}</p>
         <p className="card-text">Direccion: {a.address}</p>
         <p className="card-text">Comida: {a.food.title}</p>
-        <p className="card-text">Usuario: {a.user.name}</p>
         <p className="card-text">Estado: {a.state}</p>
         <div>
           {a.state === 'Enviado'

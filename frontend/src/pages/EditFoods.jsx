@@ -8,21 +8,15 @@ const Editfoods = () => {
   const history = useHistory()
   const params = useParams()
   const wrapperRef = useRef(null)
-  const [food, setFood] = useState({enable: false})
-  const [createFoods, setCreateFoods] = useState({
+    const [createFoods, setCreateFoods] = useState({
     title: '',
     description: '',
     summary: '',
     price: '',
     category: '',
-    enable: ''
+    enable: false
   })
-
-
   const { title, description, summary, price, category, enable } = createFoods
-
-
-
   const [previewImage, setPreviewImage] = useState('')
   const [image, setImage] = useState(null)
 
@@ -30,6 +24,7 @@ const Editfoods = () => {
     const res = await clienteAxios.get(`api/v1/comidas/${params.id}`)
     setCreateFoods(res.data)
     setPreviewImage(res.data.imageUrl)
+    setImage(res.data.imageUrl)
   }, [params.id])
 
   useEffect(() => {
@@ -40,11 +35,40 @@ const Editfoods = () => {
     setCreateFoods({ ...createFoods, [e.target.name]: e.target.value })
   }
 
+  const selectHandlerChange = (e) => {
+    const value = e.target.value === 'true';
+    const isEnable = enable === 'true'
+
+    isEnable ? Swal.fire({
+      title: 'Esta Seguro de Deshabilitar esta Comida del Menu?',
+      text: "Deshabiltiar!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, Deshabilitar!'
+
+    }).then((result) => {
+      if (result.value) {
+
+        Swal.fire(
+          setCreateFoods({ ...createFoods, enable: value }),
+          'Se ha Deshabilitado!',
+          'Confirmado.',
+          'success'
+        )
+      }
+    })
+
+      :
+
+      setCreateFoods({ ...createFoods, [e.target.name]: e.target.value })
+  }
+
   const validateupload = e =>
     e.target.files[0].type == 'image/png' ||
     e.target.files[0].type == 'image/jpg' ||
     e.target.files[0].type == 'image/jpeg'
-
 
   const upload = e => {
     if (e.target.files[0].size <= 20000000) {
@@ -59,7 +83,7 @@ const Editfoods = () => {
       alert('subir algo min 2 mb')
     }
   }
-  
+
   const onClickUpdateHandler = async (e) => {
     e.preventDefault()
     try {
@@ -67,15 +91,16 @@ const Editfoods = () => {
         title, description, summary, price, category, enable
       }
       )
-      const formData = new FormData()
-      formData.append('file', image)
-      await clienteAxios.post(`/api/v1/comidas/${params.id}/upload`, formData, {
-        headers: {
-          'content-type': 'multipart/form-data'
-        }
-      })
+      if (previewImage !== image) {
 
-      onChangeState()
+        const formData = new FormData()
+        formData.append('file', image)
+        await clienteAxios.post(`/api/v1/comidas/${params.id}/upload`, formData, {
+          headers: {
+            'content-type': 'multipart/form-data'
+          }
+        })
+      }
 
       history.goBack();
     }
@@ -83,36 +108,6 @@ const Editfoods = () => {
       console.log('NO SE PUDO ACTUALIZAR');
     }
   };
-
-  const onChangeState = () =>{
-    if(enable.value === true){
-
-      return setFood({enable: true})
-
-    }else{
-      
-    /*   Swal.fire({
-        title: 'Esta Seguro de Deshabilitar esta Comida del Menu?',
-        text: "Deshabiltiar!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Si, Deshabilitar!' 
-
-      }).then((result) => {
-        if (result.value) {
-          Swal.fire(
-             setFood({enable: false}),
-            'Se ha Deshabilitado!',
-            'Confirmado.',
-            'success'
-          )
-        }
-      }) */
-    }
-  }
-
 
   return (
     <div className='pb-5 mb-5'>
@@ -179,26 +174,10 @@ const Editfoods = () => {
                     readOnly
                   />
                 </div>
-                {/*  <div className='d-flex pb-3'>
-                  <div class="form-check mx-3">
-                    <input class="form-check-input" type="radio" 
-                    name="gridRadios" id="gridRadios1" value="option1" onClick={enableTrue}/>
-                    <label class="form-check-label" for="gridRadios1">
-                      Habilitar
-                      </label>
-                  </div>
-                  <div class="form-check mx-3">
-                    <input class="form-check-input" type="radio" 
-                    name="gridRadios" id="gridRadios2" value="option2" onClick={enableFalse}/>
-                    <label class="form-check-label" for="gridRadios2">
-                      Deshabilitar
-                     </label>
-                  </div>
-                </div> */}
                 <div className="form-group">
                   <label for="inputState">Estado</label>
                   <select id="inputState" class="form-control"
-                    name='enable' value={enable} onChange={handleChange} required>
+                    name='enable' value={enable} onChange={selectHandlerChange} required>
                     <option value={true}>Habilitar</option>
                     <option value={false}>Deshabilitar</option>
                   </select>
@@ -219,7 +198,7 @@ const Editfoods = () => {
                     type="file"
                     className="form-control-file"
                     name='file'
-                    // value={file}
+                    /* value={file} */
                     onChange={(e) => {
                       setImage(e.target.files[0])
                       let file = e.target.files
