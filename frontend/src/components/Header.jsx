@@ -133,11 +133,11 @@ const Header = () => {
                     </Nav>
                     <Nav className="row mx-3 order-1 order-md-2 ">
                         {Auth.isAuthenticated() ?
-                            <Nav.Link className="text-white hover-navbar" onClick={LogUotHandler}><i className="far fa-user"></i> CERRAR CESIÓN</Nav.Link>
+                            <Nav.Link className="text-white hover-navbar" onClick={LogUotHandler}><i className="far fa-user"></i> CERRAR SESIÓN</Nav.Link>
                             :
                             <>
                                 <Link className="text-white hover-navbar mx-2" to="/reg">REGISTRO</Link>
-                                <Link className="text-white hover-navbar mx-2" to="/log"><i className="far fa-user"></i> INICIAR CESIÓN</Link>
+                                <Link className="text-white hover-navbar mx-2" to="/log"><i className="far fa-user"></i> INICIAR SESIÓN</Link>
                             </>
                         }
                     </Nav>
