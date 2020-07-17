@@ -26,7 +26,7 @@ ControllerCreateFoods.CreateFoods)
 router.post('/:resourceId/upload',authorize('admin'), ControllerFoodsImages.uploadImages);
 
 router.get('/todas',authorize('admin'), ControllerReadFoodsAll.GetFoods)
-router.get('/:id',authorize(['user', 'admin']), ControllerReadFoods.GetOneFood)
+router.get('/:id', ControllerReadFoods.GetOneFood)
 router.get('/', ControllerReadFoodsTrue.GetFoodsTrue)
 
 router.put('/:id/dis',authorize('admin'), ControllerFoodsDis.FoodsDis)
