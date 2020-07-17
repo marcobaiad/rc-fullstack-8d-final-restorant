@@ -22,7 +22,7 @@ function App() {
 
 	return (
 		<Router>
-			{/* <Route component={Header} /> */}
+			<Route component={Header} />
 			<Switch>
 				<PrivateRoute path="/admin/main" role={'admin'} exact component={MenuAdm} />
 				<PrivateRoute path="/user/orders" exact role={'user'} component={GetOrderUserPages} />
@@ -31,7 +31,7 @@ function App() {
 				<Route path="/log" exact component={LoginSession} />
 				<Route exact path="/" component={HomePage} />
 			</Switch>
-			{/* <Route component={Footer} /> */}
+			<Route component={Footer} />
 		</Router>
 	);
 
