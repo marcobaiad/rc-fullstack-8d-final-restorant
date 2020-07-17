@@ -6,7 +6,7 @@ exports.GetUser = async (req, res) => {
         const user = await UsersModel.findById(req.params.id)
 
         if(!user){
-            return res.status(404).json({mensaje: 'No Existe el usuario'})
+            return res.status(400).json({mensaje: 'No Existe el usuario'})
         }
 
         res.send(user)

@@ -8,13 +8,13 @@ const FoodsModel = require('../../models/foods.model')
 exports.uploadImages = async (req, res) => {
   try {
     if (!mongoose.Types.ObjectId.isValid(req.params.resourceId)) {
-      return res.status(404).json({ message: 'Foods not found.' });
+      return res.status(400).json({ message: 'Foods not found.' });
     }
 
     const foods = await FoodsModel.findById(req.params.resourceId);
 
     if (!foods) {
-      return res.status(404).json({ message: 'Foods not found.' });
+      return res.status(400).json({ message: 'Foods not found.' });
     }
   } catch (err) {
     res.status(500).send(err);

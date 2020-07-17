@@ -19,7 +19,7 @@ exports.scoreOrder =  async (req, res) => {
             order.score = req.body.score
             order.state = 'Finalizado'
             await order.save();
-            res.status(400).send({mensaje: 'Muchas Gracias Por Puntuarnos', order})
+            res.send({mensaje: 'Muchas Gracias Por Puntuarnos', order})
         }
         
     } catch (err) {
