@@ -42,15 +42,7 @@ const GetOderPages = () => {
       <div className="card-body">
         <div className='d-flex justify-content-between'>
           <p className="card-title">Cantidad: {a.quantity}</p>
-          {a.state === 'Pendiente' || a.state === 'En Proceso'
-            ?
-
-            <Link className='btn btn-outline-primary' to='/'>Ver Pedido</Link>
-
-            :
-
-            ''
-          }
+        
         </div>
         <p className="card-text">Pagara Con: {a.amountTopay}</p>
         <p className="card-text">Dirección: {a.address}</p>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
-import Clienteaxios from '../config/axios';
+import clienteAxios from '../config/axios';
 
 const PlatosPage = () => {
 
@@ -10,7 +10,7 @@ const PlatosPage = () => {
 
     useEffect(() => {
         (async () => {
-            const response = await Clienteaxios.get(`/api/v1/comidas/${params.id}`);
+            const response = await clienteAxios.get(`/api/v1/comidas/${params.id}`);
             setPlatoID(response.data);
             console.log(platoID);
 

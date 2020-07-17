@@ -29,8 +29,9 @@
 }
 
 .PlatosHomeimg {
-    width: 100%;
-    height: 100%;
+    object-fit: fill;
+    width: 100px;
+    height: 200px;
 }
 
 .PlatosHomeimg:hover {
@@ -42,10 +43,17 @@
 }
 
 .btn-foods {
-    width: 17%;
+    width: 28%;
     font-size: .9rem;
     padding: 0%;
     color: white;
+}
+
+@media only screen and (max-width: 600px) {
+    .btn-foods {
+        width: 25%;
+        font-size: .7rem;
+    }
 }
 
 .btn-foods:hover {
@@ -103,6 +111,8 @@
     background-position: center;
     background-repeat: no-repeat;
     object-fit: cover;
+    border-top: 10px solid rgba(0,0,0,0.3);
+    border-bottom: 10px solid rgba(0,0,0,0.3);
 }
 
 .firstpara {
