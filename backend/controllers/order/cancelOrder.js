@@ -3,7 +3,7 @@ const OrderModel = require('../../models/order.model');
 
 exports.cancelOrder =  async (req, res) => {
     if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
-        return res.status(404).json({ mensaje: 'No hay resultado para la busqueda' });
+        return res.status(400).json({ mensaje: 'No hay resultado para la busqueda' });
     }
     const order = await OrderModel.findById(req.params.id)
         

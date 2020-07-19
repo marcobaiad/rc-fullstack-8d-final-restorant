@@ -51,7 +51,7 @@ const GetOderPages = () => {
         <p className="card-text">Estado: {a.state}</p>
         <p className="card-text">Puntuación de Servicio: {a.score}</p>
         <div className='d-flex justify-content-around'>
-          {a.state !== 'Finalizado' && a.state !== 'Cancelado'
+          {a.state === 'Pendiente' || a.state === 'En Proceso'
             ?
             <>
               <button onClick={() => EnProceso(a._id)} className='btn btn-outline-primary'>En Proceso</button>
@@ -71,12 +71,11 @@ const GetOderPages = () => {
 
 
   return (
-    <>
-      <h1 className="my-5 text-center">Get Order</h1>
-      <div className="card-columns">
+    
+      <div className="card-columns pt-5">
         {cards}
       </div>
-    </>
+  
   );
 }
 
