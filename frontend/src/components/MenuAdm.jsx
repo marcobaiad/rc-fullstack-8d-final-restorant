@@ -1,7 +1,11 @@
 import React, { component } from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import clienteAxios from '../config/axios'
+import Auth from '../utils/auth';
+import { BrowserRouter as Router, Switch, Route, Link, useHistory } from "react-router-dom";
 import $ from 'jquery';
 import '../Css/mainAdm.css'
+import sweet from 'sweetalert2';
+
 
 import PrivateRoute from './PrivateRoute';
 import AdmMenu from '../pages/AdmMenu';
@@ -11,6 +15,8 @@ import EditFoods from '../pages/EditFoods'
 
 const MenuAdm = () => {
 
+	const history = useHistory()
+
 	$(document).ready(function () {
 		$("#menu-toggle").click(function (e) {
 			e.preventDefault();
@@ -18,16 +24,32 @@ const MenuAdm = () => {
 		});
 	});
 
+	const LogUotHandler = async () => {
+		try {
+			await clienteAxios.get(`/api/v1/usuarios/logout`,
+			);
+			Auth.logOut();
+			history.push('/')
+		} catch (e) {
+			const { response } = e;
+			console.log(response);
+			sweet.fire({
+				icon: 'error',
+				title: 'No se pudo desloguear'
+			});
+		}
+	}
+
 	return (
 		<Router>
 			<div className="container-fluid" id="wrapper">
-
 				<div className="row">
 					<div className="col-12 justify-content-center" id="sidebar-wrapper">
 						<ul className="sidebar-nav">
 							<li><Link to="/admin/todas">Listado de todas las comidas</Link></li>
 							<li><Link to="/admin/createfoods">Crear nuevas comidas</Link></li>
 							<li><Link to="/admin/allorder">Listado de ordenes</Link></li>
+							<li><Link onClick={LogUotHandler}>Cerrar Sesión</Link></li>
 						</ul>
 					</div>
 				</div>
@@ -47,6 +69,7 @@ const MenuAdm = () => {
 									<PrivateRoute exact path="/admin/allorder" component={GetOrderPages} />
 									<PrivateRoute path="/admin/edit/:id" exact role={'admin'} component={EditFoods} />
 								</Switch>
+
 							</div>
 						</div>
 					</div>
