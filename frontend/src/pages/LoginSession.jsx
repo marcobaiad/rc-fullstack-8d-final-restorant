@@ -4,7 +4,6 @@ import Swal from 'sweetalert2';
 import '../Css/logUser.css';
 import Auth from '../utils/auth';
 
-
 import clienteAxios from '../config/axios';
 
 const LoginSession = (props) => {
@@ -16,26 +15,28 @@ const LoginSession = (props) => {
     e.preventDefault();
 
     clienteAxios.post('/api/v1/usuarios/login', { username, password })
-    .then(response => {
+      .then(response => {
 
-      /* console.log(response); */
-      console.log('role...', response.data.role)
-      Auth.logedIn(response.data.token, response.data.role);
-      Swal.fire({
-        icon: "success",
-        title: "Logueado correctamente",
-        showConfirmButton: false,
-        timer: 1000
-      });
-      props.history.push('/');
-    }).catch(function() {
-      Swal.fire({
-        icon: "error",
-        title: "Credenciales incorrectas",
-        showConfirmButton: false,
-        timer: 3000
-      });
-    })
+        /* console.log(response); */
+        console.log('role...', response.data.role)
+        Auth.logedIn(response.data.token, response.data.role);
+        Swal.fire({
+          icon: "success",
+          title: "Logueado correctamente",
+          showConfirmButton: false,
+          timer: 1000
+        });
+        response.data.role === 'admin' ?
+          props.history.push('/admin/main') :
+          props.history.push('/');
+      }).catch(function () {
+        Swal.fire({
+          icon: "error",
+          title: "Credenciales incorrectas",
+          showConfirmButton: false,
+          timer: 3000
+        });
+      })
   }
 
   const recoverPass = () => {
