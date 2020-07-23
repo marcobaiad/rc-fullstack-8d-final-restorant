@@ -19,16 +19,28 @@ const Header = () => {
 
     const [isLogedIn, SetIsLogedIn] = useState(false);
     const localToken = localStorage.getItem('token');
-    const [nameButton, setNameButton] = useState('INICIO');
     const history = useHistory();
     const pathHome = history.location.pathname === '/';
     const [modalShow, setModalShow] = useState(false);
+    
+    
+    const MoverContacto = () => {
+        const MenuContacto = document.getElementById("AboutUs");
+        window.scrollBy(0, MenuContacto.offsetTop)
+    }
+    const MoverMenuComida = () => {
+        const MenuComida = document.getElementById("Menu");
+        window.scrollBy(0, MenuComida.offsetTop)
+    }
+    const Timeout = () => {
+        setTimeout(MoverMenuComida, 1000);
+    }
 
     const StickyNav = () => {
-        let navbar = document.getElementById("navbar");
-        let carrousel = document.getElementById("carrousel");
-        let sticky = navbar.offsetTop;
-
+        const navbar = document.getElementById("navbar");
+        const carrousel = document.getElementById("carrousel");
+        const sticky = navbar.offsetTop;
+        
         if (window.pageYOffset >= sticky) {
             navbar.classList.add("position-fixed");
             navbar.classList.remove("align-self-end");
@@ -50,6 +62,8 @@ const Header = () => {
             SetIsLogedIn(false)
         }
     }, [isLogedIn]);
+
+
 
     const LogUotHandler = async () => {
         try {
@@ -82,12 +96,13 @@ const Header = () => {
             history.push('/SobreNosotros');
             return
         }
-        if (!pathHome) {
-            window.location = (`/${e.target.value}`)
-            return
-        } else {
+        if (!pathHome && e.target.value === '#Menu') {
+            history.push(`/${e.target.value}`);            
+            Timeout();
+        } /* else {
             window.location = (`${e.target.value}`);
-        }
+        } */
+        
     }
 
     const roleAdmin = localStorage.getItem('role')
@@ -125,43 +140,43 @@ const Header = () => {
             <div className="w-100 position-absolute align-self-end" id="navbar">
                 {roleAdmin === 'admin' ?
                     '' :
-                    <Navbar variant="dark" className="px-0 py-2 mb-3 mb-lg-4 navbar-menu row flex-wrap justify-content-center justify-content-md-between m-0">
-                        <Nav className="d-none d-sm-none d-md-flex d-lg-flex row pl-5 order-2 order-md-1">
-                            <Navbar.Brand className="d-none d-lg-block ml-3">Asturias Food & Drinks</Navbar.Brand>
-                            <Link className="text-white hover-navbar mt-2" to="/">INICIO</Link>
-                            <Nav.Link className="text-white hover-navbar" href="#Menu">MENU</Nav.Link>
-                            <Nav.Link className="text-white hover-navbar" href="#AboutUs">CONTACTO</Nav.Link>
-                            <Link className="text-white hover-navbar mt-2" to="#AboutUs">SOBRE NOSOTROS</Link>
-                        </Nav>
+                <Navbar variant="dark" className="px-0 py-2 mb-3 mb-lg-4 navbar-menu row flex-wrap justify-content-center justify-content-md-between m-0">
+                    <Nav className="d-none d-sm-none d-md-flex d-lg-flex row pl-5 order-2 order-md-1">
+                        <Navbar.Brand className="d-none d-lg-block ml-3">Asturias Food & Drinks</Navbar.Brand>
+                        <Link className="text-white hover-navbar mt-2 mx-1" to="/">INICIO</Link>
+                        <Link className="text-white hover-navbar mt-2 mx-1" to="/" onClick={Timeout}>MENU</Link>
+                        <Link className="text-white hover-navbar mt-2 mx-1" onClick={MoverContacto}>CONTACTO</Link>
+                        <Link className="text-white hover-navbar mt-2 mx-1" to="#AboutUs">SOBRE NOSOTROS</Link>
 
-                        <Nav className="row mx-3 order-1 order-md-2 ">
-                            {Auth.isAuthenticated() ?
-                                <Nav.Link className="text-white hover-navbar" onClick={LogUotHandler}><i className="far fa-user"></i> CERRAR SESIÓN</Nav.Link>
-                                :
-                                <>
-                                    <Link className="text-white hover-navbar mx-2" to="/reg">REGISTRO</Link>
-                                    <Link className="text-white hover-navbar mx-2" onClick={() => setModalShow(true)} to=""><i className="far fa-user"></i> INICIAR SESIÓN</Link>
-                                    <ModalLogin
-                                        className="position-absolute"
-                                        show={modalShow}
-                                        onHide={() => setModalShow(false)}
-                                    />
-                                </>
-                            }
-                        </Nav>
-                        <Form className="w-100 px-3 d-md-none mt-3 mb-0">
-                            <Form.Group controlId="exampleForm.SelectCustom">
-                                <Form.Control onChange={onchangeSelectHandler} className="drop-menu text-white" as="select" custom>
-                                    <option value="" disabled selected>IR A...</option>
-                                    <option value="/">INICIO</option>
-                                    <option value="#Menu">MENU</option>
-                                    <option value="#AboutUs">CONTACTO</option>
-                                    <option value="SobreNosotros">SOBRE NOSOTROS</option>
-                                </Form.Control>
-                            </Form.Group>
-                        </Form>
-                    </Navbar>
-                }
+                    </Nav>
+                    <Nav className="row mx-3 order-1 order-md-2 ">
+                        {Auth.isAuthenticated() ?
+                            <Nav.Link className="text-white hover-navbar" onClick={LogUotHandler}><i className="far fa-user"></i> CERRAR SESIÓN</Nav.Link>
+                            :
+                            <>
+                                <Link className="text-white hover-navbar mx-2" to="/reg">REGISTRO</Link>
+									<Link className="text-white hover-navbar mx-2" onClick={() => setModalShow(true)} to=""><i className="far fa-user"></i> INICIAR SESIÓN</Link>
+									<ModalLogin
+										className="position-absolute"
+										show={modalShow}
+										onHide={() => setModalShow(false)}
+									/>
+                            </>
+                        }
+                    </Nav>
+                    <Form className="w-100 px-3 d-md-none mt-3 mb-0">
+                        <Form.Group controlId="exampleForm.SelectCustom">
+                            <Form.Control onChange={onchangeSelectHandler} className="drop-menu text-white" as="select" custom>
+                                <option value="" disabled selected>IR A...</option>
+                                <option value="/">INICIO</option>
+                                <option value="#Menu">MENU</option>
+                                <option value="#AboutUs">CONTACTO</option>
+                                <option value="SobreNosotros">SOBRE NOSOTROS</option>
+                            </Form.Control>
+                        </Form.Group>
+                    </Form>
+                </Navbar>
+            }
             </div>
         </div>
     )
