@@ -32,7 +32,6 @@ function App() {
 			<Route component={Footer} />
 		</Router>
 	);
-
 }
 
 export default App;

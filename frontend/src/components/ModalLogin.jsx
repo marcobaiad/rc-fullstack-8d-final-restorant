@@ -11,9 +11,8 @@ const ModalLogin = (props) => {
   const [username, setUser] = useState('');
   const [password, setPassword] = useState('');
 
+
   const history = useHistory();
-
-
 
   const logUser = e => {
     e.preventDefault();
@@ -55,9 +54,8 @@ const ModalLogin = (props) => {
 
   return (
     <Modal
-      className="registrationmodal-form"
       {...props}
-      size="lg"
+      size="md"
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
@@ -92,17 +90,20 @@ const ModalLogin = (props) => {
                     type="checkbox"
                     className="custom-control-input"
                     id="customCheck1" />
-                  <label className="custom-control-label remember" htmlFor="customCheck1">Recordarme</label>
+                  <label className="custom-control-label remember olvideContrasenia" htmlFor="customCheck1">Recordarme</label>
                 </div>
               </div>
-              <div className="col-md-9 ">
-                <a type="" href="" className="" data-toggle="modal" data-target="#exampleModalCentered">
+              <div className="col-md-9">
+                <a type="" href="" className="olvideContrasenia" data-toggle="modal" data-target="#exampleModalCentered"
+                >
                   Olvidé mi Contraseña
               </a>
 
-                <div className="modal" id="exampleModalCentered" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenteredLabel" aria-hidden="true">
+                <div className="modal"
+                  id="exampleModalCentered" tabIndex="-1"
+                  role="dialog" aria-labelledby="exampleModalCenteredLabel" aria-hidden="true">
                   <div className="modal-dialog modal-dialog-centered" role="document">
-                    <div className="modal-content">
+                    <div className="modal-content modalrecover">
                       <div className="modal-header d-block">
                         <h5 className="text-center" id="exampleModalCenteredLabel">Recuperar contraseña</h5>
                         <button type="button" className="close" data-dismiss="modal" aria-label="Close">
@@ -131,7 +132,7 @@ const ModalLogin = (props) => {
             </div>
             <button
               type="submit"
-              className="btn btn-block create-account"
+              className="btn btn-block modalBtn"
             >Ingresar</button>
           </form>
         </div>

@@ -137,8 +137,8 @@ const Header = () => {
 							<Link className="text-white hover-navbar mt-2 mx-1" to="/" onClick={Timeout}>MENU</Link>
 							<Link className="text-white hover-navbar mt-2 mx-1" onClick={MoverContacto}>CONTACTO</Link>
 							<Link className="text-white hover-navbar mt-2 mx-1" to="#AboutUs">SOBRE NOSOTROS</Link>
-
 						</Nav>
+
 						<Nav className="row mx-3 order-1 order-md-2 ">
 							{Auth.isAuthenticated() ?
 								<Nav.Link className="text-white hover-navbar" onClick={LogUotHandler}><i className="far fa-user"></i> CERRAR SESIÓN</Nav.Link>
