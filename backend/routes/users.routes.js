@@ -28,7 +28,7 @@ router.post('/', [
 ], usuarioControllerRegister.registerUser)
 
 router.get('/logout', authorize([ 'user', 'admin' ]), usuarioControllerLogout.logoutUser)
-router.get('/:id',authorize('admin'), usuarioControllerReadOne.GetUser)
+router.get('/:id',authorize('user'), usuarioControllerReadOne.GetUser)
 router.get('/',authorize('admin'), usuariosControllerReadSeveral.GetUsers) 
 
 router.delete('/:id',authorize('admin'), usuarioControllerDelete.DeleteUser)
