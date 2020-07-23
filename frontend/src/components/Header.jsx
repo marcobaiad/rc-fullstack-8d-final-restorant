@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, createRef } from 'react';
 import { useHistory, useLocation, Link } from 'react-router-dom';
 import '../Css/navbar.css';
+import '../Css/Logo.css'
 import Auth from '../utils/auth';
 import Carousel from 'react-bootstrap/Carousel';
 import Navbar from 'react-bootstrap/Navbar';
@@ -11,16 +12,16 @@ import sweet from 'sweetalert2';
 import Lampara from '../img/CarrouselNav/Lampara.jpg'
 import Pizzas from '../img/CarrouselNav/Pizzas.jpg'
 import Restorant from '../img/CarrouselNav/Restorant.jpg'
-
+import Logo from '../img/CarrouselNav/Logo.png'
 const Header = () => {
-    
+
 
     const [isLogedIn, SetIsLogedIn] = useState(false);
     const localToken = localStorage.getItem('token');
     const [nameButton, setNameButton] = useState('INICIO');
     const history = useHistory();
     const pathHome = history.location.pathname === '/';
-    
+
 
 
     const StickyNav = () => {
@@ -87,39 +88,42 @@ const Header = () => {
         }
         if (!pathHome) {
             window.location = (`/${e.target.value}`)
-            return            
+            return
         } else {
             window.location = (`${e.target.value}`);
         }
-        
+
     }
 
     return (
         <div className="d-flex flex-wrap">
             {pathHome &&
-                <Carousel controls={false} indicators={false} id="carrousel">
-                    <Carousel.Item>
-                        <img
-                            className="d-block w-100 h-md-100 h-lg-100 carrousel-img"
-                            src={Restorant}
-                            alt="First slide"
-                        />
-                    </Carousel.Item>
-                    <Carousel.Item>
-                        <img
-                            className="d-block w-100 h-md-100 h-lg-100 carrousel-img"
-                            src={Lampara}
-                            alt="Third slide"
-                        />
-                    </Carousel.Item>
-                    <Carousel.Item>
-                        <img
-                            className="d-block w-100 h-md-100 h-lg-100 carrousel-img"
-                            src={Pizzas}
-                            alt="Third slide"
-                        />
-                    </Carousel.Item>
-                </Carousel>
+                <>
+                    <img src={Logo} className='logo' />
+                    <Carousel controls={false} indicators={false} id="carrousel" className='carousel'>
+                        <Carousel.Item>
+                            <img
+                                className="d-block w-100 h-md-100 h-lg-100 carrousel-img"
+                                src={Restorant}
+                                alt="First slide"
+                            />
+                        </Carousel.Item>
+                        <Carousel.Item>
+                            <img
+                                className="d-block w-100 h-md-100 h-lg-100 carrousel-img"
+                                src={Lampara}
+                                alt="Third slide"
+                            />
+                        </Carousel.Item>
+                        <Carousel.Item>
+                            <img
+                                className="d-block w-100 h-md-100 h-lg-100 carrousel-img"
+                                src={Pizzas}
+                                alt="Third slide"
+                            />
+                        </Carousel.Item>
+                    </Carousel>
+                </>
             }
             <div className="w-100 position-absolute align-self-end" id="navbar">
                 <Navbar variant="dark" className="px-0 py-2 mb-3 mb-lg-4 navbar-menu row flex-wrap justify-content-center justify-content-md-between m-0">
