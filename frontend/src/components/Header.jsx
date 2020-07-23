@@ -11,16 +11,15 @@ import sweet from 'sweetalert2';
 import Lampara from '../img/CarrouselNav/Lampara.jpg'
 import Pizzas from '../img/CarrouselNav/Pizzas.jpg'
 import Restorant from '../img/CarrouselNav/Restorant.jpg'
+import ModalLogin from './ModalLogin';
 
 const Header = () => {
-    
 
     const [isLogedIn, SetIsLogedIn] = useState(false);
-    const [alturaAboutUs, SetAlturaAboutUs] = useState(0);
     const localToken = localStorage.getItem('token');
     const history = useHistory();
     const pathHome = history.location.pathname === '/';
-    
+    const [modalShow, setModalShow] = useState(false);
     
     
     const MoverContacto = () => {
@@ -32,7 +31,7 @@ const Header = () => {
         window.scrollBy(0, MenuComida.offsetTop)
     }
     const Timeout = () => {
-        setTimeout(MoverMenuComida, 2000);
+        setTimeout(MoverMenuComida, 1000);
     }
 
     const StickyNav = () => {
@@ -106,6 +105,8 @@ const Header = () => {
         
     }
 
+    const roleAdmin = localStorage.getItem('role')
+
     return (
         <div className="d-flex flex-wrap">
             {pathHome &&
@@ -134,6 +135,8 @@ const Header = () => {
                 </Carousel>
             }
             <div className="w-100 position-absolute align-self-end" id="navbar">
+                {roleAdmin === 'admin' ?
+                    '' :
                 <Navbar variant="dark" className="px-0 py-2 mb-3 mb-lg-4 navbar-menu row flex-wrap justify-content-center justify-content-md-between m-0">
                     <Nav className="d-none d-sm-none d-md-flex d-lg-flex row pl-5 order-2 order-md-1">
                         <Navbar.Brand className="d-none d-lg-block ml-3">Asturias Food & Drinks</Navbar.Brand>
@@ -149,7 +152,12 @@ const Header = () => {
                             :
                             <>
                                 <Link className="text-white hover-navbar mx-2" to="/reg">REGISTRO</Link>
-                                <Link className="text-white hover-navbar mx-2" to="/log"><i className="far fa-user"></i> INICIAR SESIÓN</Link>
+									<Link className="text-white hover-navbar mx-2" onClick={() => setModalShow(true)} to=""><i className="far fa-user"></i> INICIAR SESIÓN</Link>
+									<ModalLogin
+										className="position-absolute"
+										show={modalShow}
+										onHide={() => setModalShow(false)}
+									/>
                             </>
                         }
                     </Nav>
@@ -165,9 +173,82 @@ const Header = () => {
                         </Form.Group>
                     </Form>
                 </Navbar>
+            }
             </div>
         </div>
     )
+	
+
+	/* return (
+		<div className="d-flex flex-wrap">
+			{pathHome &&
+				<Carousel controls={false} indicators={false} id="carrousel">
+					<Carousel.Item>
+						<img
+							className="d-block w-100 h-md-100 h-lg-100 carrousel-img"
+							src={Restorant}
+							alt="First slide"
+						/>
+					</Carousel.Item>
+					<Carousel.Item>
+						<img
+							className="d-block w-100 h-md-100 h-lg-100 carrousel-img"
+							src={Lampara}
+							alt="Third slide"
+						/>
+					</Carousel.Item>
+					<Carousel.Item>
+						<img
+							className="d-block w-100 h-md-100 h-lg-100 carrousel-img"
+							src={Pizzas}
+							alt="Third slide"
+						/>
+					</Carousel.Item>
+				</Carousel>
+			}
+			<div className="w-100 position-absolute align-self-end" id="navbar">
+				{roleAdmin === 'admin' ?
+					'' :
+					<Navbar variant="dark" className="px-0 py-2 mb-3 mb-lg-4 navbar-menu row flex-wrap justify-content-center justify-content-md-between m-0">
+						<Nav className="d-none d-sm-none d-md-flex d-lg-flex row pl-5 order-2 order-md-1">
+							<Navbar.Brand className="d-none d-lg-block ml-3">Asturias Food & Drinks</Navbar.Brand>
+							<Link className="text-white hover-navbar mt-2" to="/">INICIO</Link>
+							<Nav.Link className="text-white hover-navbar" href="#Menu">MENU</Nav.Link>
+							<Nav.Link className="text-white hover-navbar" href="#AboutUs">CONTACTO</Nav.Link>
+							<Link className="text-white hover-navbar mt-2" to="#AboutUs">SOBRE NOSOTROS</Link>
+						</Nav>
+
+						<Nav className="row mx-3 order-1 order-md-2 ">
+							{Auth.isAuthenticated() ?
+								<Nav.Link className="text-white hover-navbar" onClick={LogUotHandler}><i className="far fa-user"></i> CERRAR SESIÓN</Nav.Link>
+								:
+								<>
+									<Link className="text-white hover-navbar mx-2" to="/reg">REGISTRO</Link>
+									<Link className="text-white hover-navbar mx-2" onClick={() => setModalShow(true)} to=""><i className="far fa-user"></i> INICIAR SESIÓN</Link>
+									<ModalLogin
+										className="position-absolute"
+										show={modalShow}
+										onHide={() => setModalShow(false)}
+									/>
+								</>
+							}
+						</Nav>
+						<Form className="w-100 px-3 d-md-none mt-3 mb-0">
+							<Form.Group controlId="exampleForm.SelectCustom">
+								<Form.Control onChange={onchangeSelectHandler} className="drop-menu text-white" as="select" custom>
+									<option value="" disabled selected>IR A...</option>
+									<option value="/">INICIO</option>
+									<option value="#Menu">MENU</option>
+									<option value="#AboutUs">CONTACTO</option>
+									<option value="SobreNosotros">SOBRE NOSOTROS</option>
+								</Form.Control>
+							</Form.Group>
+						</Form>
+					</Navbar>
+				}
+			</div>
+		</div>
+	) */
 }
 
 export default Header;

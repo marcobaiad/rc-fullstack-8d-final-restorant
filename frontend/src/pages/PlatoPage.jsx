@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Clienteaxios from '../config/axios';
 import '../Css/platosPage.css';
 import Orden from '../components/Orden';
-import Auth from '../utils/auth'
 
 
 const PlatosPage = () => {

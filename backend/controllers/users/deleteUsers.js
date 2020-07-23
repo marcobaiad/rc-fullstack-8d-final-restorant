@@ -7,9 +7,9 @@ exports.DeleteUser = async (req, res) => {
         
         const user = await UsersModel.findByIdAndDelete(req.params.id)
        
-        if (!user) res.status(404).send('No hay resultados')
+        if (!user) res.status(400).send('No hay resultados')
 
-        res.status(200).send({ mensaje: 'Se elimino el Usuario' })
+        res.send({ mensaje: 'Se elimino el Usuario' })
     } catch (err) {
         res.status(500).send(err);
     }

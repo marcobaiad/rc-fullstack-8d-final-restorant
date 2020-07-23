@@ -6,7 +6,7 @@ import clienteAxios from '../config/axios';
 
 const GetOderPages = () => {
   const [order, setOrder] = useState([]);
-  
+
   const GetOrder = useCallback(async () => {
     const res = await clienteAxios.get(`/api/v1/orden/`, order, {
       headers: {
@@ -42,24 +42,16 @@ const GetOderPages = () => {
       <div className="card-body">
         <div className='d-flex justify-content-between'>
           <p className="card-title">Cantidad: {a.quantity}</p>
-          {a.state === 'Pendiente' || a.state === 'En Proceso'
-            ?
-
-            <Link className='btn btn-outline-primary' to='/'>Ver Pedido</Link>
-
-            :
-
-            ''
-          }
+        
         </div>
         <p className="card-text">Pagara Con: {a.amountTopay}</p>
-        <p className="card-text">Direccion: {a.address}</p>
+        <p className="card-text">Dirección: {a.address}</p>
         <p className="card-text">Comida: {a.food.title}</p>
         <p className="card-text">Usuario: {a.user.name}</p>
         <p className="card-text">Estado: {a.state}</p>
-        <p className="card-text">Puntuacion de Servicio: {a.score}</p>
+        <p className="card-text">Puntuación de Servicio: {a.score}</p>
         <div className='d-flex justify-content-around'>
-          {a.state !== 'Finalizado' && a.state !== 'Cancelado'
+          {a.state === 'Pendiente' || a.state === 'En Proceso'
             ?
             <>
               <button onClick={() => EnProceso(a._id)} className='btn btn-outline-primary'>En Proceso</button>
@@ -76,15 +68,14 @@ const GetOderPages = () => {
     </div>
   );
 
- 
+
 
   return (
-    <>
-      <h1 className="my-5 text-center">Get Order</h1>
-      <div className="card-columns">
+    
+      <div className="card-columns pt-5">
         {cards}
       </div>
-    </>
+  
   );
 }
 

@@ -1,20 +1,22 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import '../Css/GetOrderUserPages.css'
 import clienteAxios from '../config/axios';
-import { FaStar } from 'react-icons/fa'
+import ReactStars from 'react-rating-stars-component'
+import Swal from 'sweetalert2'
 
 const GetOrderUserPages = () => {
 
   const [order, setOrder] = useState([]);
-  const [rating, setRating] = useState(null)
-  const [hover, setHover] = useState(null)
-
+  const [rating, setRating] = useState(0)
+ 
   const GetOrder = useCallback(async () => {
+   
     const res = await clienteAxios.get(`/api/v1/orden/user`, order, {
       headers: {
         'authorization': 'Bearer ' + localStorage.getItem('token')
       }
     });
+    console.log(res)
     setOrder(res.data)
   }, []);
 
@@ -22,6 +24,17 @@ const GetOrderUserPages = () => {
     GetOrder()
   }, [])
 
+const onRatingChange = async(score, id) =>{
+  setRating(score);
+  await clienteAxios.put(`/api/v1/orden/user/${id}/puntaje`, {score})
+  Swal.fire(
+    'Muchas Gracias',
+    'Por Tu Puntuacion',
+    'success'
+  )
+  GetOrder()
+
+}
 
   const cards = order.map(a =>
     <div key={a._id} className="my-5 card">
@@ -30,7 +43,6 @@ const GetOrderUserPages = () => {
         <p className="card-text">Pagara Con: {a.amountTopay}</p>
         <p className="card-text">Direccion: {a.address}</p>
         <p className="card-text">Comida: {a.food.title}</p>
-        <p className="card-text">Usuario: {a.user.name}</p>
         <p className="card-text">Estado: {a.state}</p>
         <div>
           {a.state === 'Enviado'
@@ -40,26 +52,18 @@ const GetOrderUserPages = () => {
                 <div>
                   <p>Puntuar Servicio</p>
                 </div>
-                <div className='stars'>
-                  {[...Array(5)].map((star, i) => {
-
-                    const ratingValue = i + 1
-
-                     return (<label>
-                              <input 
-                              type="radio"
-                               name='rating' 
-                               value={ratingValue}
-                                onClick={() => setRating(ratingValue)}/>
-                               <FaStar 
-                               color={ratingValue <= (hover || rating) ? '#ffc107' : '#e4e5e9'}
-                               className='star' 
-                               size={25} 
-                               onMouseEnter={() => setHover(ratingValue)}
-                               onMouseLeave={() => setHover(null)}
-                               />
-                            </label>)
-                  })}
+                <div >
+                  <ReactStars
+                    className='stars'
+                    count={5}
+                    half={false}
+                    onChange={newValue => onRatingChange(newValue, a._id)}
+                    size={30}
+                    activeColor="#ffd700"
+                    value= {rating}
+                    
+                  />
+                  
                 </div>
               </div>
             </>
@@ -71,15 +75,14 @@ const GetOrderUserPages = () => {
         </div>
       </div>
     </div>
-  );
+  )
 
   return (
-    <>
-      <h1 className="my-5 text-center">Get User Order</h1>
-      <div className="card-columns">
+
+      <div className="card-columns py-5">
         {cards}
       </div>
-    </>
+
   );
 }
 

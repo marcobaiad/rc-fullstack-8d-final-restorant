@@ -1,7 +1,5 @@
-input[type='radio']{
-    display: none;
+.stars{
+    outline: none;
 }
-.star{
-    cursor: pointer;
-    transition: color 200ms;
-}
+
+

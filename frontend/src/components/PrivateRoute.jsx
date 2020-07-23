@@ -6,8 +6,8 @@ const PrivateRoute = ({ component: Component, role, ...rest }) => (<
 	Route {...rest}
 	render={
 		(props) => (
-			auth.isAuthenticated() && (role ? auth.hasRole(role): true) ?
-			
+			auth.isAuthenticated() && (role ? auth.hasRole(role) : true) ?
+
 				<Component {...props} /> :
 				<Redirect to={{ pathname: '/log', state: { from: props.location } }} />
 		)
