@@ -17,10 +17,8 @@ const LoginSession = (props) => {
 
     clienteAxios.post('/api/v1/usuarios/login', { username, password })
     .then(response => {
-
-      /* console.log(response); */
-      console.log('role...', response.data.role)
-      Auth.logedIn(response.data.token, response.data.role);
+      console.log('role...', response.data.role);
+      Auth.logedIn(response.data.token, response.data.role, response.data.id);
       Swal.fire({
         icon: "success",
         title: "Logueado correctamente",

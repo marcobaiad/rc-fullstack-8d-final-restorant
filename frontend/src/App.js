@@ -32,7 +32,7 @@ function App() {
         <PrivateRoute path="/admin/createfoods" role={'admin'} exact component={CreateFoodsPage} />
         <PrivateRoute path="/admin/edit/:id" exact role={'admin'} component={EditFoods} />
         <PrivateRoute path="/user/orders" exact role={'user'} component={GetOrderUserPages} />
-        <Route path="/plato/:id" exact component={PlatoPage} />
+        <PrivateRoute path="/plato/:id" exact component={PlatoPage} />
         <Route path="/reg" exact component={RegUser} />
         <Route path="/log" exact component={LoginSession} />
         <Route exact path="/" component={HomePage} />

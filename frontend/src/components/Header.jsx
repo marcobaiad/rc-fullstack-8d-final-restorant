@@ -16,18 +16,30 @@ const Header = () => {
     
 
     const [isLogedIn, SetIsLogedIn] = useState(false);
+    const [alturaAboutUs, SetAlturaAboutUs] = useState(0);
     const localToken = localStorage.getItem('token');
-    const [nameButton, setNameButton] = useState('INICIO');
     const history = useHistory();
     const pathHome = history.location.pathname === '/';
     
-
+    
+    
+    const MoverContacto = () => {
+        const MenuContacto = document.getElementById("AboutUs");
+        window.scrollBy(0, MenuContacto.offsetTop)
+    }
+    const MoverMenuComida = () => {
+        const MenuComida = document.getElementById("Menu");
+        window.scrollBy(0, MenuComida.offsetTop)
+    }
+    const Timeout = () => {
+        setTimeout(MoverMenuComida, 2000);
+    }
 
     const StickyNav = () => {
-        let navbar = document.getElementById("navbar");
-        let carrousel = document.getElementById("carrousel");
-        let sticky = navbar.offsetTop;
-
+        const navbar = document.getElementById("navbar");
+        const carrousel = document.getElementById("carrousel");
+        const sticky = navbar.offsetTop;
+        
         if (window.pageYOffset >= sticky) {
             navbar.classList.add("position-fixed");
             navbar.classList.remove("align-self-end");
@@ -85,12 +97,12 @@ const Header = () => {
             history.push('/SobreNosotros');
             return
         }
-        if (!pathHome) {
-            window.location = (`/${e.target.value}`)
-            return            
-        } else {
+        if (!pathHome && e.target.value === '#Menu') {
+            history.push(`/${e.target.value}`);            
+            Timeout();
+        } /* else {
             window.location = (`${e.target.value}`);
-        }
+        } */
         
     }
 
@@ -125,19 +137,19 @@ const Header = () => {
                 <Navbar variant="dark" className="px-0 py-2 mb-3 mb-lg-4 navbar-menu row flex-wrap justify-content-center justify-content-md-between m-0">
                     <Nav className="d-none d-sm-none d-md-flex d-lg-flex row pl-5 order-2 order-md-1">
                         <Navbar.Brand className="d-none d-lg-block ml-3">Asturias Food & Drinks</Navbar.Brand>
-                        <Link className="text-white hover-navbar mt-2" to="/">INICIO</Link>
-                        <Nav.Link className="text-white hover-navbar" href="#Menu">MENU</Nav.Link>
-                        <Nav.Link className="text-white hover-navbar" href="#AboutUs">CONTACTO</Nav.Link>
-                        <Link className="text-white hover-navbar mt-2" to="#AboutUs">SOBRE NOSOTROS</Link>
+                        <Link className="text-white hover-navbar mt-2 mx-1" to="/">INICIO</Link>
+                        <Link className="text-white hover-navbar mt-2 mx-1" to="/" onClick={Timeout}>MENU</Link>
+                        <Link className="text-white hover-navbar mt-2 mx-1" onClick={MoverContacto}>CONTACTO</Link>
+                        <Link className="text-white hover-navbar mt-2 mx-1" to="#AboutUs">SOBRE NOSOTROS</Link>
 
                     </Nav>
                     <Nav className="row mx-3 order-1 order-md-2 ">
                         {Auth.isAuthenticated() ?
-                            <Nav.Link className="text-white hover-navbar" onClick={LogUotHandler}><i className="far fa-user"></i> CERRAR CESIÓN</Nav.Link>
+                            <Nav.Link className="text-white hover-navbar" onClick={LogUotHandler}><i className="far fa-user"></i> CERRAR SESIÓN</Nav.Link>
                             :
                             <>
                                 <Link className="text-white hover-navbar mx-2" to="/reg">REGISTRO</Link>
-                                <Link className="text-white hover-navbar mx-2" to="/log"><i className="far fa-user"></i> INICIAR CESIÓN</Link>
+                                <Link className="text-white hover-navbar mx-2" to="/log"><i className="far fa-user"></i> INICIAR SESIÓN</Link>
                             </>
                         }
                     </Nav>
