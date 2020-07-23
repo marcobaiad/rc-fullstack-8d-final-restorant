@@ -3,9 +3,11 @@ import { Link } from 'react-router-dom';
 import '../Css/logUser.css'
 import clienteAxios from '../config/axios';
 
+
 const AdmMenu = () => {
 
 	const [menu, setMenu] = useState([]);
+
 
 	useEffect(() => {
 		const consultApi = () => {

@@ -14,7 +14,6 @@ export default {
     hasRole: role => {
         return localStorage.getItem('role') === role
     },
-    
 
 
 
