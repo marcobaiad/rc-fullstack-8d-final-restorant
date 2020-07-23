@@ -1,7 +1,6 @@
-import React, { useEffect, useState, useCallback } from 'react';
-import { useHistory } from 'react-router-dom';
+import React from 'react';
 import '../Css/Reguser.css';
-import axios from 'axios';
+import ClienteAxios from '../config/axios';
 import swal from 'sweetalert2';
 
 
@@ -37,7 +36,7 @@ class RegUser extends React.Component {
     e.preventDefault();
     
     try {
-      await axios.post(`/api/v1/usuarios`, { name: this.state.name, lastname: this.state.lastname, address: this.state.address, age: this.state.age, username: this.state.username , password: this.state.password, phonenumber: this.state.phonenumber, email: this.state.email });
+      await ClienteAxios.post(`/api/v1/usuarios`, { name: this.state.name, lastname: this.state.lastname, address: this.state.address, age: this.state.age, username: this.state.username , password: this.state.password, phonenumber: this.state.phonenumber, email: this.state.email });
       await swal.fire({
         icon: 'success',
         title: 'Registro correcto',
