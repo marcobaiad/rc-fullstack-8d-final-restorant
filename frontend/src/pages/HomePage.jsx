@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import '../Css/homepage.css'
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
+import Auth from '../utils/auth';
 
 const HomePages = () => {
 
@@ -9,13 +11,15 @@ const HomePages = () => {
   const [desayunos, setDesayunos] = useState([]);
   const [almuerzos, setAlmuerzos] = useState([]);
   const [tragos, setTragos] = useState([]);
+  const roleAdmin = localStorage.getItem('role')
+  const history = useHistory();
 
   useEffect(() => {
     (async () => {
       const response = await axios.get('/api/v1/comidas')
       setPlatosHome(response.data);
       setRenderMomento(response.data);
-      
+
       let desayuno = response.data.filter(DesayunoHome => DesayunoHome.category === "Desayuno");
       let almuerzo = response.data.filter(AlmuerzoHome => AlmuerzoHome.category === "Almuerzo");
       let tragos = response.data.filter(TragosHome => TragosHome.category === "Tragos");
@@ -35,13 +39,21 @@ const HomePages = () => {
     })();
   }, []);
 
+  useEffect(() => {
+    if (Auth.isAuthenticated() === true) {
+      if (roleAdmin === 'admin') {
+        history.push('/admin/main')
+      }
+    }
+  }, [Auth.isAuthenticated()]);
+
 
   const GetTodas = () => {
     setRenderMomento(platosHome);
   }
 
   const GetDesayunos = () => {
-    setRenderMomento(desayunos);    
+    setRenderMomento(desayunos);
   }
 
   const GetAlmuerzos = () => {
@@ -67,7 +79,7 @@ const HomePages = () => {
         </div>
       </a>
     </article>
-  );    
+  );
 
   return (
     <div className="mw-100">
@@ -84,7 +96,7 @@ const HomePages = () => {
         <button onClick={GetTragos} className="btn btn-foods py-2">Tragos</button>
       </div>
       <div className="box-menu row flex-wrap mx-0 mw-100 bg-dark">
-        { platos }
+        {platos}
       </div>
       <div className="parallaxHOME firstpara row m-0 text-center shadow justify-content-center align-items-center">
         <h3 className="font-parallax">VIVÍ LA EXPERIENCIA, TODO EL DÍA, TODOS LOS DÍAS</h3>

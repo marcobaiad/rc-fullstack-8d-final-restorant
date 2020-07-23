@@ -11,7 +11,6 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import Header from '../src/components/Header';
 import HomePage from './pages/HomePage';
 import RegUser from './pages/RegUser';
-import LoginSession from './pages/LoginSession';
 import Footer from '../src/components/Footer';
 import PrivateRoute from './components/PrivateRoute';
 import PlatoPage from './pages/PlatoPage';
@@ -28,7 +27,6 @@ function App() {
 				<PrivateRoute path="/user/orders" exact role={'user'} component={GetOrderUserPages} />
 				<Route path="/plato/:id" exact component={PlatoPage} />
 				<Route path="/reg" exact component={RegUser} />
-				<Route path="/log" exact component={LoginSession} />
 				<Route exact path="/" component={HomePage} />
 			</Switch>
 			<Route component={Footer} />

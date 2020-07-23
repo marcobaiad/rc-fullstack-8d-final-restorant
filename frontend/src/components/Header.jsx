@@ -11,6 +11,7 @@ import sweet from 'sweetalert2';
 import Lampara from '../img/CarrouselNav/Lampara.jpg'
 import Pizzas from '../img/CarrouselNav/Pizzas.jpg'
 import Restorant from '../img/CarrouselNav/Restorant.jpg'
+import ModalLogin from './ModalLogin';
 
 const Header = () => {
 
@@ -19,6 +20,7 @@ const Header = () => {
 	const [nameButton, setNameButton] = useState('INICIO');
 	const history = useHistory();
 	const pathHome = history.location.pathname === '/';
+	const [modalShow, setModalShow] = useState(false);
 
 	const StickyNav = () => {
 		let navbar = document.getElementById("navbar");
@@ -133,7 +135,12 @@ const Header = () => {
 								:
 								<>
 									<Link className="text-white hover-navbar mx-2" to="/reg">REGISTRO</Link>
-									<Link className="text-white hover-navbar mx-2" to="/log"><i className="far fa-user"></i> INICIAR SESIÓN</Link>
+									<Link className="text-white hover-navbar mx-2" onClick={() => setModalShow(true)} to=""><i className="far fa-user"></i> INICIAR SESIÓN</Link>
+									<ModalLogin
+										className="position-absolute"
+										show={modalShow}
+										onHide={() => setModalShow(false)}
+									/>
 								</>
 							}
 						</Nav>
