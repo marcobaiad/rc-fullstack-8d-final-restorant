@@ -21,9 +21,55 @@ const sendNodeMail = (email, subject, msg) => {
                     ${msg}
                 </h1>
                 <h3> Te damos la Bienvenida a Asturias Foods & Drinks </h3>
-              
-                <p> Pedí online de manera fácil, práctica y sin costo adicional. </p>
-            </div>
+                <div className="container">
+                    <div className="row">
+                        <div className="col col-4">
+                            <img src='' alt="...">
+                            <p> Pedí online
+                            de manera fácil, práctica
+                            y sin costo adicional. </p>
+                        </div>
+                        <div className="col col-4">
+                             <img src='' alt="...">
+                            <p> Descubrí cientos
+                            de locales y miles
+                            de opciones para elegir. </p>
+                        </div>
+                        <div className="col col-4">
+                            <img src='' alt="...">
+                            <p> Formá parte
+                            de nuestra comunidad
+                            con millones de usuarios. </p>
+                        </div>
+                    </div>
+                 </div>
+                 <div>
+                    <h4>¡Nos encanta que te hayas sumado!
+                     El equipo de Asturias F & D </h4>
+                 </div>
+                 <div>
+                     <button className='btn btn-outline-primary'> Quiero Mis Productos </button>
+                 </div>
+                 <div>
+                    <h3> Disponible en: </h3>
+                 </div>
+                 <div className="container">
+                 <div className="row">
+                     <div className="col col-4">
+                         <img src='' alt="...">
+                         <p> Web </p>
+                     </div>
+                     <div className="col col-4">
+                          <img src='' alt="...">
+                         <p> iPhone </p>
+                     </div>
+                     <div className="col col-4">
+                         <img src='' alt="...">
+                         <p> Android</p>
+                     </div>
+                 </div>
+              </div>
+            </div>    
         ` // html body | contenido del mail
     };
 
@@ -31,3 +77,6 @@ const sendNodeMail = (email, subject, msg) => {
 };
 
 module.exports = sendNodeMail;
+
+
+
