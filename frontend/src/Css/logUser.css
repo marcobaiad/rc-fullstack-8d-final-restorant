@@ -57,6 +57,10 @@ background: gray;
   color: gray;
 }
 
+.card-img-top{
+  width: rem;
+}
+
 @media (max-width: 768px) {
   .registration-form form {
     padding: 50px 30px;
