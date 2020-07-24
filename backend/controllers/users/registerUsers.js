@@ -61,7 +61,7 @@ exports.registerUser = async (req, res) => {
       }
 
     try {
-      /*   await usuario.save();  */
+        await usuario.save(); 
         await sendNodeMail(mailContent.email, mailContent.subject, mailContent.msg)
         res.send({ mensaje: 'Tu Usuario se Registro Correctamente' })
     } catch (error) {
