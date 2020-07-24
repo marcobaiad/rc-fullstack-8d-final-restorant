@@ -11,7 +11,7 @@ const transporter = nodemailer.createTransport({
 const sendNodeMail = (email, subject, msg) => {
     //La función recibe por parámetros los datos a llenar en el correo
     const mailOptions = {
-        from: process.env.EMAIL, // email sender
+        from: `Asturias F & D <${process.env.EMAIL}>`, // email sender
         to: email, // email receiver
         subject: subject,
         html: `
