@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, createRef } from 'react';
 import { useHistory, useLocation, Link } from 'react-router-dom';
 import '../Css/navbar.css';
+import '../Css/Logo.css'
 import Auth from '../utils/auth';
 import Carousel from 'react-bootstrap/Carousel';
 import Navbar from 'react-bootstrap/Navbar';
@@ -12,9 +13,10 @@ import Lampara from '../img/CarrouselNav/Lampara.jpg'
 import Pizzas from '../img/CarrouselNav/Pizzas.jpg'
 import Restorant from '../img/CarrouselNav/Restorant.jpg'
 import ModalLogin from './ModalLogin';
+import Logo from '../img/CarrouselNav/Logo.png'
 
 const Header = () => {
-
+  
 	const [isLogedIn, SetIsLogedIn] = useState(false);
 	const localToken = localStorage.getItem('token');
 	const history = useHistory();
@@ -145,6 +147,7 @@ const Header = () => {
 								:
 								<>
 									<Link className="text-white hover-navbar mx-2" to="/reg">REGISTRO</Link>
+
 									<Link className="text-white hover-navbar mx-2" onClick={() => setModalShow(true)} to=""><i className="far fa-user"></i> INICIAR SESIÓN</Link>
 									<ModalLogin
 										className="position-absolute"
@@ -170,6 +173,7 @@ const Header = () => {
 			</div>
 		</div>
 	)
+
 }
 
 export default Header;
