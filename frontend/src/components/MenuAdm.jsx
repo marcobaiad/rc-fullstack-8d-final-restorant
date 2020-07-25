@@ -58,7 +58,7 @@ const MenuAdm = () => {
 							<h2 className="text-center">Asturias bar</h2>
 							<p className="text-center">En este menu de administrador podrás consultar, editar y crear nuevas comidas y tragos. También podrás ver las ordenes y sus estados.</p>
 
-							<Switch>S
+							<Switch>
 								<PrivateRoute exact path="/admin/todas" component={AdmMenu} />
 								<PrivateRoute exact path="/admin/createfoods" component={CreateFoodsPage} />
 								<PrivateRoute exact path="/admin/allorder" component={GetOrderPages} />
