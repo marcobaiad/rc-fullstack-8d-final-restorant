@@ -1,7 +1,7 @@
 import React, { useState, useRef, } from 'react'
-import { useHistory } from 'react-router-dom'
-import axios from 'axios'
-import '../Css/CreateFoodsPage.css'
+import { useHistory } from 'react-router-dom';
+import '../Css/CreateFoodsPage.css';
+import clienteAxios from '../config/axios';
 
 function CreateFoodsPage() {
 	const history = useHistory()
@@ -15,7 +15,7 @@ function CreateFoodsPage() {
 		e.preventDefault()
 		try {
 			if (image !== null) {
-				const newFoods = await axios.post('/api/v1/comidas', createFoods, {
+				const newFoods = await clienteAxios.post('/api/v1/comidas', createFoods, {
 					headers: {
 						'authorization': 'Bearer ' + localStorage.getItem('token')
 					}
@@ -23,7 +23,7 @@ function CreateFoodsPage() {
 				console.log(newFoods)
 				const formData = new FormData()
 				formData.append('file', image)
-				await axios.post(`/api/v1/comidas/${newFoods.data._id}/upload`, formData, {
+				await clienteAxios.post(`/api/v1/comidas/${newFoods.data._id}/upload`, formData, {
 					headers: {
 						'authorization': 'Bearer ' + localStorage.getItem('token'),
 						'content-type': 'multipart/form-data'

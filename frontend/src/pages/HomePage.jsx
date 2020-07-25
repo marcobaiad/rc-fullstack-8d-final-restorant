@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import '../Css/homepage.css'
-import axios from 'axios';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import Auth from '../utils/auth';
+import clienteAxios from '../config/axios';
+import Sweet from 'sweetalert2';
 
 const HomePages = () => {
 
@@ -16,7 +17,7 @@ const HomePages = () => {
 
   useEffect(() => {
     (async () => {
-      const response = await axios.get('/api/v1/comidas')
+      const response = await clienteAxios.get('/api/v1/comidas')
       setPlatosHome(response.data);
       setRenderMomento(response.data);
 
@@ -64,20 +65,31 @@ const HomePages = () => {
     setRenderMomento(tragos);
   }
 
+  const Logueado = (e) => {
+    const ModalLog = document.getElementById('Log-Modal');
+    if (Auth.isAuthenticated() === false) {
+      e.preventDefault();
+      Sweet.fire({
+        title: 'Uuups',
+        text: 'Por favor, debes iniciar sesión para ver el plato'
+      });
+      ModalLog.click()
+    }
+  }
+
   const platos = renderMomento.map(p =>
     <article key={p._id} className="col-6 col-md-4 col-lg-3 px-0 containers">
-      <a href={'plato/' + p._id}>
+      <Link onClick={Logueado} to={'plato/' + p._id}>
         <img className="w-100 PlatosHomeimg"
           src={`http://localhost:3001` + p.imageUrl} alt="" />
         <div className="overlay col p-0 text-white text-center">
           <h3 className="mb-0">{p.title}</h3>
-          {/* <p className="mb-0">{p.summary}</p> */}
           <hr className="bg-white" />
           <div className="text">
             {p.description}
           </div>
         </div>
-      </a>
+      </Link>
     </article>
   );
 

@@ -11,8 +11,8 @@ const ModalLogin = (props) => {
   const [username, setUser] = useState('');
   const [password, setPassword] = useState('');
 
-
   const history = useHistory();
+  
 
   const logUser = e => {
     e.preventDefault();
@@ -63,17 +63,16 @@ const ModalLogin = (props) => {
         <div className="registrationmodal-form">
           <form className="" onSubmit={logUser}>
             <h1 className='titulomodal'>Iniciar Sesión</h1>
-            <div className="form-group">
+            <div className="form-group px-3">
               <input
                 type="text"
-                autoFocus
                 className="form-control item"
                 placeholder="Usuario"
                 name="username"
                 minLength="4"
                 onChange={(e) => { setUser(e.target.value) }} />
             </div>
-            <div className="form-group">
+            <div className="form-group px-3">
               <input
                 type="password"
                 className="form-control item"

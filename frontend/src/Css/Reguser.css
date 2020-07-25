@@ -8,7 +8,7 @@
   }
 
   .registration-form {
-    padding: 316px 0;
+    padding: 90px 0;
   }
 
   .registration-form form {
@@ -18,7 +18,6 @@
     /* background: linear-gradient(to right, #2c3e50, #bdc3c7); */
     max-width: 600px;
     margin: auto;
-    padding: 50px 70px;
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
     border-bottom-left-radius: 30px;
@@ -29,7 +28,6 @@
   .titulo {
     max-width: 768px;
     margin: auto;
-    padding: 35px 0;
     text-align: center;
     color: black;
   }
