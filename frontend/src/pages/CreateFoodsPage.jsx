@@ -130,16 +130,16 @@ function CreateFoodsPage() {
 											}
 										}}
 										ref={wrapperRef}
-										accept='image/gif, image/jpg, image/png'
+										accept="image/gif, image/jpg, image/png"
 									/>
 								</div>
-								<div className='border border-dark' onClick={() => {
+								<div className='border border-dark' style={{ cursor: 'pointer' }} onClick={() => {
 									wrapperRef.current.click()
 								}}>
 									<img src={previewImage} className='previewImagen' alt="" />
-									<input type="text" placeholder='Subir Imagen'
-										className=' border-0 borderInputImg' readOnly />
 								</div>
+								<input type="text" placeholder='Subir Imagen'
+									className=' border-0 borderInputImg' readOnly />
 							</form>
 						</div>
 					</div>

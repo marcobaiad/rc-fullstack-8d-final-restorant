@@ -23,7 +23,7 @@ function App() {
 		<Router>
 			<Route component={Header} />
 			<Switch>
-				<PrivateRoute path="/admin/main" role={'admin'} exact component={MenuAdm} />
+				<PrivateRoute path="/admin" role={'admin'} component={MenuAdm} />
 				<PrivateRoute path="/user/orders" exact role={'user'} component={GetOrderUserPages} />
 				<Route path="/plato/:id" exact component={PlatoPage} />
 				<Route path="/reg" exact component={RegUser} />
@@ -32,7 +32,6 @@ function App() {
 			<Route component={Footer} />
 		</Router>
 	);
-
 }
 
 export default App;

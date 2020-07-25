@@ -1,13 +1,14 @@
 const bcryptjs = require('bcryptjs')
 const { validationResult } = require('express-validator')
 const UsersModel = require('../../models/users.model');
+const sendNodeMail = require('../../middlewares/nodemailer');
 
 exports.registerUser = async (req, res) => {
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
         return res.status(422).json({ errors: errors.array() })
     }
-
+  
     const { body } = req
 
     let name = ({ name: body.name })
@@ -52,8 +53,16 @@ exports.registerUser = async (req, res) => {
     user.password = await bcryptjs.hash(body.password, salt);
 
     const usuario = new UsersModel(user);
+
+    const mailContent = {
+      email: body.email,
+      subject: 'Registro exitoso ' + body.name,
+      msg: '¡Hola ' + body.name + '!',
+      }
+
     try {
-        await usuario.save();
+        await usuario.save(); 
+        await sendNodeMail(mailContent.email, mailContent.subject, mailContent.msg)
         res.send({ mensaje: 'Tu Usuario se Registro Correctamente' })
     } catch (error) {
         res.status(500).send(error);

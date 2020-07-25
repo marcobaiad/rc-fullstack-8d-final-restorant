@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import '../Css/navbar.css';
+import '../Css/Logo.css'
 import Auth from '../utils/auth';
 import Carousel from 'react-bootstrap/Carousel';
 import Navbar from 'react-bootstrap/Navbar';
@@ -12,6 +13,7 @@ import Pizzas from '../img/CarrouselNav/Pizzas.jpg'
 import Restorant from '../img/CarrouselNav/Restorant.jpg'
 import ModalLogin from './ModalLogin';
 import clienteAxios from '../config/axios';
+import Logo from '../img/CarrouselNav/Logo.png'
 
 const Header = () => {
 
@@ -112,6 +114,8 @@ const Header = () => {
     return (
         <div className="d-flex flex-wrap">
             {pathHome &&
+            <>
+                <img src={Logo} className='logo' />
                 <Carousel controls={false} indicators={false} id="carrousel">
                     <Carousel.Item>
                         <img
@@ -135,6 +139,7 @@ const Header = () => {
                         />
                     </Carousel.Item>
                 </Carousel>
+            </>
             }
             <div className="w-100 position-absolute align-self-end" id="navbar">
                 {roleAdmin === 'admin' ?
@@ -154,12 +159,12 @@ const Header = () => {
                             :
                             <>
                                 <Link className="text-white hover-navbar mx-2" to="/reg">REGISTRO</Link>
-									<Link className="text-white hover-navbar mx-2" onClick={() => setModalShow(true)} id="Log-Modal"><i className="far fa-user"></i> INICIAR SESIÓN</Link>
-									<ModalLogin
-										className="position-absolute"
-										show={modalShow}
-										onHide={() => setModalShow(false)}
-									/>
+                                <Link className="text-white hover-navbar mx-2" onClick={() => setModalShow(true)} id="Log-Modal"><i className="far fa-user"></i> INICIAR SESIÓN</Link>
+                                <ModalLogin
+                                    className="position-absolute"
+                                    show={modalShow}
+                                    onHide={() => setModalShow(false)}
+                                />
                             </>
                         }
                     </Nav>

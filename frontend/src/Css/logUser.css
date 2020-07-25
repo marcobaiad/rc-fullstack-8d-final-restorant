@@ -1,11 +1,3 @@
-/* .imgBackgroundLog {
-  background-image: url(https://cdn.pixabay.com/photo/2015/09/22/15/42/burger-951896_960_720.jpg);
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-  background-color: #464646;
-} */
 
 /* .log-form {
   padding: 0px 0;
@@ -18,27 +10,31 @@
   background: white !important;
 }
 
+body {
+  padding: 0px !important;
+}
 .modal-content {
   background: rgba(0,0,0,0.7) !important;
 }
-
+.modalrecover {
+  background: rgba(0,0,0,0.98) !important;
+  color: white !important;
+}
 .registrationmodal-form .form {
   font-family: 'Oswald', sans-serif;
-  background: rgba(0,0,0,0.7);
-    
-  /* max-width: 500px; */
+  background: rgba(0,0,0,0.7); 
+  
   margin: auto;
   padding: 50px 70px;
-  /* border-top-left-radius: 10px;
+  border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px; */
+  border-bottom-right-radius: 10px;
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.75);
 }
 
 .titulomodal {
-  font-family: 'Oswald', sans-serif;
-  /* max-width: 768px; */
+  font-family: 'Oswald', sans-serif;  
   margin: auto;
   padding: 30px 0;
   text-align: center;
@@ -72,6 +68,10 @@ background: gray;
   color: gray;
 }
 
+.card-img-top{
+  width: rem;
+}
+
 @media (max-width: 768px) {
   .registration-form form {
     padding: 50px 30px;
@@ -82,5 +82,12 @@ background: gray;
     height: 70px;
     font-size: 30px;
     line-height: 70px;
+  }
+}
+
+@media (max-width: 320px) {
+  .olvideContrasenia {
+    font-size: 15px;
+
   }
 }
