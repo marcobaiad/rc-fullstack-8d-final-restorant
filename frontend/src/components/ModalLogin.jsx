@@ -30,7 +30,7 @@ const ModalLogin = (props) => {
         });
 
         response.data.role === 'admin' ?
-          history.push('/admin/main')
+          history.push('/admin/todas')
           : history.push('/');
 
       }).catch(function () {

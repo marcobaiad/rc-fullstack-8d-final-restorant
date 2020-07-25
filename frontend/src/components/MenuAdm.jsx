@@ -65,13 +65,11 @@ const MenuAdm = () => {
 								<PrivateRoute path="/admin/edit/:id" exact role={'admin'} component={EditFoods} />
 								<Route path="/admin" exact role={'admin'}> <Redirect to="/admin/todas" /> </Route>
 							</Switch>
-
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-
 	);
 }
 
