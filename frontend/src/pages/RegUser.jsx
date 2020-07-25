@@ -1,6 +1,6 @@
 import React from 'react';
 import '../Css/Reguser.css';
-import ClienteAxios from '../config/axios';
+import clienteAxios from '../config/axios';
 import swal from 'sweetalert2';
 
 
@@ -36,7 +36,7 @@ class RegUser extends React.Component {
     e.preventDefault();
     
     try {
-      await ClienteAxios.post(`/api/v1/usuarios`, { name: this.state.name, lastname: this.state.lastname, address: this.state.address, age: this.state.age, username: this.state.username , password: this.state.password, phonenumber: this.state.phonenumber, email: this.state.email });
+      await clienteAxios.post(`/api/v1/usuarios`, { name: this.state.name, lastname: this.state.lastname, address: this.state.address, age: this.state.age, username: this.state.username , password: this.state.password, phonenumber: this.state.phonenumber, email: this.state.email });
       await swal.fire({
         icon: 'success',
         title: 'Registro correcto',
@@ -66,7 +66,7 @@ class RegUser extends React.Component {
     if (event.charCode >= 58) {
       swal.fire({
         icon: 'error',
-        title: 'Solo puede ingresar números'
+        title: 'Solo puede ingresar números',
       });
       return false
     }
@@ -75,8 +75,8 @@ class RegUser extends React.Component {
   render() {
     return(
       <div className='imgBackgroundReg registration-form'>
-        <form onSubmit={this.onSubmitCreateHandler} id="formulario-reset" className='container-fluid'>
-          <h1 className='titulo'>Registro de Usuario</h1>
+        <form onSubmit={this.onSubmitCreateHandler} id="formulario-reset" className='container-fluid py-5 px-5'>
+          <h1 className='titulo text-white pb-5'>Registro de Usuario</h1>
           <div className="form-row">
             <div className="form-group col-md-6 mb-0">
               <input autoFocus type="text" className="form-control item" name="name" onChange={this.handleChange} required placeholder="Nombre" />
@@ -102,7 +102,7 @@ class RegUser extends React.Component {
               <input type="text" minLength="4" className="form-control item" name="username" onChange={this.handleChange} title="El usuario debe contener al menos 4 caracteres"  required placeholder="Usuario" />
             </div>
             <div className="form-group col-md-6 mb-0">
-              <input type="password" minLength="8" className="form-control item" name="password" onChange={this.handleChange} title="La contraseña debe tener al menos 8 caracteres y una mayuscula" required placeholder="Contraseña" />
+              <input type="password" minLength="8" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" className="form-control item" name="password" onChange={this.handleChange} title="La contraseña debe tener al menos 8 caracteres y una mayuscula" required placeholder="Contraseña" />
             </div>
           </div>
           <button type="submit" className="btn btn-block create-account">Registrarse</button>

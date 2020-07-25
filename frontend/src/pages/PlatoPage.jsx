@@ -22,11 +22,6 @@ const PlatosPage = () => {
         })();
     }, [params.id]);
     
-    
-
-    const OrderHandler = () => {
-        console.log('Click para ordenar');
-    }
 
     const plato =
         <article className="ArticlePlate px-0 mx-3 mt-md-4 text-white">
@@ -40,7 +35,7 @@ const PlatosPage = () => {
                 </div>
             </div>
             <button type="button" className="btn btn-danger my-3" data-toggle="modal" data-target="#OrdenModal">Ordenar</button>
-            <Orden platoID={platoID} user={usuarioID} ordenar={OrderHandler} />
+            <Orden platoID={platoID} user={usuarioID} />
         </article>
 
 return (

@@ -14,9 +14,12 @@
   border-bottom-left-radius: 30px;
   border-bottom-right-radius: 30px; 
 } */
+#OrdenModal .modal-content {
+  background: white !important;
+}
+
 .modal-content {
   background: rgba(0,0,0,0.7) !important;
-
 }
 
 .registrationmodal-form .form {
