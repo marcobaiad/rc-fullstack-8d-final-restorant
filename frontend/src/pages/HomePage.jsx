@@ -42,7 +42,7 @@ const HomePages = () => {
   useEffect(() => {
     if (Auth.isAuthenticated() === true) {
       if (roleAdmin === 'admin') {
-        history.push('/admin/main')
+        history.push('/admin/todas')
       }
     }
   }, [Auth.isAuthenticated()]);

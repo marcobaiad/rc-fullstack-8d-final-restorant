@@ -16,7 +16,7 @@ import ModalLogin from './ModalLogin';
 import Logo from '../img/CarrouselNav/Logo.png'
 
 const Header = () => {
-  
+
 	const [isLogedIn, SetIsLogedIn] = useState(false);
 	const localToken = localStorage.getItem('token');
 	const history = useHistory();
@@ -105,29 +105,32 @@ const Header = () => {
 	return (
 		<div className="d-flex flex-wrap">
 			{pathHome &&
-				<Carousel controls={false} indicators={false} id="carrousel">
-					<Carousel.Item>
-						<img
-							className="d-block w-100 h-md-100 h-lg-100 carrousel-img"
-							src={Restorant}
-							alt="First slide"
-						/>
-					</Carousel.Item>
-					<Carousel.Item>
-						<img
-							className="d-block w-100 h-md-100 h-lg-100 carrousel-img"
-							src={Lampara}
-							alt="Third slide"
-						/>
-					</Carousel.Item>
-					<Carousel.Item>
-						<img
-							className="d-block w-100 h-md-100 h-lg-100 carrousel-img"
-							src={Pizzas}
-							alt="Third slide"
-						/>
-					</Carousel.Item>
-				</Carousel>
+				<>
+					<img src={Logo} className='logo' />
+					<Carousel controls={false} indicators={false} id="carrousel">
+						<Carousel.Item>
+							<img
+								className="d-block w-100 h-md-100 h-lg-100 carrousel-img"
+								src={Restorant}
+								alt="First slide"
+							/>
+						</Carousel.Item>
+						<Carousel.Item>
+							<img
+								className="d-block w-100 h-md-100 h-lg-100 carrousel-img"
+								src={Lampara}
+								alt="Third slide"
+							/>
+						</Carousel.Item>
+						<Carousel.Item>
+							<img
+								className="d-block w-100 h-md-100 h-lg-100 carrousel-img"
+								src={Pizzas}
+								alt="Third slide"
+							/>
+						</Carousel.Item>
+					</Carousel>
+				</>
 			}
 			<div className="w-100 position-absolute align-self-end" id="navbar">
 				{roleAdmin === 'admin' ?
