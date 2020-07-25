@@ -115,7 +115,9 @@ const Header = () => {
         <div className="d-flex flex-wrap">
             {pathHome &&
             <>
-                <img src={Logo} className='logo' />
+                <div className="col-12 row justify-content-end">
+                    <img src={Logo} className='logo' />
+                </div>
                 <Carousel controls={false} indicators={false} id="carrousel">
                     <Carousel.Item>
                         <img
