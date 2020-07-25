@@ -1,4 +1,15 @@
 
+/* .log-form {
+  padding: 0px 0;
+   border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px; 
+} */
+#OrdenModal .modal-content {
+  background: white !important;
+}
+
 body {
   padding: 0px !important;
 }
