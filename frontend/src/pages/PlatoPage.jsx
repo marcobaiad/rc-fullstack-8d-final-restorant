@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import Clienteaxios from '../config/axios';
 import '../Css/platosPage.css';
 import Orden from '../components/Orden';
-
+import Sweet from 'sweetalert2';
 
 const PlatosPage = () => {
 
     const params = useParams();
+    const history = useHistory();
     const [platoID, setPlatoID] = useState([]);
     const [usuarioID, setUsuarioID] = useState([]);
     const UserID = localStorage.getItem('id');
@@ -17,8 +18,18 @@ const PlatosPage = () => {
         (async () => {
             const responsePlatos = await Clienteaxios.get(`/api/v1/comidas/${params.id}`);
             setPlatoID(responsePlatos.data);
-            const responseUser = await Clienteaxios.get(`/api/v1/usuarios/${UserID}`);
-            setUsuarioID(responseUser.data);
+            if (UserID === null) {
+                Sweet.fire({
+                    title: 'Tu sesión expiró',
+                    text: 'Por favor, debes ingresar nuevamente'
+                });
+                history.push('/');
+                const ModalLog = document.getElementById('Log-Modal');
+                ModalLog.click();
+            } else {
+                const responseUser = await Clienteaxios.get(`/api/v1/usuarios/${UserID}`);
+                setUsuarioID(responseUser.data);
+            }
         })();
     }, [params.id]);
     
