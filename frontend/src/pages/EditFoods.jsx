@@ -116,16 +116,18 @@ const Editfoods = () => {
       </div>
       <div className="container">
         <div className="row">
-          <div className="col col-6">
+          <div className="col-md-6 PrimeraCol col-12 justify-content-center">
             <div className='d-flex justify-content-center'>
               <form onSubmit={onClickUpdateHandler}>
+                <div className='row justify-content-center PrimerRow'>
+                  <div className='mr-3 Columnas'>
                 <div className="form-group">
                   <label htmlFor="exampleInputEmail1">Titulo</label>
                   <input
                     type="text"
                     name='title'
                     value={title}
-                    className="form-control"
+                    className="form-control FormGroup"
                     id="exampleInputEmail1" aria-describedby="emailHelp"
                     onChange={handleChange}
                   />
@@ -136,7 +138,7 @@ const Editfoods = () => {
                     type="text"
                     name='description'
                     value={description}
-                    className="form-control"
+                    className="form-control FormGroup"
                     id="exampleInputPassword1"
                     onChange={handleChange}
                   />
@@ -147,18 +149,20 @@ const Editfoods = () => {
                     type="text"
                     name='summary'
                     value={summary}
-                    className="form-control"
+                    className="form-control FormGroup"
                     id="exampleInputPassword1"
                     onChange={handleChange}
                   />
                 </div>
+                </div>
+                <div className='ml-3 Columnas'>
                 <div className="form-group">
                   <label htmlFor="exampleInputPassword1">Precio</label>
                   <input
                     type="text"
                     name='price'
                     value={price}
-                    className="form-control"
+                    className="form-control FormGroup"
                     id="exampleInputPassword1"
                     onChange={handleChange}
                   />
@@ -169,19 +173,22 @@ const Editfoods = () => {
                     type="text"
                     name='category'
                     value={category}
-                    className="form-control"
+                    className="form-control FormGroup"
                     id="exampleInputPassword1"
                     readOnly
                   />
                 </div>
                 <div className="form-group">
                   <label for="inputState">Estado</label>
-                  <select id="inputState" class="form-control"
+                  <select id="inputState" className="form-control FormGroup"
                     name='enable' value={enable} onChange={selectHandlerChange} required>
                     <option value={true}>Habilitar</option>
                     <option value={false}>Deshabilitar</option>
                   </select>
                 </div>
+                </div>
+                </div>
+                
                 <button
                   type="submit"
                   className="btn btn-outline-primary w-100"
@@ -190,8 +197,8 @@ const Editfoods = () => {
               </form>
             </div>
           </div>
-          <div className="col col-6">
-            <div>
+          <div className="col col-12 col-md-6">
+            <div className="w-100">
               <form>
                 <div className="form-group d-none">
                   <input
