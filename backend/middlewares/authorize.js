@@ -27,6 +27,6 @@ module.exports = (role) => async (req, res, next) => {
     }
 
     catch (error) {
-        return res.status(401).json({ mensaje: 'Fuera: No Autorizado', error: error.mensaje })
+        return res.status(401).json({ mensaje: 'Fuera: No Autorizado', error: error.message })
     }
 }
