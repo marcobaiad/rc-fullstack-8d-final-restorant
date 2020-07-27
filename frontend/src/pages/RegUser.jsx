@@ -88,11 +88,11 @@ class RegUser extends React.Component {
               <input type="text" maxLength="10" className="form-control item" onKeyPress={this.OnlyNumber} name="phonenumber" onChange={this.handleChange} required title="3810000000" placeholder="N° Celular" />
             </div>
             <div className="form-group col-md-6 mb-0">
-              <input type="text" className="form-control item" onKeyPress={this.OnlyNumber} name="age" onChange={this.handleChange} required placeholder='Edad: Ej. "27"' />
+              <input type="text" className="form-control item" min='18' onKeyPress={this.OnlyNumber} name="age" onChange={this.handleChange} required placeholder='Edad: Ej. "27"' />
             </div>
           </div>
           <div className="form-group">
-            <input type="email" className="form-control item" name="email" onChange={this.handleChange} title="ejemplo@mail.com" required placeholder="Correo electrónico" />
+            <input type="email" className="form-control item" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" onChange={this.handleChange} title="ejemplo@mail.com" required placeholder="Correo electrónico" />
           </div>
           <div className="form-group">
             <input type="text" className="form-control item" name="address" onChange={this.handleChange} required placeholder="Dirección" />
