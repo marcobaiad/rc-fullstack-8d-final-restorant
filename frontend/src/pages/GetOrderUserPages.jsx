@@ -79,7 +79,7 @@ const onRatingChange = async(score, id) =>{
 
   return (
 
-      <div className="card-columns py-5">
+      <div className="card-columns py-5 mt-5 mt-md-0">
         {cards}
       </div>
 

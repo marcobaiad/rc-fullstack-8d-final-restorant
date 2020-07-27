@@ -44,13 +44,6 @@ const Header = () => {
 
     window.onscroll = StickyNav
 
-    /* useEffect(() => {
-        if (isLogedIn) {
-            SetIsLogedIn(false)
-        }
-    }, [isLogedIn]); */
-
-
 
     const LogUotHandler = async () => {
         try {
@@ -153,7 +146,10 @@ const Header = () => {
                     </Nav>
                     <Nav className="row mx-3 order-1 order-md-2">
                         {Auth.isAuthenticated() ?
+                            <>
+                            <Link className="text-white hover-navbar mt-2" to='/user/orders'> MIS PEDIDOS</Link>                            
                             <Nav.Link className="text-white hover-navbar" onClick={LogUotHandler}><i className="far fa-user"></i> CERRAR SESIÓN</Nav.Link>
+                            </>
                             :
                             <>
                                 <Link className="text-white hover-navbar mx-2" to="/reg">REGISTRO</Link>
