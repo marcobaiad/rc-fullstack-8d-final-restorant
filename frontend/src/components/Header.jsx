@@ -7,15 +7,18 @@ import Carousel from 'react-bootstrap/Carousel';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Form from 'react-bootstrap/Form';
-import sweet from 'sweetalert2';
+import Sweet from 'sweetalert2';
 import Lampara from '../img/CarrouselNav/Lampara.jpg'
 import Pizzas from '../img/CarrouselNav/Pizzas.jpg'
 import Restorant from '../img/CarrouselNav/Restorant.jpg'
 import ModalLogin from './ModalLogin';
 import clienteAxios from '../config/axios';
-import Logo from '../img/CarrouselNav/Logo.png'
+import Logo from '../img/CarrouselNav/Logo.png';
+
 
 const Header = () => {
+
+    
 
     const [isLogedIn, SetIsLogedIn] = useState(false);
     const localToken = localStorage.getItem('token');
@@ -23,17 +26,14 @@ const Header = () => {
     const pathHome = history.location.pathname === '/';
     const [modalShow, setModalShow] = useState(false);
 
-
     const StickyNav = () => {
         const navbar = document.getElementById("navbar");
         const carrousel = document.getElementById("carrousel");
-        const sticky = navbar.offsetTop;
-        
-        if (window.pageYOffset >= sticky) {
+        const positionNav = navbar.offsetTop;
+        if (window.pageYOffset >= positionNav) {
             navbar.classList.add("position-fixed");
             navbar.classList.remove("align-self-end");
         }
-
         if (carrousel) {
             if (window.pageYOffset <= carrousel.clientHeight - (window.screen.width > 767 ? 80 : 160)) {
                 navbar.classList.remove("position-fixed");
@@ -42,16 +42,7 @@ const Header = () => {
         }
     }
 
-
-    window.onload = StickyNav
     window.onscroll = StickyNav
-
-    useEffect(() => {
-        if (isLogedIn) {
-            SetIsLogedIn(false)
-        }
-    }, [isLogedIn]);
-
 
 
     const LogUotHandler = async () => {
@@ -68,11 +59,9 @@ const Header = () => {
             history.push(pathHome);
         } catch (e) {
             const { response } = e;
-            console.log(response);
-            sweet.fire({
-                icon: 'error',
-                title: 'No se pudo desloguear'
-            });
+            if (response.data.error & response.data.error.includes('expired')) {
+                console.log('La sesión finalizó');
+            }
         }
     }
 
@@ -92,7 +81,7 @@ const Header = () => {
 
     const onchangeSelectHandler = (e) => {
         if (!pathHome && e.target.value === '/') {
-            history.push('/');
+            window.location.href=e.target.value
         }
         if (!pathHome && e.target.value === 'SobreNosotros') {
             history.push('/SobreNosotros');
@@ -115,7 +104,9 @@ const Header = () => {
         <div className="d-flex flex-wrap">
             {pathHome &&
             <>
-                <img src={Logo} className='logo' />
+                <div className="col-12 row mx-0 pr-3 pr-md-5 justify-content-end">
+                    <img src={Logo} className='logo mt-5' />
+                </div>
                 <Carousel controls={false} indicators={false} id="carrousel">
                     <Carousel.Item>
                         <img
@@ -147,15 +138,18 @@ const Header = () => {
                 <Navbar variant="dark" className="px-0 py-2 mb-3 mb-lg-4 navbar-menu row flex-wrap justify-content-center justify-content-md-between m-0">
                     <Nav className="d-none d-sm-none d-md-flex d-lg-flex row pl-5 order-2 order-md-1">
                         <Navbar.Brand className="d-none d-lg-block ml-3">Asturias Food & Drinks</Navbar.Brand>
-                        <Link className="text-white hover-navbar mt-2 mx-1" to="/">INICIO</Link>
+                        <Nav.Link className="text-white hover-navbar" href="/">INICIO</Nav.Link>
                         <Link className="text-white hover-navbar mt-2 mx-1" to="/" onClick={Timeout}>MENU</Link>
                         <Link className="text-white hover-navbar mt-2 mx-1" onClick={MoverContacto}>CONTACTO</Link>
                         <Link className="text-white hover-navbar mt-2 mx-1" to="#AboutUs">SOBRE NOSOTROS</Link>
 
                     </Nav>
-                    <Nav className="row mx-3 order-1 order-md-2 ">
+                    <Nav className="row mx-3 order-1 order-md-2">
                         {Auth.isAuthenticated() ?
+                            <>
+                            <Link className="text-white hover-navbar mt-2" to='/user/orders'> MIS PEDIDOS</Link>                            
                             <Nav.Link className="text-white hover-navbar" onClick={LogUotHandler}><i className="far fa-user"></i> CERRAR SESIÓN</Nav.Link>
+                            </>
                             :
                             <>
                                 <Link className="text-white hover-navbar mx-2" to="/reg">REGISTRO</Link>
