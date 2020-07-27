@@ -69,33 +69,37 @@ function CreateFoodsPage() {
 			</div>
 			<div className="container">
 				<div className="row">
-					<div className="col col-6">
+					<div className="col-md-6 PrimeraCol col-12">
 						<div className='d-flex justify-content-center'>
 							<form onSubmit={handleSubmit}>
+							 <div className='row justify-content-center PrimerRow'>
+                  <div className='mr-3 Columnas'>
 								<div className="form-group">
 									<label htmlFor="exampleInputEmail1">Titulo</label>
-									<input type="text" name='title' className="form-control"
+									<input type="text" name='title' className="form-control FormGroup"
 										id="exampleInputEmail1" aria-describedby="emailHelp"
 										onChange={handleChange} />
 								</div>
 								<div className="form-group">
 									<label htmlFor="exampleInputPassword1">Descripción</label>
-									<input type="text" name='description' className="form-control"
+									<input type="text" name='description' className="form-control FormGroup"
 										id="exampleInputPassword1" onChange={handleChange} />
 								</div>
 								<div className="form-group">
 									<label htmlFor="exampleInputPassword1">Detalles</label>
-									<input type="text" name='summary' className="form-control"
+									<input type="text" name='summary' className="form-control FormGroup"
 										id="exampleInputPassword1" onChange={handleChange} />
 								</div>
+								</div>
+								<div className='ml-3 Columnas'>
 								<div className="form-group">
 									<label htmlFor="exampleInputPassword1">Precio</label>
-									<input type="text" name='price' className="form-control"
+									<input type="text" name='price' className="form-control FormGroup"
 										id="exampleInputPassword1" onChange={handleChange} />
 								</div>
 								<div className="form-group">
 									<label for="inputState">Categoría</label>
-									<select id="inputState" class="form-control"
+									<select id="inputState" className="form-control FormGroup"
 										name='category' onChange={handleChange} required>
 										<option value=''>Seleccione Una Categoría...</option>
 										<option >Desayuno</option>
@@ -104,6 +108,8 @@ function CreateFoodsPage() {
 										<option>Cena</option>
 										<option>Tragos</option>
 									</select>
+								</div>
+								</div>
 								</div>
 								<div className='pt-3'>
 									<button type="submit" className="btn btn-outline-primary w-100">Publicar</button>
