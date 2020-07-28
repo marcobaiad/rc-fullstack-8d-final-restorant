@@ -11,15 +11,17 @@ require('./dataBase')
 
 app.use('/static', express.static(path.join(__dirname, 'public')));
 
-const port = process.env.PORT
+/* const port = process.env.PORT */
 
- const Routes = require('./routes')
+app.set('port', process.env.PORT || 3001)
 
- app.use('/api/v1', Routes)
+const Routes = require('./routes')
+
+app.use('/api/v1', Routes)
 
 app.use(function (req, res, next) {
    
     res.status(404).json({ mensaje: 'ERROR: 404 not found index' })
 })
 
-app.listen(port, () => console.log(`Escuchando http://localhost:${port}`))
+app.listen(app.get('port'), () => console.log(`Escuchando http://localhost:${app.get('port')}`))
