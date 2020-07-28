@@ -105,9 +105,16 @@ const ModalLogin = (props) => {
                 <a type="" href="" className="olvideContrasenia" data-toggle="modal" data-target="#exampleModalCentered"
                 >
                   Olvidé mi Contraseña
-              </a>
-
-                <div className="modal"
+              </a>     
+              </div>
+            </div>
+            <button
+              type="submit"
+              className="btn btn-block modalBtn"
+            >Ingresar</button>
+          </form>
+        </div>
+        <div className="modal"
                   id="exampleModalCentered" tabIndex="-1"
                   role="dialog" aria-labelledby="exampleModalCenteredLabel" aria-hidden="true">
                   <div className="modal-dialog modal-dialog-centered" role="document">
@@ -121,6 +128,7 @@ const ModalLogin = (props) => {
                       <div className="modal-body">
                         <div className="form-group">
                           <div className="col-md-12 text-center">
+                        
                             <label htmlFor="formGroupExampleInput">Ingresa tu email para recuperar tu contraseña</label>
                             <input
                               type="email"
@@ -141,14 +149,6 @@ const ModalLogin = (props) => {
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-            <button
-              type="submit"
-              className="btn btn-block modalBtn"
-            >Ingresar</button>
-          </form>
-        </div>
       </>
     </Modal>
   );
