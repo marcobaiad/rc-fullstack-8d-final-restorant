@@ -17,8 +17,8 @@ body {
   background: rgba(0,0,0,0.7) !important;
 }
 .modalrecover {
-  background: rgba(0,0,0,0.98) !important;
-  color: white !important;
+  background: white !important;
+ 
 }
 .registrationmodal-form .form {
   font-family: 'Oswald', sans-serif;

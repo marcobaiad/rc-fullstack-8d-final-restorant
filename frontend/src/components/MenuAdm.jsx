@@ -20,17 +20,12 @@ const MenuAdm = () => {
 
 	const LogUotHandler = async () => {
 		try {
-			await clienteAxios.get(`/api/v1/usuarios/logout`,
-			);
+			await clienteAxios.get(`/api/v1/usuarios/logout`);
 			Auth.logOut();
-			history.push('/')
+			window.location="/"
 		} catch (e) {
 			const { response } = e;
-			console.log(response);
-			sweet.fire({
-				icon: 'error',
-				title: 'No se pudo desloguear'
-			});
+			console.log(response);		
 		}
 	}
 

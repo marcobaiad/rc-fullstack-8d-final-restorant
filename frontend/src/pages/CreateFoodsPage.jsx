@@ -16,16 +16,13 @@ function CreateFoodsPage() {
 		try {
 			if (image !== null) {
 				const newFoods = await clienteAxios.post('/api/v1/comidas', createFoods, {
-					headers: {
-						'authorization': 'Bearer ' + localStorage.getItem('token')
-					}
+					
 				})
 				console.log(newFoods)
 				const formData = new FormData()
 				formData.append('file', image)
 				await clienteAxios.post(`/api/v1/comidas/${newFoods.data._id}/upload`, formData, {
-					headers: {
-						'authorization': 'Bearer ' + localStorage.getItem('token'),
+					headers: {						
 						'content-type': 'multipart/form-data'
 
 					}
