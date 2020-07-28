@@ -34,14 +34,16 @@ class RegUser extends React.Component {
     registro.push({ name: this.state.name, lastname: this.state.lastname, address: this.state.address, age: this.state.age, username: this.state.username, password: this.state.password, phonenumber: this.state.phonenumber, email: this.state.email });
     this.setState({ registro })
     e.preventDefault();
-
+    const ModalLog = document.getElementById('Log-Modal');
     try {
       await clienteAxios.post(`/api/v1/usuarios`, { name: this.state.name, lastname: this.state.lastname, address: this.state.address, age: this.state.age, username: this.state.username , password: this.state.password, phonenumber: this.state.phonenumber, email: this.state.email });
       await swal.fire({
         icon: 'success',
         title: 'Registro correcto',
       });
-      this.props.history.push('/');
+      window.location="/";
+      
+      ModalLog.click()
     } catch (err) {
       const { response } = err;
       const errores = response.data.mensaje;
@@ -85,14 +87,14 @@ class RegUser extends React.Component {
               <input type="text" className="form-control item" name="lastname" onChange={this.handleChange} required placeholder="Apellido" />
             </div>
             <div className="form-group col-md-6 mb-0">
-              <input type="text" maxLength="10" className="form-control item" onKeyPress={this.OnlyNumber} name="phonenumber" onChange={this.handleChange} required title="3810000000" placeholder="N° Celular" />
+              <input type="text" minLength="9" maxLength="11" className="form-control item" onKeyPress={this.OnlyNumber} name="phonenumber" onChange={this.handleChange} required title="3810000000" placeholder="N° Celular" />
             </div>
             <div className="form-group col-md-6 mb-0">
               <input type="text" className="form-control item" onKeyPress={this.OnlyNumber} name="age" onChange={this.handleChange} required placeholder='Edad: Ej. "27"' />
             </div>
           </div>
           <div className="form-group">
-            <input type="email" className="form-control item" name="email" onChange={this.handleChange} title="ejemplo@mail.com" required placeholder="Correo electrónico" />
+            <input type="email" className="form-control item" name="email" onChange={this.handleChange} title="ejemplo@mail.com" required placeholder="Correo electrónico" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" />
           </div>
           <div className="form-group">
             <input type="text" className="form-control item" name="address" onChange={this.handleChange} required placeholder="Dirección" />

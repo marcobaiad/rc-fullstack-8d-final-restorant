@@ -10,6 +10,7 @@ import Modal from 'react-bootstrap/Modal'
 const ModalLogin = (props) => {
   const [username, setUser] = useState('');
   const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('')
 
   const history = useHistory();
   
@@ -43,15 +44,25 @@ const ModalLogin = (props) => {
       })
   }
 
-  const recoverPass = () => {
-    Swal.fire({
+  const recoverPass = (e) => {    
+    if(email === '' ) {       
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Ingresar Email'  
+      })
+    }else{      
+     Swal.fire({
       icon: "success",
       title: "Mensaje enviado",
       showConfirmButton: false,
       timer: 3000
     });
-  }
 
+    }  
+     
+  }
+console.log(email)
   return (
     <Modal
       {...props}
@@ -117,7 +128,12 @@ const ModalLogin = (props) => {
                               type="email"
                               className="form-control item"
                               id="inputEmail3"
-                              placeholder="Email" />
+                              placeholder="Email"
+                              required
+                              name="recuperarEmail"
+                              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                              onChange={(e) => { setEmail(e.target.value) }}
+                               />
                           </div>
                         </div>
                       </div>
