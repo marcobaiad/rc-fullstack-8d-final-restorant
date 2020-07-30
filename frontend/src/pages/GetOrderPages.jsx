@@ -8,11 +8,7 @@ const GetOderPages = () => {
   const [order, setOrder] = useState([]);
 
   const GetOrder = useCallback(async () => {
-    const res = await clienteAxios.get(`/api/v1/orden/`, order, {
-      headers: {
-        'authorization': 'Bearer ' + localStorage.getItem('token')
-      }
-    });
+    const res = await clienteAxios.get(`/api/v1/orden/`, order);
     setOrder(res.data)
   }, []);
 
