@@ -56,7 +56,7 @@ const Header = () => {
             );
             SetIsLogedIn(true);
             Auth.logOut();
-            history.push(pathHome);
+            window.location(pathHome);
         } catch (e) {
             const { response } = e;
             if (response.data.error & response.data.error.includes('expired')) {

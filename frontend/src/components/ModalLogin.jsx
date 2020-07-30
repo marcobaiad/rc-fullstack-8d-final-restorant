@@ -32,7 +32,7 @@ const ModalLogin = (props) => {
 
         response.data.role === 'admin' ?
           history.push('/admin/todas')
-          : history.push('/');
+          : window.location('/');
 
       }).catch(function () {
         Swal.fire({

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../Css/homepage.css'
 import { useHistory, Link } from 'react-router-dom';
-import Auth from '../utils/auth';
+import auth from '../utils/auth';
 import clienteAxios from '../config/axios';
 import Sweet from 'sweetalert2';
 
@@ -19,10 +19,10 @@ const HomePages = () => {
     (async () => {
       const response = await clienteAxios.get('/api/v1/comidas')
       setPlatosHome(response.data);
-      setRenderMomento(response.data);
+      setRenderMomento(response.data);      
 
-      let desayuno = response.data.filter(DesayunoHome => DesayunoHome.category === "Desayuno");
-      let almuerzo = response.data.filter(AlmuerzoHome => AlmuerzoHome.category === "Almuerzo");
+      let desayuno = response.data.filter(DesayunoHome => DesayunoHome.category === "Desayuno" || DesayunoHome.category === "Merienda");
+      let almuerzo = response.data.filter(AlmuerzoHome => AlmuerzoHome.category === "Almuerzo" || AlmuerzoHome.category === "Cena");
       let tragos = response.data.filter(TragosHome => TragosHome.category === "Tragos");
 
       if (desayuno) {
@@ -41,12 +41,12 @@ const HomePages = () => {
   }, []);
 
   useEffect(() => {
-    if (Auth.isAuthenticated() === true) {
+    if (auth.isAuthenticated() === true) {
       if (roleAdmin === 'admin') {
         history.push('/admin/todas')
       }
     }
-  }, [Auth.isAuthenticated()]);
+  }, [auth.isAuthenticated()]);
 
 
   const GetTodas = () => {
@@ -67,7 +67,7 @@ const HomePages = () => {
 
   const Logueado = (e) => {
     const ModalLog = document.getElementById('Log-Modal');
-    if (Auth.isAuthenticated() === false) {
+    if (auth.isAuthenticated() === false) {
       e.preventDefault();
       Sweet.fire({
         title: 'Uuups',
@@ -83,9 +83,9 @@ const HomePages = () => {
         <img className="w-100 PlatosHomeimg"
           src={`http://localhost:3001` + p.imageUrl} alt="" />
         <div className="overlay col p-0 text-white text-center">
-          <h3 className="mb-0">{p.title}</h3>
-          <hr className="bg-white" />
-          <div className="text">
+          <h4 className="mb-0">{p.title}</h4>
+          <hr className="bg-white my-1" />
+          <div className="text mb-0">
             {p.description}
           </div>
         </div>
