@@ -13,6 +13,8 @@ const ControllerCancelOrder = require('../controllers/order/cancelOrder')
 const ControllerSearchOrderUser = require('../controllers/order/searchOrderUser')
 const ControllerCompletedOrder = require('../controllers/order/completedOrder')
 const ControllerScoreOrder = require('../controllers/order/scoreOrder')
+const ControllerCreateOrderTC = require('../controllers/order/createOrderTC')
+const ControllerMercadoPago = require('../controllers/order/merPagoOrder')
 
 router.post('/',authorize('user'), [  
      
@@ -31,9 +33,15 @@ router.put('/user/:id/puntaje',authorize('user'), [
 
 ControllerScoreOrder.scoreOrder) 
  
+router.post('/tarjeta',authorize('user'), [  
+    check('quantity', 'Cantidad vacia').notEmpty(),
+    check('address', 'Direccion esta Vacio').notEmpty(),
+], ControllerCreateOrderTC.CreateOrderTC)
+
 router.get('/user',authorize('user'), ControllerSearchOrderUser.searchOrder)
 router.get('/:id',authorize('admin'), ControllerReadOneOrder.getOrder)
 router.get('/',authorize('admin'), ControllerReadSeveralOrders.seeOrders)
+router.get('/mp/payment', ControllerMercadoPago.merPago)
 
 router.put('/:id/finalizar',authorize('user'), ControllerCompletedOrder.completedOrder)
 router.put('/:id/cancelar',authorize('admin'), ControllerCancelOrder.cancelOrder) 
