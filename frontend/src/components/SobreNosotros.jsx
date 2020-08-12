@@ -3,7 +3,7 @@ import Modal from 'react-bootstrap/Modal'
 
 const SobreNosotros = (props) => {
   return (
-    <Modal
+    <Modal className="position-absolute"
       {...props}
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"

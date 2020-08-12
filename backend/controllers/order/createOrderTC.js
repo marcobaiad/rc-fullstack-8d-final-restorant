@@ -2,8 +2,7 @@ const mongoose = require('mongoose');
 const moment = require('moment-timezone');
 const mercadopago = require('mercadopago');
 const OrderModel = require('../../models/order.model');
-const FoodsModel = require('../../models/foods.model');
-
+const FoodsModel = require('../../models/foods.model')
 moment.tz.setDefault('America/Argentina/Tucuman');
 mercadopago.configure({
     sandbox: true,
@@ -63,19 +62,20 @@ exports.CreateOrderTC = async (req, res) => {
                 expiration_date_from: moment().toISOString(true),
                 expiration_date_to: moment().add(7, 'days').toISOString(true),
                 back_urls: {
-                    "success": `${process.env.FRONTEND_BASE_URL}/plato/${food.id}`,
-                    "failure": `${process.env.FRONTEND_BASE_URL}/plato/${food.id}`,
+                    "success": `${process.env.FRONTEND_BASE_URL}/user/orders/${order.id}`,
+                    "failure": `${process.env.FRONTEND_BASE_URL}/user/orders/${order.id}`,
                     "pending": `${process.env.FRONTEND_BASE_URL}/pending`
                 },
             };
             preference.external_reference = saleId.toString();
-            preference.payer = user;
+            preference.payer = user;    
             preference.items = [{
                 id: food._id,
                 title: food.title,
                 quantity: food.quantity,
                 currency_id: 'ARS',
-                unit_price: food.price
+                unit_price: food.price,
+                id:order._id
             }]
             console.log('cantidad ->', food.quantity, ' precio -> ', food.price)
             console.log('items ->', preference.items)

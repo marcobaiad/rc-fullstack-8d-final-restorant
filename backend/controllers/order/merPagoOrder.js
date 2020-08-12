@@ -16,7 +16,7 @@ exports.merPago = async (req, res) => {
         external_reference: paymentInfo.external_reference,
         status: paymentInfo.status,
         transaction_amount: paymentInfo.transaction_amount
-      } 
+      }
     });
   } catch (error) {
     console.log('ERROR');
@@ -61,8 +61,8 @@ async function get_payment_by_external_id(external_reference) {
     const response = await mercadopago.payment.search({
       qs: filters
     });
-    console.log(response);
-    console.log(response.body.results[0]);
+    console.log('response exeternal ->', response);
+    console.log('body external ->',response.body.results[0]);
     return response.body.results[0];
   } catch (err) {
     console.log('ERROR');

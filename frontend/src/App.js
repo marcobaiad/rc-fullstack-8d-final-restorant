@@ -14,22 +14,27 @@ import RegUser from './pages/RegUser';
 import Footer from '../src/components/Footer';
 import PrivateRoute from './components/PrivateRoute';
 import PlatoPage from './pages/PlatoPage';
-import GetOrderUserPages from './pages/GetOrderUserPages'
-import MenuAdm from './components/MenuAdm'
+import GetOrderUserPages from './pages/GetOrderUserPages';
+import MenuAdm from './components/MenuAdm';
+import UserProfilePage from './pages/UserProfilePage';
+import RecoverPass from './pages/RecoverPass'
 
 function App() {
 
 	return (
 		<Router>
-			<Route component={Header} />
+			<Route component={Header}/>
 			<Switch>
 				<PrivateRoute path="/admin" role={'admin'} component={MenuAdm} />
-				<PrivateRoute path="/user/orders" exact role={'user'} component={GetOrderUserPages} />
+				<PrivateRoute path="/user/orders/:id" exact role={'user'} component={GetOrderUserPages} />
+				<PrivateRoute path="/user/orders/" exact role={'user'} component={GetOrderUserPages} />
+				<PrivateRoute path="/user/perfil/:id" role={'user'} component={UserProfilePage} />
 				<Route path="/plato/:id" exact role={'user'} component={PlatoPage} />
 				<Route path="/reg" exact component={RegUser} />
+				<Route path="/recoverpass/:tokenId" component={RecoverPass} />
 				<Route exact path="/" component={HomePage} />
 			</Switch>
-			<Route component={Footer} />
+			<Route component={Footer}/>
 		</Router>
 	);
 }

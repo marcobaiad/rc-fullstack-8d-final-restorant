@@ -34,19 +34,16 @@ class RegUser extends React.Component {
     registro.push({ name: this.state.name, lastname: this.state.lastname, address: this.state.address, age: this.state.age, username: this.state.username, password: this.state.password, phonenumber: this.state.phonenumber, email: this.state.email });
     this.setState({ registro })
     e.preventDefault();
-    // const ModalLog = document.getElementById('Log-Modal');
     try {
       await clienteAxios.post(`/api/v1/usuarios`, { name: this.state.name, lastname: this.state.lastname, address: this.state.address, age: this.state.age, username: this.state.username , password: this.state.password, phonenumber: this.state.phonenumber, email: this.state.email });
-      await swal.fire({
+      swal.fire({
         icon: 'success',
         title: 'Registro correcto',
       });
-      window.location="/";      
-      // ModalLog.click()
+      window.location = '/';      
     } catch (err) {
       const { response } = err;
       const errores = response.data.mensaje;
-
       swal.fire({
         icon: 'error',
         title: 'No se pudo registrar',
@@ -80,10 +77,10 @@ class RegUser extends React.Component {
           <h1 className='titulo text-white pb-5'>Registro de Usuario</h1>
           <div className="form-row">
             <div className="form-group col-md-6 mb-0">
-              <input autoFocus type="text" className="form-control item" name="name" onChange={this.handleChange} required placeholder="Nombre" />
+              <input autoFocus type="text" maxLength="25" className="form-control item" name="name" onChange={this.handleChange} required placeholder="Nombre" />
             </div>
             <div className="form-group col-md-6 mb-0">
-              <input type="text" className="form-control item" name="lastname" onChange={this.handleChange} required placeholder="Apellido" />
+              <input type="text" className="form-control item" maxLength="25" name="lastname" onChange={this.handleChange} required placeholder="Apellido" />
             </div>
             <div className="form-group col-md-6 mb-0">
               <input type="text" minLength="9" maxLength="11" className="form-control item" onKeyPress={this.OnlyNumber} name="phonenumber" onChange={this.handleChange} required title="3810000000" placeholder="N° Celular" />
@@ -103,7 +100,7 @@ class RegUser extends React.Component {
               <input type="text" minLength="4" className="form-control item" name="username" onChange={this.handleChange} title="El usuario debe contener al menos 4 caracteres" required placeholder="Usuario" />
             </div>
             <div className="form-group col-md-6 mb-0">
-              <input type="password" minLength="8" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" className="form-control item" name="password" onChange={this.handleChange} title="La contraseña debe tener al menos 8 caracteres y una mayuscula" required placeholder="Contraseña" />
+              <input type="password" minLength="8" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" className="form-control item" name="password" onChange={this.handleChange} title="La contraseña debe tener al menos 8 caracteres, una mayuscula y una minuscula" required placeholder="Contraseña" />
             </div>
           </div>
           <button type="submit" className="btn btn-block create-account">Registrarse</button>

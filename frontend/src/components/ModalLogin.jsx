@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useState, useCallback } from 'react';
+import { useHistory, Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import '../Css/logUser.css';
 import auth from '../utils/auth';
 import clienteAxios from '../config/axios';
-import Modal from 'react-bootstrap/Modal'
+import Modal from 'react-bootstrap/Modal';
 
 
 const ModalLogin = (props) => {
@@ -12,8 +12,18 @@ const ModalLogin = (props) => {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('')
 
+  const rolelocal = localStorage.getItem('role')
+
   const history = useHistory();
-  
+
+  const measuredRef = useCallback(node => {
+    if (node !== null) {
+      setTimeout(() => {
+        node.focus();
+      }, 1)
+    }
+  }, []);
+
 
   const logUser = e => {
     e.preventDefault();
@@ -30,8 +40,8 @@ const ModalLogin = (props) => {
 
         response.data.role === 'admin' ?
           history.push('/admin/todas')
-          : window.location = '/';
-
+          :
+          history.push('/')
       }).catch(function () {
         Swal.fire({
           icon: "error",
@@ -42,22 +52,26 @@ const ModalLogin = (props) => {
       })
   }
 
-  const recoverPass = (e) => {    
-    if(email === '' ) {       
+  const recoverPass = (e) => {
+
+    clienteAxios.post('/api/v1/usuarios/sendrecoverypass', { email })
+
+    if (email === '') {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: 'Ingresar Email'  
+        text: 'Ingresar Email'
       })
-    }else{      
-     Swal.fire({
-      icon: "success",
-      title: "Mensaje enviado",
-      showConfirmButton: false,
-      timer: 3000
-    });
-    }     
+    } else {
+      Swal.fire({
+        icon: "success",
+        title: "Mensaje enviado",
+        showConfirmButton: false,
+        timer: 3000
+      });
+    }
   }
+
 
   return (
     <Modal
@@ -76,6 +90,8 @@ const ModalLogin = (props) => {
                 className="form-control item"
                 placeholder="Usuario"
                 name="username"
+                ref={measuredRef}
+                autoFocus
                 minLength="4"
                 onChange={(e) => { setUser(e.target.value) }} />
             </div>
@@ -100,10 +116,10 @@ const ModalLogin = (props) => {
                 </div>
               </div>
               <div className="col-md-9">
-                <a type="" href="" className="olvideContrasenia" data-toggle="modal" data-target="#exampleModalCentered"
+                <Link to="" className="olvideContrasenia" data-toggle="modal" data-target="#exampleModalCentered"
                 >
                   Olvidé mi Contraseña
-              </a>     
+              </Link>
               </div>
             </div>
             <button
@@ -113,40 +129,40 @@ const ModalLogin = (props) => {
           </form>
         </div>
         <div className="modal"
-                  id="exampleModalCentered" tabIndex="-1"
-                  role="dialog" aria-labelledby="exampleModalCenteredLabel" aria-hidden="true">
-                  <div className="modal-dialog modal-dialog-centered" role="document">
-                    <div className="modal-content modalrecover">
-                      <div className="modal-header d-block">
-                        <h5 className="text-center" id="exampleModalCenteredLabel">Recuperar contraseña</h5>
-                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">×</span>
-                        </button>
-                      </div>
-                      <div className="modal-body">
-                        <div className="form-group">
-                          <div className="col-md-12 text-center">
-                        
-                            <label htmlFor="formGroupExampleInput">Ingresa tu email para recuperar tu contraseña</label>
-                            <input
-                              type="email"
-                              className="form-control item"
-                              id="inputEmail3"
-                              placeholder="Email"
-                              required
-                              name="recuperarEmail"
-                              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-                              onChange={(e) => { setEmail(e.target.value) }}
-                               />
-                          </div>
-                        </div>
-                      </div>
-                      <div className="modal-footer">
-                        <button type="button" className="btn btn-block modalBtn" onClick={recoverPass}>Recuperar</button>
-                      </div>
-                    </div>
+          id="exampleModalCentered" tabIndex="-1"
+          role="dialog" aria-labelledby="exampleModalCenteredLabel" aria-hidden="true">
+          <div className="modal-dialog modal-dialog-centered" role="document">
+            <div className="modal-content modalrecover">
+              <div className="modal-header d-block">
+                <h5 className="text-center" id="exampleModalCenteredLabel">Recuperar contraseña</h5>
+                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+                </button>
+              </div>
+              <div className="modal-body">
+                <div className="form-group">
+                  <div className="col-md-12 text-center">
+
+                    <label htmlFor="formGroupExampleInput">Ingresa tu email con el que te registraste para recuperar tu contraseña</label>
+                    <input
+                      type="email"
+                      className="form-control item"
+                      id="inputEmail3"
+                      placeholder="Email"
+                      required
+                      name="recuperarEmail"
+                      pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                      onChange={(e) => { setEmail(e.target.value) }}
+                    />
                   </div>
                 </div>
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-block modalBtn" onClick={recoverPass}>Recuperar</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </>
     </Modal>
   );

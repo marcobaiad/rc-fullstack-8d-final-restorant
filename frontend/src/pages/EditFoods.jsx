@@ -8,7 +8,7 @@ const Editfoods = () => {
   const history = useHistory()
   const params = useParams()
   const wrapperRef = useRef(null)
-    const [createFoods, setCreateFoods] = useState({
+  const [createFoods, setCreateFoods] = useState({
     title: '',
     description: '',
     summary: '',
@@ -23,8 +23,11 @@ const Editfoods = () => {
   const getFood = useCallback(async () => {
     const res = await clienteAxios.get(`api/v1/comidas/${params.id}`)
     setCreateFoods(res.data)
-    setPreviewImage(res.data.imageUrl)
-    setImage(res.data.imageUrl)
+    res.data.imageUrl.includes('cloudinary') 
+    ? 
+    setPreviewImage(res.data.imageUrl) && setImage(res.data.imageUrl)
+    : 
+    setPreviewImage(`http://localhost:3001` + res.data.imageUrl) && setImage(`http://localhost:3001` + res.data.imageUrl);
   }, [params.id])
 
   useEffect(() => {
@@ -37,9 +40,8 @@ const Editfoods = () => {
 
   const selectHandlerChange = (e) => {
     const value = e.target.value === 'true';
-    const isEnable = enable === 'true'
-
-    isEnable ? Swal.fire({
+    
+    enable ? Swal.fire({
       title: 'Esta Seguro de Deshabilitar esta Comida del Menu?',
       text: "Deshabiltiar!",
       icon: 'warning',
@@ -89,8 +91,12 @@ const Editfoods = () => {
     try {
       await clienteAxios.put(`api/v1/comidas/${params.id}`, {
         title, description, summary, price, category, enable
-      }
-      )
+      });
+      Swal.fire({
+        icon: 'success',
+        title: 'Cambios Guardados'
+      })
+      history.goBack();
       if (previewImage !== image) {
 
         const formData = new FormData()
@@ -101,8 +107,6 @@ const Editfoods = () => {
           }
         })
       }
-
-      history.goBack();
     }
     catch {
       console.log('NO SE PUDO ACTUALIZAR');

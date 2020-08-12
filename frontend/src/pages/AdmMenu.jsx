@@ -10,15 +10,15 @@ const AdmMenu = () => {
 
 
 	useEffect(() => {
-		const consultApi = () => {
-			clienteAxios.get('api/v1/comidas/todas')
+		const consultApi = async () => {
+			await clienteAxios.get('api/v1/comidas/todas')
 
-				.then(response => {
-					setMenu(response.data)
-				})
-				.catch(error => {
-					console.log(error)
-				})
+			.then(response => {
+				setMenu(response.data)
+			})
+			.catch(error => {
+				console.log(error)
+			})
 		}
 		consultApi();
 	}, []);
@@ -28,8 +28,8 @@ const AdmMenu = () => {
 			<div key={a._id} className=" row my-5 card DivContainer">
 				<img
 					className="card-img-top imgAdmin"
-					src={`http://localhost:3001` + a.imageUrl}
-					alt="Card image cap"
+					src={a.imageUrl.includes('cloudinary') ? a.imageUrl : `http://localhost:3001` + a.imageUrl}
+					alt="Card cap"
 				/>
 				<div className="card-body">
 					<h4 className="card-title"> {a.title} </h4>

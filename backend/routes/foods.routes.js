@@ -25,6 +25,8 @@ router.post('/',authorize('admin'), [
 ControllerCreateFoods.CreateFoods)
 router.post('/:resourceId/upload',authorize('admin'), ControllerFoodsImages.uploadImages);
 
+
+
 router.get('/todas',authorize('admin'), ControllerReadFoodsAll.GetFoods)
 router.get('/:id', ControllerReadFoods.GetOneFood)
 router.get('/', ControllerReadFoodsTrue.GetFoodsTrue)
@@ -34,4 +36,5 @@ router.put('/:id/nd',authorize('admin'), ControllerFoodsND.FoodsND)
 router.put('/:id',authorize('admin'), ControllerUpdateFoods.ModifyFoods)
 
 router.delete('/:id',authorize('admin'), ControllerDeleteFoods.RemoveFoods)
+// router.use(formData.parse());
 module.exports = router; 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import '../Css/homepage.css'
 import { useHistory, Link } from 'react-router-dom';
+import '../Css/homepage.css'
 import auth from '../utils/auth';
 import clienteAxios from '../config/axios';
 import Sweet from 'sweetalert2';
@@ -81,7 +81,7 @@ const HomePages = () => {
     <article key={p._id} className="col-6 col-md-4 col-lg-3 px-0 containers">
       <Link onClick={Logueado} to={'plato/' + p._id}>
         <img className="w-100 PlatosHomeimg"
-          src={`http://localhost:3001` + p.imageUrl} alt="" />
+          src={p.imageUrl.includes('cloudinary') ? p.imageUrl : `http://localhost:3001` + p.imageUrl} alt={p.title} />
         <div className="overlay col p-0 text-white text-center">
           <h4 className="mb-0">{p.title}</h4>
           <hr className="bg-white my-1" />
